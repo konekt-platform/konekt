@@ -1,7 +1,7 @@
-import { defineConfig } from 'vite';
-import path from 'path';
-import tailwindcss from '@tailwindcss/vite';
-import react from '@vitejs/plugin-react';
+import { defineConfig } from "vite";
+import path from "path";
+import tailwindcss from "@tailwindcss/vite";
+import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [
@@ -12,12 +12,13 @@ export default defineConfig({
   ],
   server: {
     // Permite acesso via túneis (Cloudflare/localtunnel) sem bloqueio de host.
-    allowedHosts: ['.trycloudflare.com', '.loca.lt', 'localhost', '127.0.0.1'],
+    allowedHosts: [".trycloudflare.com", ".loca.lt", "localhost", "127.0.0.1"],
+    port: Number(process.env.PORT) || 5174,
   },
   resolve: {
     alias: {
       // Alias @ to the src directory
-      '@': path.resolve(__dirname, './src'),
+      "@": path.resolve(__dirname, "./src"),
     },
   },
 });

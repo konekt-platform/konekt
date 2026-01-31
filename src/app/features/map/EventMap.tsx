@@ -1,22 +1,31 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Bell, Plus, Search, X, Check, Navigation, RefreshCw } from 'lucide-react';
-import { MapContainer, TileLayer, Marker, Popup, CircleMarker, Tooltip, useMapEvents, useMap } from 'react-leaflet';
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
-import { useGetEvents } from '../../hooks/useGetEvents';
-import { useQueryClient } from '@tanstack/react-query';
-import { EventPopup } from './components/EventPopup';
-import { EventCardsRail } from './components/EventCardsRail';
-import { EventCreatePanel } from './components/EventCreatePanel';
-import { EventFiltersPanel } from './components/EventFiltersPanel';
-import { NotificationPanel } from '../notifications/NotificationPanel';
-import { EventFilters, filterEvents } from './utils/eventFilters';
-import { createCustomIcon } from './utils/eventPins';
-import { findOverlappingEvents } from './utils/eventOverlap';
-import { Event } from '../../types';
-import { EventFullCard } from './components/EventFullCard';
-import { useAuth } from '../../contexts/AuthContext';
-import { hasEventEnded } from './utils/eventSchedule';
+import React, { useEffect, useRef, useState } from "react";
+import { Bell, Plus, Search, X, Check, Navigation } from "lucide-react";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  CircleMarker,
+  Tooltip,
+  useMapEvents,
+  useMap,
+} from "react-leaflet";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
+import { useGetEvents } from "../../hooks/useGetEvents";
+import { useQueryClient } from "@tanstack/react-query";
+import { EventPopup } from "./components/EventPopup";
+import { EventCardsRail } from "./components/EventCardsRail";
+import { EventCreatePanel } from "./components/EventCreatePanel";
+import { EventFiltersPanel } from "./components/EventFiltersPanel";
+import { NotificationPanel } from "../notifications/NotificationPanel";
+import { EventFilters, filterEvents } from "./utils/eventFilters";
+import { createCustomIcon } from "./utils/eventPins";
+import { findOverlappingEvents } from "./utils/eventOverlap";
+import { Event } from "../../types";
+import { EventFullCard } from "./components/EventFullCard";
+import { useAuth } from "../../contexts/AuthContext";
+import { hasEventEnded } from "./utils/eventSchedule";
 
 // Função para formatar endereço estilo Uber
 function formatAddressUberStyle(data: any): string {
@@ -43,22 +52,25 @@ function formatAddressUberStyle(data: any): string {
   }
 
   if (parts.length > 0) {
-    return parts.join(', ');
+    return parts.join(", ");
   }
 
   // Fallback: usa display_name se não conseguir montar
-  return data.display_name || '';
+  return data.display_name || "";
 }
 
 // Função para fazer reverse geocoding
-async function reverseGeocode(lat: number, lng: number): Promise<string | null> {
+async function reverseGeocode(
+  lat: number,
+  lng: number,
+): Promise<string | null> {
   try {
     const url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json&zoom=18&addressdetails=1`;
 
     const res = await fetch(url, {
       headers: {
-        Accept: 'application/json',
-        'User-Agent': 'konekt-prototipo/1.0',
+        Accept: "application/json",
+        "User-Agent": "konekt-prototipo/1.0",
       },
     });
 
@@ -70,14 +82,20 @@ async function reverseGeocode(lat: number, lng: number): Promise<string | null> 
     }
     return null;
   } catch (error) {
-    console.error('Reverse geocoding error:', error);
+    console.error("Reverse geocoding error:", error);
     return null;
   }
 }
 
 // Fix Leaflet's default icon path issues
-const icon = new URL('leaflet/dist/images/marker-icon.png', import.meta.url).toString();
-const iconShadow = new URL('leaflet/dist/images/marker-shadow.png', import.meta.url).toString();
+const icon = new URL(
+  "leaflet/dist/images/marker-icon.png",
+  import.meta.url,
+).toString();
+const iconShadow = new URL(
+  "leaflet/dist/images/marker-shadow.png",
+  import.meta.url,
+).toString();
 
 const DefaultIcon = L.icon({
   iconUrl: icon,
@@ -89,7 +107,11 @@ const DefaultIcon = L.icon({
 L.Marker.prototype.options.icon = DefaultIcon;
 
 // Componente para capturar cliques no mapa
-function MapClickHandler({ onMapClick }: { onMapClick: (e: L.LeafletMouseEvent) => void }) {
+function MapClickHandler({
+  onMapClick,
+}: {
+  onMapClick: (e: L.LeafletMouseEvent) => void;
+}) {
   useMapEvents({
     click: onMapClick,
   });
@@ -110,13 +132,13 @@ function CenterPinMarker() {
       setCenter([mapCenter.lat, mapCenter.lng]);
     };
 
-    map.on('move', updateCenter);
-    map.on('moveend', updateCenter);
+    map.on("move", updateCenter);
+    map.on("moveend", updateCenter);
     updateCenter();
 
     return () => {
-      map.off('move', updateCenter);
-      map.off('moveend', updateCenter);
+      map.off("move", updateCenter);
+      map.off("moveend", updateCenter);
     };
   }, [map]);
 
@@ -124,7 +146,7 @@ function CenterPinMarker() {
     <Marker
       position={center}
       icon={L.divIcon({
-        className: 'center-pin-marker',
+        className: "center-pin-marker",
         html: `
           <div style="
             width: 40px;
@@ -160,7 +182,10 @@ interface EventMapProps {
   initialNotificationsOpen: boolean;
 }
 
-export function EventMap({ unreadCount, initialNotificationsOpen }: EventMapProps) {
+export function EventMap({
+  unreadCount,
+  initialNotificationsOpen,
+}: EventMapProps) {
   const mapRef = useRef<L.Map | null>(null);
   const markersRef = useRef<Map<number, L.Marker>>(new Map());
   const queryClient = useQueryClient();
@@ -168,23 +193,29 @@ export function EventMap({ unreadCount, initialNotificationsOpen }: EventMapProp
   const { user: authUser } = useAuth();
   // Posição padrão (Campina Grande) caso geolocalização não esteja disponível
   const defaultPosition: [number, number] = [-7.2159, -35.9108];
-  const [userPosition, setUserPosition] = useState<[number, number] | null>(null);
+  const [userPosition, setUserPosition] = useState<[number, number] | null>(
+    null,
+  );
   const [locationError, setLocationError] = useState(false);
   const defaultFilters: EventFilters = {
     radiusKm: 10,
-    period: 'all',
-    dayRange: 'next_3_days',
-    genderFocus: 'all',
-    visibility: 'all',
-    eventType: 'all',
+    period: "all",
+    dayRange: "next_3_days",
+    genderFocus: "all",
+    visibility: "all",
+    eventType: "all",
   };
   const [filters, setFilters] = useState<EventFilters>(defaultFilters);
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [createOpen, setCreateOpen] = useState(false);
-  const [notificationsOpen, setNotificationsOpen] = useState(initialNotificationsOpen);
+  const [notificationsOpen, setNotificationsOpen] = useState(
+    initialNotificationsOpen,
+  );
   const [openPopupEventId, setOpenPopupEventId] = useState<number | null>(null);
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
-  const [selectedPosition, setSelectedPosition] = useState<[number, number] | null>(null);
+  const [selectedPosition, setSelectedPosition] = useState<
+    [number, number] | null
+  >(null);
   const [selectingLocation, setSelectingLocation] = useState(false);
   const [selectionMessage, setSelectionMessage] = useState<string | null>(null);
   // Estado para forçar re-render quando eventos mudarem
@@ -192,15 +223,23 @@ export function EventMap({ unreadCount, initialNotificationsOpen }: EventMapProp
 
   // Força atualização quando eventos mudarem (especialmente attendees)
   useEffect(() => {
+    console.log("Events updated");
+
     if (events) {
       // Cria uma chave baseada na soma de todos os attendees para detectar mudanças
-      const attendeesSum = events.reduce((sum, e) => sum + ((e.attendees || 0) * 1000 + e.id), 0);
+      const attendeesSum = events.reduce(
+        (sum, e) => sum + ((e.attendees || 0) * 1000 + e.id),
+        0,
+      );
       setEventsUpdateKey(attendeesSum);
 
       // Sincroniza o evento selecionado com os dados mais recentes
       if (selectedEvent) {
         const freshEvent = events.find((e) => e.id === selectedEvent.id);
-        if (freshEvent && JSON.stringify(freshEvent) !== JSON.stringify(selectedEvent)) {
+        if (
+          freshEvent &&
+          JSON.stringify(freshEvent) !== JSON.stringify(selectedEvent)
+        ) {
           setSelectedEvent(freshEvent);
         }
       }
@@ -208,19 +247,29 @@ export function EventMap({ unreadCount, initialNotificationsOpen }: EventMapProp
   }, [events, selectedEvent]);
 
   const hasConnections =
-    (authUser?.followingIds?.length ?? 0) + (authUser?.followerIds?.length ?? 0) > 0;
+    (authUser?.followingIds?.length ?? 0) +
+      (authUser?.followerIds?.length ?? 0) >
+    0;
   const visibleEvents = events
     ? hasConnections
       ? events
-      : events.filter((event) => event.visibility === 'public')
+      : events.filter((event) => event.visibility === "public")
     : [];
   const mapEvents = visibleEvents.filter((event) => {
     if (event.isRecurring) return true;
     return !hasEventEnded(event);
   });
-  const filteredEvents = mapEvents.length ? filterEvents(mapEvents, filters) : [];
-  const activePanel = notificationsOpen ? 'notifications' : createOpen ? 'create' : filtersOpen ? 'filters' : 'none';
-  const isPanelOpen = activePanel !== 'none';
+  const filteredEvents = mapEvents.length
+    ? filterEvents(mapEvents, filters)
+    : [];
+  const activePanel = notificationsOpen
+    ? "notifications"
+    : createOpen
+      ? "create"
+      : filtersOpen
+        ? "filters"
+        : "none";
+  const isPanelOpen = activePanel !== "none";
   const isPopupOpen = openPopupEventId !== null;
 
   const closeAllPanels = () => {
@@ -237,7 +286,7 @@ export function EventMap({ unreadCount, initialNotificationsOpen }: EventMapProp
       mapRef.current.flyTo(userPosition, 16, { animate: true });
     } else {
       // Se não tiver posição, tenta obter novamente
-      if ('geolocation' in navigator) {
+      if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(
           (position) => {
             const nextPosition: [number, number] = [
@@ -251,7 +300,7 @@ export function EventMap({ unreadCount, initialNotificationsOpen }: EventMapProp
             }
           },
           (error) => {
-            console.error('Erro ao obter localização:', error);
+            console.error("Erro ao obter localização:", error);
             setLocationError(true);
           },
           { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 },
@@ -261,8 +310,8 @@ export function EventMap({ unreadCount, initialNotificationsOpen }: EventMapProp
   };
 
   useEffect(() => {
-    if (!('geolocation' in navigator)) {
-      console.error('Geolocalização não disponível no navegador');
+    if (!("geolocation" in navigator)) {
+      console.error("Geolocalização não disponível no navegador");
       setLocationError(true);
       return;
     }
@@ -278,7 +327,13 @@ export function EventMap({ unreadCount, initialNotificationsOpen }: EventMapProp
             position.coords.latitude,
             position.coords.longitude,
           ];
-          console.log('✅ Geolocalização obtida com sucesso:', nextPosition, 'Precisão:', position.coords.accuracy, 'm');
+          console.log(
+            "✅ Geolocalização obtida com sucesso:",
+            nextPosition,
+            "Precisão:",
+            position.coords.accuracy,
+            "m",
+          );
           setUserPosition(nextPosition);
           setLocationError(false);
           // Centraliza na primeira vez
@@ -288,7 +343,7 @@ export function EventMap({ unreadCount, initialNotificationsOpen }: EventMapProp
           }
         },
         (error) => {
-          console.error('❌ Erro ao obter geolocalização:', {
+          console.error("❌ Erro ao obter geolocalização:", {
             code: error.code,
             message: error.message,
             retryCount,
@@ -300,11 +355,11 @@ export function EventMap({ unreadCount, initialNotificationsOpen }: EventMapProp
           // 3 = TIMEOUT
 
           if (error.code === 1) {
-            console.error('Permissão de localização negada pelo usuário');
+            console.error("Permissão de localização negada pelo usuário");
           } else if (error.code === 2) {
-            console.error('Posição não disponível');
+            console.error("Posição não disponível");
           } else if (error.code === 3) {
-            console.error('Timeout ao obter localização');
+            console.error("Timeout ao obter localização");
           }
 
           // Tenta novamente se não excedeu o limite
@@ -319,7 +374,7 @@ export function EventMap({ unreadCount, initialNotificationsOpen }: EventMapProp
         {
           enableHighAccuracy: true,
           timeout: 20000,
-          maximumAge: 0
+          maximumAge: 0,
         },
       );
     };
@@ -334,12 +389,18 @@ export function EventMap({ unreadCount, initialNotificationsOpen }: EventMapProp
           position.coords.latitude,
           position.coords.longitude,
         ];
-        console.log('📍 Geolocalização atualizada:', nextPosition, 'Precisão:', position.coords.accuracy, 'm');
+        console.log(
+          "📍 Geolocalização atualizada:",
+          nextPosition,
+          "Precisão:",
+          position.coords.accuracy,
+          "m",
+        );
         setUserPosition(nextPosition);
         setLocationError(false);
       },
       (error) => {
-        console.error('❌ Erro ao monitorar geolocalização:', {
+        console.error("❌ Erro ao monitorar geolocalização:", {
           code: error.code,
           message: error.message,
         });
@@ -349,7 +410,7 @@ export function EventMap({ unreadCount, initialNotificationsOpen }: EventMapProp
       {
         enableHighAccuracy: true,
         timeout: 20000,
-        maximumAge: 1000
+        maximumAge: 1000,
       },
     );
 
@@ -365,7 +426,7 @@ export function EventMap({ unreadCount, initialNotificationsOpen }: EventMapProp
       {filtersOpen && (
         <EventFiltersPanel
           isOpen={filtersOpen}
-          isCollapsed={activePanel !== 'filters'}
+          isCollapsed={activePanel !== "filters"}
           filters={filters}
           defaultFilters={defaultFilters}
           onChange={setFilters}
@@ -376,7 +437,7 @@ export function EventMap({ unreadCount, initialNotificationsOpen }: EventMapProp
       {createOpen && (
         <EventCreatePanel
           isOpen={createOpen}
-          isCollapsed={activePanel !== 'create'}
+          isCollapsed={activePanel !== "create"}
           onClose={closeAllPanels}
           selectedPosition={selectedPosition}
           onMapClick={(lat, lng) => {
@@ -392,7 +453,9 @@ export function EventMap({ unreadCount, initialNotificationsOpen }: EventMapProp
             mapRef.current?.flyTo(target, 16, { animate: true });
           }}
           onShowAddressOnMap={(address, position) => {
-            setSelectionMessage('Centralizando mapa para você conferir o endereço');
+            setSelectionMessage(
+              "Centralizando mapa para você conferir o endereço",
+            );
             if (position) {
               mapRef.current?.flyTo(position, 15, { animate: true });
             } else {
@@ -404,10 +467,12 @@ export function EventMap({ unreadCount, initialNotificationsOpen }: EventMapProp
             // Fecha o painel de criação
             setCreateOpen(false);
             // Força refetch dos eventos para garantir que o novo evento apareça
-            await queryClient.refetchQueries({ queryKey: ['events'] });
+            await queryClient.refetchQueries({ queryKey: ["events"] });
             // Centraliza o mapa no evento criado
             if (mapRef.current && createdEvent.position) {
-              mapRef.current.flyTo(createdEvent.position, 16, { animate: true });
+              mapRef.current.flyTo(createdEvent.position, 16, {
+                animate: true,
+              });
               // Aguarda um pouco para o evento aparecer no mapa antes de tentar abrir o popup
               setTimeout(() => {
                 // Tenta encontrar o marker do evento criado e abrir o popup
@@ -437,19 +502,19 @@ export function EventMap({ unreadCount, initialNotificationsOpen }: EventMapProp
       {notificationsOpen && (
         <NotificationPanel
           isOpen={notificationsOpen}
-          isCollapsed={activePanel !== 'notifications'}
+          isCollapsed={activePanel !== "notifications"}
           onClose={closeAllPanels}
         />
       )}
 
       {/* Map */}
-      <div className={`h-full w-full ${isPanelOpen ? 'lg:pr-80' : ''}`}>
+      <div className={`h-full w-full ${isPanelOpen ? "lg:pr-80" : ""}`}>
         <div className="h-full w-full overflow-hidden">
           <MapContainer
             center={[-7.2159, -35.9108]}
             zoom={14}
             zoomControl={false}
-            style={{ height: '100%', width: '100%' }}
+            style={{ height: "100%", width: "100%" }}
             ref={mapRef}
           >
             <TileLayer
@@ -466,21 +531,26 @@ export function EventMap({ unreadCount, initialNotificationsOpen }: EventMapProp
                 center={userPosition}
                 radius={10}
                 pathOptions={{
-                  color: '#e4811e',
-                  fillColor: '#e4811e',
+                  color: "#e4811e",
+                  fillColor: "#e4811e",
                   fillOpacity: 0.9,
-                  weight: 3
+                  weight: 3,
                 }}
               >
-                <Tooltip direction="top" offset={[0, -6]} opacity={1} permanent={false}>
+                <Tooltip
+                  direction="top"
+                  offset={[0, -6]}
+                  opacity={1}
+                  permanent={false}
+                >
                   Sua localização
                 </Tooltip>
               </CircleMarker>
             )}
 
-            {filteredEvents.map((event) => {
+            {events?.map((event) => {
               const overlappingEvents = events
-                ? findOverlappingEvents(event, filteredEvents)
+                ? findOverlappingEvents(event, events)
                 : [event];
               const hasOverlap = overlappingEvents.length > 1;
 
@@ -519,7 +589,9 @@ export function EventMap({ unreadCount, initialNotificationsOpen }: EventMapProp
                   >
                     <EventPopup
                       event={event}
-                      overlappingEvents={hasOverlap ? overlappingEvents : undefined}
+                      overlappingEvents={
+                        hasOverlap ? overlappingEvents : undefined
+                      }
                       onNavigate={(targetEvent) => {
                         // Fecha todos os popups primeiro
                         markersRef.current.forEach((marker) => {
@@ -527,7 +599,9 @@ export function EventMap({ unreadCount, initialNotificationsOpen }: EventMapProp
                         });
 
                         // Move o mapa para o novo evento se necessário
-                        const targetMarker = markersRef.current.get(targetEvent.id);
+                        const targetMarker = markersRef.current.get(
+                          targetEvent.id,
+                        );
                         if (targetMarker) {
                           mapRef.current?.flyTo(
                             targetEvent.position,
@@ -569,7 +643,9 @@ export function EventMap({ unreadCount, initialNotificationsOpen }: EventMapProp
       {!selectedEvent && (
         <EventCardsRail
           key={`cards-rail-${eventsUpdateKey}`}
-          events={[...filteredEvents].sort((a, b) => a.distanceKm - b.distanceKm)}
+          events={[...(events ?? [])].sort(
+            (a, b) => a.distanceKm - b.distanceKm,
+          )}
           onSelectEvent={(event) => {
             // Fecha todos os popups primeiro
             markersRef.current.forEach((marker) => {
@@ -597,7 +673,10 @@ export function EventMap({ unreadCount, initialNotificationsOpen }: EventMapProp
           className="fixed inset-0 z-[1500] flex items-center justify-center bg-black/70 px-4 py-6"
           onClick={() => setSelectedEvent(null)}
         >
-          <div className="relative w-full max-w-md" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="relative w-full max-w-md"
+            onClick={(e) => e.stopPropagation()}
+          >
             <EventFullCard
               event={selectedEvent}
               onClose={() => setSelectedEvent(null)}
@@ -654,10 +733,11 @@ export function EventMap({ unreadCount, initialNotificationsOpen }: EventMapProp
               setCreateOpen(false);
               setFiltersOpen(false);
             }}
-            className={`relative flex w-full items-center justify-center gap-2 rounded-xl border border-border px-3 py-2 text-xs font-semibold shadow-lg backdrop-blur transition-all ${notificationsOpen
-              ? 'bg-primary text-primary-foreground border-primary'
-              : 'bg-background/90 text-foreground hover:bg-accent'
-              }`}
+            className={`relative flex w-full items-center justify-center gap-2 rounded-xl border border-border px-3 py-2 text-xs font-semibold shadow-lg backdrop-blur transition-all ${
+              notificationsOpen
+                ? "bg-primary text-primary-foreground border-primary"
+                : "bg-background/90 text-foreground hover:bg-accent"
+            }`}
           >
             <Bell className="h-5 w-5" />
             <span>Notificações</span>
@@ -697,8 +777,6 @@ export function EventMap({ unreadCount, initialNotificationsOpen }: EventMapProp
             <Search className="h-5 w-5" />
             <span>Filtros</span>
           </button>
-
-
         </div>
       </div>
 
@@ -715,11 +793,16 @@ export function EventMap({ unreadCount, initialNotificationsOpen }: EventMapProp
       <button
         type="button"
         onClick={centerOnUserLocation}
-        className={`fixed bottom-24 right-4 z-[1300] flex h-12 w-12 items-center justify-center rounded-full shadow-lg transition-all active:scale-95 ${locationError
-          ? 'bg-destructive text-destructive-foreground hover:bg-destructive/90'
-          : 'bg-primary text-primary-foreground hover:bg-primary/90'
-          }`}
-        title={locationError ? 'Erro na localização' : 'Centralizar na minha localização'}
+        className={`fixed bottom-24 right-4 z-[1300] flex h-12 w-12 items-center justify-center rounded-full shadow-lg transition-all active:scale-95 ${
+          locationError
+            ? "bg-destructive text-destructive-foreground hover:bg-destructive/90"
+            : "bg-primary text-primary-foreground hover:bg-primary/90"
+        }`}
+        title={
+          locationError
+            ? "Erro na localização"
+            : "Centralizar na minha localização"
+        }
       >
         <Navigation className="h-5 w-5" />
       </button>

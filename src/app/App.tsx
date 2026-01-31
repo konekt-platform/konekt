@@ -1,21 +1,21 @@
-import { useState, useEffect } from 'react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { AuthProvider, useAuth } from './contexts/AuthContext';
-import { ThemeProvider } from './contexts/ThemeContext';
-import { Login } from './features/auth/Login';
-import { Feed } from './features/feed/Feed';
-import { EventMap } from './features/map/EventMap';
-import { ProfileView } from './features/profile/ProfileView';
-import { SearchView } from './features/search/SearchView';
-import { BottomNav } from './components/layout/BottomNav';
-import { View } from './types';
-import { useGetNotifications } from './hooks/useGetNotifications';
+import { useState, useEffect } from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { AuthProvider, useAuth } from "./contexts/AuthContext";
+import { ThemeProvider } from "./contexts/ThemeContext";
+import { Login } from "./features/auth/Login";
+import { Feed } from "./features/feed/Feed";
+import { EventMap } from "./features/map/EventMap";
+import { ProfileView } from "./features/profile/ProfileView";
+import { SearchView } from "./features/search/SearchView";
+import { BottomNav } from "./components/layout/BottomNav";
+import { View } from "./types";
+import { useGetNotifications } from "./hooks/useGetNotifications";
 
 const queryClient = new QueryClient();
 
 function Main() {
   const { isAuthenticated } = useAuth();
-  const [currentView, setCurrentView] = useState<View>('map');
+  const [currentView, setCurrentView] = useState<View>("map");
   const [viewingUserId, setViewingUserId] = useState<number | null>(null);
   const { data: notifications } = useGetNotifications();
   const unreadCount = notifications?.filter((n) => n.unread).length || 0;
@@ -24,12 +24,18 @@ function Main() {
   useEffect(() => {
     const handleNavigateToProfile = (e: CustomEvent<number>) => {
       setViewingUserId(e.detail);
-      setCurrentView('profile');
+      setCurrentView("profile");
     };
 
-    window.addEventListener('konekt:navigate-to-profile', handleNavigateToProfile as EventListener);
+    window.addEventListener(
+      "konekt:navigate-to-profile",
+      handleNavigateToProfile as EventListener,
+    );
     return () => {
-      window.removeEventListener('konekt:navigate-to-profile', handleNavigateToProfile as EventListener);
+      window.removeEventListener(
+        "konekt:navigate-to-profile",
+        handleNavigateToProfile as EventListener,
+      );
     };
   }, []);
 
@@ -42,26 +48,35 @@ function Main() {
     <div className="h-[100dvh] w-full flex flex-col bg-background text-foreground overflow-hidden">
       {/* Main Content */}
       <div className="flex-1 relative overflow-hidden">
-        {currentView === 'feed' && <Feed />}
-        {currentView === 'map' && (
+        {currentView === "feed" && <Feed />}
+        {currentView === "map" && (
           <EventMap
             unreadCount={unreadCount}
             initialNotificationsOpen={false}
           />
         )}
-        {currentView === 'profile' && <ProfileView viewingUserId={viewingUserId} onBack={() => { setViewingUserId(null); }} />}
-        {currentView === 'search' && (
+        {currentView === "profile" && (
+          <ProfileView
+            viewingUserId={viewingUserId}
+            onBack={() => {
+              setViewingUserId(null);
+            }}
+          />
+        )}
+        {currentView === "search" && (
           <SearchView
-            onBack={() => setCurrentView('map')}
+            onBack={() => setCurrentView("map")}
             onNavigateToProfile={(userId) => {
               setViewingUserId(userId);
-              setCurrentView('profile');
+              setCurrentView("profile");
             }}
             onNavigateToEvent={(eventId) => {
               // Navegar para o evento no mapa
-              setCurrentView('map');
+              setCurrentView("map");
               // Disparar evento customizado para focar no evento
-              window.dispatchEvent(new CustomEvent('konekt:focus-event', { detail: eventId }));
+              window.dispatchEvent(
+                new CustomEvent("konekt:focus-event", { detail: eventId }),
+              );
             }}
           />
         )}
@@ -78,7 +93,7 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <AuthProvider>
-      <Main />
+          <Main />
         </AuthProvider>
       </ThemeProvider>
     </QueryClientProvider>

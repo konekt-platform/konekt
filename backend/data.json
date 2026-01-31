@@ -20,7 +20,13 @@
         1769028240367,
         1769028240368,
         1769028240369
-      ]
+      ],
+      "privacy": {
+        "profilePublic": true,
+        "showEmail": false,
+        "showBirthDate": true,
+        "showFollowers": true
+      }
     },
     {
       "id": 1769028240366,
@@ -3994,10 +4000,10 @@
       "lastActivity": "2026-01-27T19:29:10.331Z"
     },
     {
-      "token": "accd4d64b9dd5edea6dd88ac5027e5d83536aa5f39003f41",
+      "token": "c58dd72b07eed52033b65c1f103e04e681786006d4b72364",
       "userId": 1,
-      "createdAt": "2026-01-27T19:35:08.669Z",
-      "lastActivity": "2026-01-27T19:38:55.527Z"
+      "createdAt": "2026-01-31T22:58:18.247Z",
+      "lastActivity": "2026-01-31T23:19:37.985Z"
     }
   ],
   "expenses": [
