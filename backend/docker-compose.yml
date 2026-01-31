@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:16
+    container_name: konekt-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: konekt
+      POSTGRES_PASSWORD: konekt
+      POSTGRES_DB: konekt
+    ports:
+      - "5432:5432"
+    volumes:
+      - konekt_db:/var/lib/postgresql/data
+
+volumes:
+  konekt_db:
+

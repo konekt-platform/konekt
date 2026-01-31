@@ -1,0 +1,1112 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "Konekt",
+      "email": "konekt@konekt.com",
+      "name": "Konekt",
+      "avatar": "https://i.pravatar.cc/150?img=50",
+      "password": "1234",
+      "bio": "Conta principal para testes",
+      "followers": 18,
+      "following": 18,
+      "followerIds": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "followingIds": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "birthDate": "2002-01-01"
+    },
+    {
+      "id": 2,
+      "username": "ana_tech",
+      "email": "ana@konekt.com",
+      "name": "Ana Silva",
+      "avatar": "https://i.pravatar.cc/150?img=1",
+      "password": "1234",
+      "bio": "Tech enthusiast | AI & Web3",
+      "followers": 567,
+      "following": 312,
+      "birthDate": "2003-01-01"
+    },
+    {
+      "id": 3,
+      "username": "carlos_dev",
+      "email": "carlos@konekt.com",
+      "name": "Carlos Oliveira",
+      "avatar": "https://i.pravatar.cc/150?img=3",
+      "password": "1234",
+      "bio": "Full Stack Developer",
+      "followers": 445,
+      "following": 278,
+      "birthDate": "2000-01-01"
+    },
+    {
+      "id": 4,
+      "username": "beatriz_santos",
+      "email": "beatriz@konekt.com",
+      "name": "Beatriz Santos",
+      "avatar": "https://i.pravatar.cc/150?img=5",
+      "password": "1234",
+      "bio": "Designer & Creative",
+      "followers": 892,
+      "following": 456,
+      "birthDate": "2004-01-01"
+    },
+    {
+      "id": 5,
+      "username": "rafael_costa",
+      "email": "rafael@konekt.com",
+      "name": "Rafael Costa",
+      "avatar": "https://i.pravatar.cc/150?img=7",
+      "password": "1234",
+      "bio": "Cyclist & Adventure seeker",
+      "followers": 678,
+      "following": 423,
+      "birthDate": "1999-01-01"
+    },
+    {
+      "id": 6,
+      "username": "mariana_lima",
+      "email": "mariana@konekt.com",
+      "name": "Mariana Lima",
+      "avatar": "https://i.pravatar.cc/150?img=9",
+      "password": "1234",
+      "bio": "Fitness & Wellness",
+      "followers": 1234,
+      "following": 567,
+      "birthDate": "2001-01-01"
+    },
+    {
+      "id": 7,
+      "username": "joao_pedro",
+      "email": "joao@konekt.com",
+      "name": "João Pedro",
+      "avatar": "https://i.pravatar.cc/150?img=12",
+      "password": "1234",
+      "bio": "Music lover",
+      "followers": 789,
+      "following": 345,
+      "birthDate": "2002-01-01"
+    },
+    {
+      "id": 8,
+      "username": "fernanda_rocha",
+      "email": "fernanda@konekt.com",
+      "name": "Fernanda Rocha",
+      "avatar": "https://i.pravatar.cc/150?img=23",
+      "password": "1234",
+      "bio": "Yoga instructor & Mindfulness",
+      "followers": 1567,
+      "following": 678,
+      "birthDate": "1998-01-01"
+    },
+    {
+      "id": 9,
+      "username": "lucas_almeida",
+      "email": "lucas@konekt.com",
+      "name": "Lucas Almeida",
+      "avatar": "https://i.pravatar.cc/150?img=14",
+      "password": "1234",
+      "bio": "Foodie & Chef",
+      "followers": 2345,
+      "following": 890,
+      "birthDate": "2000-01-01"
+    },
+    {
+      "id": 10,
+      "username": "camila_torres",
+      "email": "camila@konekt.com",
+      "name": "Camila Torres",
+      "avatar": "https://i.pravatar.cc/150?img=16",
+      "password": "1234",
+      "bio": "Fitness coach",
+      "followers": 3456,
+      "following": 1234,
+      "birthDate": "2002-01-01"
+    },
+    {
+      "id": 11,
+      "username": "pedro_henrique",
+      "email": "pedro@konekt.com",
+      "name": "Pedro Henrique",
+      "avatar": "https://i.pravatar.cc/150?img=18",
+      "password": "1234",
+      "bio": "Runner & Marathoner",
+      "followers": 987,
+      "following": 456,
+      "birthDate": "1999-01-01"
+    },
+    {
+      "id": 12,
+      "username": "julia_martins",
+      "email": "julia@konekt.com",
+      "name": "Julia Martins",
+      "avatar": "https://i.pravatar.cc/150?img=20",
+      "password": "1234",
+      "bio": "Swimmer & Water sports",
+      "followers": 1123,
+      "following": 567,
+      "birthDate": "2003-01-01"
+    },
+    {
+      "id": 13,
+      "username": "diego_silva",
+      "email": "diego@konekt.com",
+      "name": "Diego Silva",
+      "avatar": "https://i.pravatar.cc/150?img=33",
+      "password": "1234",
+      "bio": "Crossfit athlete",
+      "followers": 1456,
+      "following": 678,
+      "birthDate": "1997-01-01"
+    },
+    {
+      "id": 14,
+      "username": "thiago_santos",
+      "email": "thiago@konekt.com",
+      "name": "Thiago Santos",
+      "avatar": "https://i.pravatar.cc/150?img=52",
+      "password": "1234",
+      "bio": "Developer & Coffee addict",
+      "followers": 234,
+      "following": 189,
+      "birthDate": "1998-01-01"
+    },
+    {
+      "id": 15,
+      "username": "amanda_costa",
+      "email": "amanda@konekt.com",
+      "name": "Amanda Costa",
+      "avatar": "https://i.pravatar.cc/150?img=45",
+      "password": "1234",
+      "bio": "Meditation & Wellness",
+      "followers": 1789,
+      "following": 789,
+      "birthDate": "2001-01-01"
+    },
+    {
+      "id": 16,
+      "username": "marinthe.helder",
+      "email": "marinthe.helder@example.com",
+      "name": "Marinthe Helder",
+      "birthDate": "1977-10-20",
+      "avatar": "https://randomuser.me/api/portraits/women/61.jpg",
+      "password": "1234",
+      "bio": "Conta de teste",
+      "followers": 1,
+      "following": 1,
+      "followerIds": [
+        1
+      ],
+      "followingIds": [
+        1
+      ]
+    },
+    {
+      "id": 17,
+      "username": "ceylan.bademci",
+      "email": "ceylan.bademci@example.com",
+      "name": "Ceylan Bademci",
+      "birthDate": "1994-08-28",
+      "avatar": "https://randomuser.me/api/portraits/women/51.jpg",
+      "password": "1234",
+      "bio": "Conta de teste",
+      "followers": 1,
+      "following": 1,
+      "followerIds": [
+        1
+      ],
+      "followingIds": [
+        1
+      ]
+    },
+    {
+      "id": 18,
+      "username": "najib.van geest",
+      "email": "najib.vangeest@example.com",
+      "name": "Najib Van Geest",
+      "birthDate": "1993-04-27",
+      "avatar": "https://randomuser.me/api/portraits/men/29.jpg",
+      "password": "1234",
+      "bio": "Conta de teste",
+      "followers": 1,
+      "following": 1,
+      "followerIds": [
+        1
+      ],
+      "followingIds": [
+        1
+      ]
+    },
+    {
+      "id": 19,
+      "username": "virgil.kennedy",
+      "email": "virgil.kennedy@example.com",
+      "name": "Virgil Kennedy",
+      "birthDate": "1998-10-07",
+      "avatar": "https://randomuser.me/api/portraits/men/67.jpg",
+      "password": "1234",
+      "bio": "Conta de teste",
+      "followers": 1,
+      "following": 1,
+      "followerIds": [
+        1
+      ],
+      "followingIds": [
+        1
+      ]
+    },
+    {
+      "id": 20,
+      "username": "vicenta.cruz",
+      "email": "vicenta.cruz@example.com",
+      "name": "Vicenta Cruz",
+      "birthDate": "1975-09-22",
+      "avatar": "https://randomuser.me/api/portraits/women/63.jpg",
+      "password": "1234",
+      "bio": "Conta de teste",
+      "followers": 0,
+      "following": 0,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 21,
+      "username": "freja.petersen",
+      "email": "freja.petersen@example.com",
+      "name": "Freja Petersen",
+      "birthDate": "1965-12-16",
+      "avatar": "https://randomuser.me/api/portraits/women/45.jpg",
+      "password": "1234",
+      "bio": "Conta de teste",
+      "followers": 0,
+      "following": 0,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 22,
+      "username": "wallace.garrett",
+      "email": "wallace.garrett@example.com",
+      "name": "Wallace Garrett",
+      "birthDate": "1967-06-06",
+      "avatar": "https://randomuser.me/api/portraits/men/82.jpg",
+      "password": "1234",
+      "bio": "Conta de teste",
+      "followers": 0,
+      "following": 0,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 23,
+      "username": "alan.caldwell",
+      "email": "alan.caldwell@example.com",
+      "name": "Alan Caldwell",
+      "birthDate": "1976-09-26",
+      "avatar": "https://randomuser.me/api/portraits/men/34.jpg",
+      "password": "1234",
+      "bio": "Conta de teste",
+      "followers": 0,
+      "following": 0,
+      "followerIds": [],
+      "followingIds": []
+    }
+  ],
+  "events": [
+    {
+      "id": 1,
+      "name": "Noite de Forró",
+      "type": "artes",
+      "location": "Parque do Povo",
+      "position": [
+        -7.2305,
+        -35.8811
+      ],
+      "attendees": 18,
+      "date": "Hoje à noite",
+      "time": "20:00",
+      "startsAt": "2026-01-20T20:00:00-03:00",
+      "endsAt": "2026-01-20T23:00:00-03:00",
+      "image": "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=400",
+      "description": "Forró tradicional com as melhores bandas da região",
+      "distanceKm": 3.2,
+      "maxAttendees": 20,
+      "visibility": "public",
+      "requiresApproval": false,
+      "isLgbtFriendly": true,
+      "genderFocus": "all",
+      "isRecurring": true,
+      "creatorId": 1,
+      "createdAt": "2026-01-20T10:00:00-03:00",
+      "updatedAt": "2026-01-20T10:00:00-03:00"
+    },
+    {
+      "id": 2,
+      "name": "Café & Código",
+      "type": "estudo",
+      "location": "CEEI - UFCG",
+      "position": [
+        -7.2159,
+        -35.9108
+      ],
+      "attendees": 12,
+      "date": "Amanhã",
+      "time": "10:00",
+      "startsAt": "2026-01-21T10:00:00-03:00",
+      "endsAt": "2026-01-21T12:00:00-03:00",
+      "image": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400",
+      "description": "Networking para desenvolvedores e tech enthusiasts",
+      "distanceKm": 5.6,
+      "maxAttendees": 20,
+      "visibility": "public",
+      "requiresApproval": false,
+      "isLgbtFriendly": true,
+      "genderFocus": "all",
+      "isRecurring": false,
+      "creatorId": 1,
+      "createdAt": "2026-01-20T10:00:00-03:00",
+      "updatedAt": "2026-01-20T10:00:00-03:00"
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "event": {
+        "name": "Noite de Forró",
+        "location": "Parque do Povo",
+        "date": "Hoje à noite"
+      },
+      "image": "https://picsum.photos/seed/party-1-16-0/800/800",
+      "attendees": [
+        {
+          "name": "Marinthe Helder",
+          "avatar": "https://randomuser.me/api/portraits/women/61.jpg"
+        }
+      ],
+      "totalAttendees": 18,
+      "likes": 86,
+      "comments": 3,
+      "timeAgo": "há 1h",
+      "caption": "Momento top no Noite de Forró!",
+      "author": {
+        "id": 16,
+        "username": "marinthe.helder",
+        "name": "Marinthe Helder",
+        "avatar": "https://randomuser.me/api/portraits/women/61.jpg"
+      },
+      "isEventPost": false,
+      "likedByIds": [],
+      "commentsList": []
+    },
+    {
+      "id": 2,
+      "event": {
+        "name": "Café & Código",
+        "location": "CEEI - UFCG",
+        "date": "Amanhã"
+      },
+      "image": "https://picsum.photos/seed/party-2-16-1/800/800",
+      "attendees": [
+        {
+          "name": "Marinthe Helder",
+          "avatar": "https://randomuser.me/api/portraits/women/61.jpg"
+        }
+      ],
+      "totalAttendees": 12,
+      "likes": 8,
+      "comments": 8,
+      "timeAgo": "há 1h",
+      "caption": "Momento top no Café & Código!",
+      "author": {
+        "id": 16,
+        "username": "marinthe.helder",
+        "name": "Marinthe Helder",
+        "avatar": "https://randomuser.me/api/portraits/women/61.jpg"
+      },
+      "isEventPost": false,
+      "likedByIds": [],
+      "commentsList": []
+    },
+    {
+      "id": 3,
+      "event": {
+        "name": "Noite de Forró",
+        "location": "Parque do Povo",
+        "date": "Hoje à noite"
+      },
+      "image": "https://picsum.photos/seed/party-3-16-2/800/800",
+      "attendees": [
+        {
+          "name": "Marinthe Helder",
+          "avatar": "https://randomuser.me/api/portraits/women/61.jpg"
+        }
+      ],
+      "totalAttendees": 18,
+      "likes": 36,
+      "comments": 7,
+      "timeAgo": "há 1h",
+      "caption": "Momento top no Noite de Forró!",
+      "author": {
+        "id": 16,
+        "username": "marinthe.helder",
+        "name": "Marinthe Helder",
+        "avatar": "https://randomuser.me/api/portraits/women/61.jpg"
+      },
+      "isEventPost": false,
+      "likedByIds": [],
+      "commentsList": []
+    },
+    {
+      "id": 4,
+      "event": {
+        "name": "Café & Código",
+        "location": "CEEI - UFCG",
+        "date": "Amanhã"
+      },
+      "image": "https://picsum.photos/seed/friends-1-17-0/800/800",
+      "attendees": [
+        {
+          "name": "Ceylan Bademci",
+          "avatar": "https://randomuser.me/api/portraits/women/51.jpg"
+        }
+      ],
+      "totalAttendees": 12,
+      "likes": 22,
+      "comments": 3,
+      "timeAgo": "há 1h",
+      "caption": "Momento top no Café & Código!",
+      "author": {
+        "id": 17,
+        "username": "ceylan.bademci",
+        "name": "Ceylan Bademci",
+        "avatar": "https://randomuser.me/api/portraits/women/51.jpg"
+      },
+      "isEventPost": false,
+      "likedByIds": [],
+      "commentsList": []
+    },
+    {
+      "id": 5,
+      "event": {
+        "name": "Noite de Forró",
+        "location": "Parque do Povo",
+        "date": "Hoje à noite"
+      },
+      "image": "https://picsum.photos/seed/friends-2-17-1/800/800",
+      "attendees": [
+        {
+          "name": "Ceylan Bademci",
+          "avatar": "https://randomuser.me/api/portraits/women/51.jpg"
+        }
+      ],
+      "totalAttendees": 18,
+      "likes": 91,
+      "comments": 17,
+      "timeAgo": "há 1h",
+      "caption": "Momento top no Noite de Forró!",
+      "author": {
+        "id": 17,
+        "username": "ceylan.bademci",
+        "name": "Ceylan Bademci",
+        "avatar": "https://randomuser.me/api/portraits/women/51.jpg"
+      },
+      "isEventPost": false,
+      "likedByIds": [],
+      "commentsList": []
+    },
+    {
+      "id": 6,
+      "event": {
+        "name": "Café & Código",
+        "location": "CEEI - UFCG",
+        "date": "Amanhã"
+      },
+      "image": "https://picsum.photos/seed/friends-3-17-2/800/800",
+      "attendees": [
+        {
+          "name": "Ceylan Bademci",
+          "avatar": "https://randomuser.me/api/portraits/women/51.jpg"
+        }
+      ],
+      "totalAttendees": 12,
+      "likes": 16,
+      "comments": 18,
+      "timeAgo": "há 1h",
+      "caption": "Momento top no Café & Código!",
+      "author": {
+        "id": 17,
+        "username": "ceylan.bademci",
+        "name": "Ceylan Bademci",
+        "avatar": "https://randomuser.me/api/portraits/women/51.jpg"
+      },
+      "isEventPost": false,
+      "likedByIds": [],
+      "commentsList": []
+    },
+    {
+      "id": 7,
+      "event": {
+        "name": "Noite de Forró",
+        "location": "Parque do Povo",
+        "date": "Hoje à noite"
+      },
+      "image": "https://picsum.photos/seed/event-1-18-0/800/800",
+      "attendees": [
+        {
+          "name": "Najib Van Geest",
+          "avatar": "https://randomuser.me/api/portraits/men/29.jpg"
+        }
+      ],
+      "totalAttendees": 18,
+      "likes": 59,
+      "comments": 1,
+      "timeAgo": "há 1h",
+      "caption": "Momento top no Noite de Forró!",
+      "author": {
+        "id": 18,
+        "username": "najib.van geest",
+        "name": "Najib Van Geest",
+        "avatar": "https://randomuser.me/api/portraits/men/29.jpg"
+      },
+      "isEventPost": false,
+      "likedByIds": [],
+      "commentsList": []
+    },
+    {
+      "id": 8,
+      "event": {
+        "name": "Café & Código",
+        "location": "CEEI - UFCG",
+        "date": "Amanhã"
+      },
+      "image": "https://picsum.photos/seed/event-2-18-1/800/800",
+      "attendees": [
+        {
+          "name": "Najib Van Geest",
+          "avatar": "https://randomuser.me/api/portraits/men/29.jpg"
+        }
+      ],
+      "totalAttendees": 12,
+      "likes": 8,
+      "comments": 2,
+      "timeAgo": "há 1h",
+      "caption": "Momento top no Café & Código!",
+      "author": {
+        "id": 18,
+        "username": "najib.van geest",
+        "name": "Najib Van Geest",
+        "avatar": "https://randomuser.me/api/portraits/men/29.jpg"
+      },
+      "isEventPost": false,
+      "likedByIds": [],
+      "commentsList": []
+    },
+    {
+      "id": 9,
+      "event": {
+        "name": "Noite de Forró",
+        "location": "Parque do Povo",
+        "date": "Hoje à noite"
+      },
+      "image": "https://picsum.photos/seed/event-3-18-2/800/800",
+      "attendees": [
+        {
+          "name": "Najib Van Geest",
+          "avatar": "https://randomuser.me/api/portraits/men/29.jpg"
+        }
+      ],
+      "totalAttendees": 18,
+      "likes": 32,
+      "comments": 7,
+      "timeAgo": "há 1h",
+      "caption": "Momento top no Noite de Forró!",
+      "author": {
+        "id": 18,
+        "username": "najib.van geest",
+        "name": "Najib Van Geest",
+        "avatar": "https://randomuser.me/api/portraits/men/29.jpg"
+      },
+      "isEventPost": false,
+      "likedByIds": [],
+      "commentsList": []
+    },
+    {
+      "id": 10,
+      "event": {
+        "name": "Café & Código",
+        "location": "CEEI - UFCG",
+        "date": "Amanhã"
+      },
+      "image": "https://picsum.photos/seed/city-1-19-0/800/800",
+      "attendees": [
+        {
+          "name": "Virgil Kennedy",
+          "avatar": "https://randomuser.me/api/portraits/men/67.jpg"
+        }
+      ],
+      "totalAttendees": 12,
+      "likes": 69,
+      "comments": 19,
+      "timeAgo": "há 1h",
+      "caption": "Momento top no Café & Código!",
+      "author": {
+        "id": 19,
+        "username": "virgil.kennedy",
+        "name": "Virgil Kennedy",
+        "avatar": "https://randomuser.me/api/portraits/men/67.jpg"
+      },
+      "isEventPost": false,
+      "likedByIds": [],
+      "commentsList": []
+    },
+    {
+      "id": 11,
+      "event": {
+        "name": "Noite de Forró",
+        "location": "Parque do Povo",
+        "date": "Hoje à noite"
+      },
+      "image": "https://picsum.photos/seed/city-2-19-1/800/800",
+      "attendees": [
+        {
+          "name": "Virgil Kennedy",
+          "avatar": "https://randomuser.me/api/portraits/men/67.jpg"
+        }
+      ],
+      "totalAttendees": 18,
+      "likes": 8,
+      "comments": 17,
+      "timeAgo": "há 1h",
+      "caption": "Momento top no Noite de Forró!",
+      "author": {
+        "id": 19,
+        "username": "virgil.kennedy",
+        "name": "Virgil Kennedy",
+        "avatar": "https://randomuser.me/api/portraits/men/67.jpg"
+      },
+      "isEventPost": false,
+      "likedByIds": [],
+      "commentsList": []
+    },
+    {
+      "id": 12,
+      "event": {
+        "name": "Café & Código",
+        "location": "CEEI - UFCG",
+        "date": "Amanhã"
+      },
+      "image": "https://picsum.photos/seed/city-3-19-2/800/800",
+      "attendees": [
+        {
+          "name": "Virgil Kennedy",
+          "avatar": "https://randomuser.me/api/portraits/men/67.jpg"
+        }
+      ],
+      "totalAttendees": 12,
+      "likes": 30,
+      "comments": 20,
+      "timeAgo": "há 1h",
+      "caption": "Momento top no Café & Código!",
+      "author": {
+        "id": 19,
+        "username": "virgil.kennedy",
+        "name": "Virgil Kennedy",
+        "avatar": "https://randomuser.me/api/portraits/men/67.jpg"
+      },
+      "isEventPost": false,
+      "likedByIds": [],
+      "commentsList": []
+    },
+    {
+      "id": 13,
+      "event": {
+        "name": "Noite de Forró",
+        "location": "Parque do Povo",
+        "date": "Hoje à noite"
+      },
+      "image": "https://picsum.photos/seed/party-1-20-0/800/800",
+      "attendees": [
+        {
+          "name": "Vicenta Cruz",
+          "avatar": "https://randomuser.me/api/portraits/women/63.jpg"
+        }
+      ],
+      "totalAttendees": 18,
+      "likes": 94,
+      "comments": 17,
+      "timeAgo": "há 1h",
+      "caption": "Momento top no Noite de Forró!",
+      "author": {
+        "id": 20,
+        "username": "vicenta.cruz",
+        "name": "Vicenta Cruz",
+        "avatar": "https://randomuser.me/api/portraits/women/63.jpg"
+      },
+      "isEventPost": false,
+      "likedByIds": [],
+      "commentsList": []
+    },
+    {
+      "id": 14,
+      "event": {
+        "name": "Café & Código",
+        "location": "CEEI - UFCG",
+        "date": "Amanhã"
+      },
+      "image": "https://picsum.photos/seed/party-2-20-1/800/800",
+      "attendees": [
+        {
+          "name": "Vicenta Cruz",
+          "avatar": "https://randomuser.me/api/portraits/women/63.jpg"
+        }
+      ],
+      "totalAttendees": 12,
+      "likes": 58,
+      "comments": 7,
+      "timeAgo": "há 1h",
+      "caption": "Momento top no Café & Código!",
+      "author": {
+        "id": 20,
+        "username": "vicenta.cruz",
+        "name": "Vicenta Cruz",
+        "avatar": "https://randomuser.me/api/portraits/women/63.jpg"
+      },
+      "isEventPost": false,
+      "likedByIds": [],
+      "commentsList": []
+    },
+    {
+      "id": 15,
+      "event": {
+        "name": "Noite de Forró",
+        "location": "Parque do Povo",
+        "date": "Hoje à noite"
+      },
+      "image": "https://picsum.photos/seed/party-3-20-2/800/800",
+      "attendees": [
+        {
+          "name": "Vicenta Cruz",
+          "avatar": "https://randomuser.me/api/portraits/women/63.jpg"
+        }
+      ],
+      "totalAttendees": 18,
+      "likes": 62,
+      "comments": 18,
+      "timeAgo": "há 1h",
+      "caption": "Momento top no Noite de Forró!",
+      "author": {
+        "id": 20,
+        "username": "vicenta.cruz",
+        "name": "Vicenta Cruz",
+        "avatar": "https://randomuser.me/api/portraits/women/63.jpg"
+      },
+      "isEventPost": false,
+      "likedByIds": [],
+      "commentsList": []
+    },
+    {
+      "id": 16,
+      "event": {
+        "name": "Café & Código",
+        "location": "CEEI - UFCG",
+        "date": "Amanhã"
+      },
+      "image": "https://picsum.photos/seed/friends-1-21-0/800/800",
+      "attendees": [
+        {
+          "name": "Freja Petersen",
+          "avatar": "https://randomuser.me/api/portraits/women/45.jpg"
+        }
+      ],
+      "totalAttendees": 12,
+      "likes": 40,
+      "comments": 0,
+      "timeAgo": "há 1h",
+      "caption": "Momento top no Café & Código!",
+      "author": {
+        "id": 21,
+        "username": "freja.petersen",
+        "name": "Freja Petersen",
+        "avatar": "https://randomuser.me/api/portraits/women/45.jpg"
+      },
+      "isEventPost": false,
+      "likedByIds": [],
+      "commentsList": []
+    },
+    {
+      "id": 17,
+      "event": {
+        "name": "Noite de Forró",
+        "location": "Parque do Povo",
+        "date": "Hoje à noite"
+      },
+      "image": "https://picsum.photos/seed/friends-2-21-1/800/800",
+      "attendees": [
+        {
+          "name": "Freja Petersen",
+          "avatar": "https://randomuser.me/api/portraits/women/45.jpg"
+        }
+      ],
+      "totalAttendees": 18,
+      "likes": 102,
+      "comments": 5,
+      "timeAgo": "há 1h",
+      "caption": "Momento top no Noite de Forró!",
+      "author": {
+        "id": 21,
+        "username": "freja.petersen",
+        "name": "Freja Petersen",
+        "avatar": "https://randomuser.me/api/portraits/women/45.jpg"
+      },
+      "isEventPost": false,
+      "likedByIds": [],
+      "commentsList": []
+    },
+    {
+      "id": 18,
+      "event": {
+        "name": "Café & Código",
+        "location": "CEEI - UFCG",
+        "date": "Amanhã"
+      },
+      "image": "https://picsum.photos/seed/friends-3-21-2/800/800",
+      "attendees": [
+        {
+          "name": "Freja Petersen",
+          "avatar": "https://randomuser.me/api/portraits/women/45.jpg"
+        }
+      ],
+      "totalAttendees": 12,
+      "likes": 94,
+      "comments": 13,
+      "timeAgo": "há 1h",
+      "caption": "Momento top no Café & Código!",
+      "author": {
+        "id": 21,
+        "username": "freja.petersen",
+        "name": "Freja Petersen",
+        "avatar": "https://randomuser.me/api/portraits/women/45.jpg"
+      },
+      "isEventPost": false,
+      "likedByIds": [],
+      "commentsList": []
+    },
+    {
+      "id": 19,
+      "event": {
+        "name": "Noite de Forró",
+        "location": "Parque do Povo",
+        "date": "Hoje à noite"
+      },
+      "image": "https://picsum.photos/seed/event-1-22-0/800/800",
+      "attendees": [
+        {
+          "name": "Wallace Garrett",
+          "avatar": "https://randomuser.me/api/portraits/men/82.jpg"
+        }
+      ],
+      "totalAttendees": 18,
+      "likes": 48,
+      "comments": 8,
+      "timeAgo": "há 1h",
+      "caption": "Momento top no Noite de Forró!",
+      "author": {
+        "id": 22,
+        "username": "wallace.garrett",
+        "name": "Wallace Garrett",
+        "avatar": "https://randomuser.me/api/portraits/men/82.jpg"
+      },
+      "isEventPost": false,
+      "likedByIds": [],
+      "commentsList": []
+    },
+    {
+      "id": 20,
+      "event": {
+        "name": "Café & Código",
+        "location": "CEEI - UFCG",
+        "date": "Amanhã"
+      },
+      "image": "https://picsum.photos/seed/event-2-22-1/800/800",
+      "attendees": [
+        {
+          "name": "Wallace Garrett",
+          "avatar": "https://randomuser.me/api/portraits/men/82.jpg"
+        }
+      ],
+      "totalAttendees": 12,
+      "likes": 24,
+      "comments": 6,
+      "timeAgo": "há 1h",
+      "caption": "Momento top no Café & Código!",
+      "author": {
+        "id": 22,
+        "username": "wallace.garrett",
+        "name": "Wallace Garrett",
+        "avatar": "https://randomuser.me/api/portraits/men/82.jpg"
+      },
+      "isEventPost": false,
+      "likedByIds": [],
+      "commentsList": []
+    },
+    {
+      "id": 21,
+      "event": {
+        "name": "Noite de Forró",
+        "location": "Parque do Povo",
+        "date": "Hoje à noite"
+      },
+      "image": "https://picsum.photos/seed/event-3-22-2/800/800",
+      "attendees": [
+        {
+          "name": "Wallace Garrett",
+          "avatar": "https://randomuser.me/api/portraits/men/82.jpg"
+        }
+      ],
+      "totalAttendees": 18,
+      "likes": 102,
+      "comments": 10,
+      "timeAgo": "há 1h",
+      "caption": "Momento top no Noite de Forró!",
+      "author": {
+        "id": 22,
+        "username": "wallace.garrett",
+        "name": "Wallace Garrett",
+        "avatar": "https://randomuser.me/api/portraits/men/82.jpg"
+      },
+      "isEventPost": false,
+      "likedByIds": [],
+      "commentsList": []
+    },
+    {
+      "id": 22,
+      "event": {
+        "name": "Café & Código",
+        "location": "CEEI - UFCG",
+        "date": "Amanhã"
+      },
+      "image": "https://picsum.photos/seed/city-1-23-0/800/800",
+      "attendees": [
+        {
+          "name": "Alan Caldwell",
+          "avatar": "https://randomuser.me/api/portraits/men/34.jpg"
+        }
+      ],
+      "totalAttendees": 12,
+      "likes": 18,
+      "comments": 2,
+      "timeAgo": "há 1h",
+      "caption": "Momento top no Café & Código!",
+      "author": {
+        "id": 23,
+        "username": "alan.caldwell",
+        "name": "Alan Caldwell",
+        "avatar": "https://randomuser.me/api/portraits/men/34.jpg"
+      },
+      "isEventPost": false,
+      "likedByIds": [],
+      "commentsList": []
+    },
+    {
+      "id": 23,
+      "event": {
+        "name": "Noite de Forró",
+        "location": "Parque do Povo",
+        "date": "Hoje à noite"
+      },
+      "image": "https://picsum.photos/seed/city-2-23-1/800/800",
+      "attendees": [
+        {
+          "name": "Alan Caldwell",
+          "avatar": "https://randomuser.me/api/portraits/men/34.jpg"
+        }
+      ],
+      "totalAttendees": 18,
+      "likes": 53,
+      "comments": 3,
+      "timeAgo": "há 1h",
+      "caption": "Momento top no Noite de Forró!",
+      "author": {
+        "id": 23,
+        "username": "alan.caldwell",
+        "name": "Alan Caldwell",
+        "avatar": "https://randomuser.me/api/portraits/men/34.jpg"
+      },
+      "isEventPost": false,
+      "likedByIds": [],
+      "commentsList": []
+    },
+    {
+      "id": 24,
+      "event": {
+        "name": "Café & Código",
+        "location": "CEEI - UFCG",
+        "date": "Amanhã"
+      },
+      "image": "https://picsum.photos/seed/city-3-23-2/800/800",
+      "attendees": [
+        {
+          "name": "Alan Caldwell",
+          "avatar": "https://randomuser.me/api/portraits/men/34.jpg"
+        }
+      ],
+      "totalAttendees": 12,
+      "likes": 50,
+      "comments": 11,
+      "timeAgo": "há 1h",
+      "caption": "Momento top no Café & Código!",
+      "author": {
+        "id": 23,
+        "username": "alan.caldwell",
+        "name": "Alan Caldwell",
+        "avatar": "https://randomuser.me/api/portraits/men/34.jpg"
+      },
+      "isEventPost": false,
+      "likedByIds": [],
+      "commentsList": []
+    }
+  ],
+  "notifications": [],
+  "media": [],
+  "eventChats": {},
+  "eventMedia": {},
+  "userFavorites": {},
+  "tokens": []
+}
