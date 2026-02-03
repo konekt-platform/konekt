@@ -1,5 +1,10 @@
-import { EventDayFilter, EventFilters, EventGenderFilter, EventTypeFilter } from '../utils/eventFilters';
-import { EventType } from '../../../types';
+import {
+  EventDayFilter,
+  EventFilters,
+  EventGenderFilter,
+  EventTypeFilter,
+} from "../utils/eventFilters";
+import { EventType } from "../../../types";
 
 interface EventFiltersBarProps {
   filters: EventFilters;
@@ -11,47 +16,65 @@ interface EventFiltersBarProps {
 const distanceOptions = [3, 5, 8, 10, 15];
 
 const genderLabels: Record<EventGenderFilter, string> = {
-  all: 'Para todos',
-  women: 'Para mulheres',
-  lgbt: 'LGBTQIA+ friendly',
-  men: 'Para homens',
+  all: "Para todos",
+  women: "Para mulheres",
+  lgbt: "LGBTQIA+ friendly",
+  men: "Para homens",
 };
 
 const dayLabels: Record<EventDayFilter, string> = {
-  all: 'Qualquer dia',
-  today: 'Hoje',
-  tomorrow: 'Amanhã',
-  next_3_days: 'Próximos 3 dias',
-  this_week: 'Nesta semana',
-  next_week: 'Próxima semana',
+  all: "Qualquer dia",
+  today: "Hoje",
+  tomorrow: "Amanhã",
+  next_3_days: "Próximos 3 dias",
+  this_week: "Nesta semana",
+  next_week: "Próxima semana",
 };
 
 const typeLabels: Record<EventTypeFilter, string> = {
-  all: 'Todos os tipos',
-  esportes: 'Esportes',
-  estudo: 'Estudo',
-  lazer: 'Lazer',
-  artes: 'Artes',
+  all: "Todos os tipos",
+  esportes: "Esportes",
+  estudo: "Estudo",
+  lazer: "Lazer",
+  artes: "Artes",
 };
 
-const visibilityLabels: Record<'all' | 'public' | 'friends' | 'invite-only', string> = {
-  all: 'Todas as visibilidades',
-  public: 'Público',
-  friends: 'Para amigos',
-  'invite-only': 'Apenas convite',
+const visibilityLabels: Record<
+  "all" | "public" | "friends" | "invite-only",
+  string
+> = {
+  all: "Todas as visibilidades",
+  public: "Público",
+  friends: "Para amigos",
+  "invite-only": "Apenas convite",
 };
 
-export function EventFiltersBar({ filters, defaultFilters, onChange, onReset }: EventFiltersBarProps) {
+export function EventFiltersBar({
+  filters,
+  defaultFilters,
+  onChange,
+  onReset,
+}: EventFiltersBarProps) {
   const update = (partial: Partial<EventFilters>) => {
     onChange({ ...filters, ...partial });
   };
 
   const activeChips = [
-    filters.radiusKm !== defaultFilters.radiusKm ? `Até ${filters.radiusKm} km` : null,
-    filters.dayRange !== defaultFilters.dayRange ? dayLabels[filters.dayRange] : null,
-    filters.genderFocus !== defaultFilters.genderFocus ? genderLabels[filters.genderFocus] : null,
-    filters.eventType !== defaultFilters.eventType ? typeLabels[filters.eventType] : null,
-    filters.visibility !== defaultFilters.visibility ? visibilityLabels[filters.visibility] : null,
+    filters.radiusKm !== defaultFilters.radiusKm
+      ? `Até ${filters.radiusKm} km`
+      : null,
+    filters.dayRange !== defaultFilters.dayRange
+      ? dayLabels[filters.dayRange]
+      : null,
+    filters.genderFocus !== defaultFilters.genderFocus
+      ? genderLabels[filters.genderFocus]
+      : null,
+    filters.eventType !== defaultFilters.eventType
+      ? typeLabels[filters.eventType]
+      : null,
+    filters.visibility !== defaultFilters.visibility
+      ? visibilityLabels[filters.visibility]
+      : null,
   ].filter(Boolean) as string[];
 
   return (
@@ -76,21 +99,23 @@ export function EventFiltersBar({ filters, defaultFilters, onChange, onReset }: 
         </div>
       )}
       <div className="flex flex-wrap items-center gap-2">
-          <select
-            value={filters.radiusKm}
-            onChange={(event) => update({ radiusKm: Number(event.target.value) })}
-            className="rounded-full border border-border bg-background px-3 py-1.5 text-xs text-foreground"
-          >
-            {distanceOptions.map((distance) => (
-              <option key={distance} value={distance}>
-                Até {distance} km
-              </option>
-            ))}
-          </select>
+        <select
+          value={filters.radiusKm}
+          onChange={(event) => update({ radiusKm: Number(event.target.value) })}
+          className="rounded-full border border-border bg-background px-3 py-1.5 text-xs text-foreground"
+        >
+          {distanceOptions.map((distance) => (
+            <option key={distance} value={distance}>
+              Até {distance} km
+            </option>
+          ))}
+        </select>
 
         <select
           value={filters.dayRange}
-          onChange={(event) => update({ dayRange: event.target.value as EventDayFilter })}
+          onChange={(event) =>
+            update({ dayRange: event.target.value as EventDayFilter })
+          }
           className="rounded-full border border-border bg-background px-3 py-1.5 text-xs text-foreground"
         >
           <option value="all">Qualquer dia</option>
@@ -103,7 +128,9 @@ export function EventFiltersBar({ filters, defaultFilters, onChange, onReset }: 
 
         <select
           value={filters.genderFocus}
-          onChange={(event) => update({ genderFocus: event.target.value as EventGenderFilter })}
+          onChange={(event) =>
+            update({ genderFocus: event.target.value as EventGenderFilter })
+          }
           className="rounded-full border border-border bg-background px-3 py-1.5 text-xs text-foreground"
         >
           <option value="all">Para todos</option>
@@ -113,7 +140,9 @@ export function EventFiltersBar({ filters, defaultFilters, onChange, onReset }: 
 
         <select
           value={filters.eventType}
-          onChange={(event) => update({ eventType: event.target.value as EventTypeFilter })}
+          onChange={(event) =>
+            update({ eventType: event.target.value as EventTypeFilter })
+          }
           className="rounded-full border border-border bg-background px-3 py-1.5 text-xs text-foreground"
         >
           <option value="all">Todos os tipos</option>
@@ -125,7 +154,15 @@ export function EventFiltersBar({ filters, defaultFilters, onChange, onReset }: 
 
         <select
           value={filters.visibility}
-          onChange={(event) => update({ visibility: event.target.value as 'all' | 'public' | 'friends' | 'invite-only' })}
+          onChange={(event) =>
+            update({
+              visibility: event.target.value as
+                | "all"
+                | "public"
+                | "friends"
+                | "invite-only",
+            })
+          }
           className="rounded-full border border-border bg-background px-3 py-1.5 text-xs text-foreground"
         >
           <option value="all">Todas as visibilidades</option>
@@ -137,4 +174,3 @@ export function EventFiltersBar({ filters, defaultFilters, onChange, onReset }: 
     </div>
   );
 }
-

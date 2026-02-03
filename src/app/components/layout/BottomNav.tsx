@@ -1,5 +1,5 @@
-import { Home, MapPin, User } from 'lucide-react';
-import { View } from '../../types';
+import { Home, MapPin, User } from "lucide-react";
+import { View } from "../../types";
 
 interface BottomNavProps {
   currentView: View;
@@ -12,11 +12,11 @@ export function BottomNav({ currentView, onViewChange }: BottomNavProps) {
       <div className="flex items-center justify-around px-4 py-1">
         <button
           type="button"
-          onClick={() => onViewChange('feed')}
+          onClick={() => onViewChange("feed")}
           className={`flex flex-col items-center gap-0.5 px-3 py-1 rounded-2xl transition-all text-[11px] shadow-md hover:shadow-lg ${
-            currentView === 'feed'
-              ? 'bg-accent text-accent-foreground'
-              : 'bg-background text-muted-foreground hover:text-primary'
+            currentView === "feed"
+              ? "bg-accent text-accent-foreground"
+              : "bg-background text-muted-foreground hover:text-primary"
           }`}
         >
           <Home className="w-5 h-5" />
@@ -25,26 +25,26 @@ export function BottomNav({ currentView, onViewChange }: BottomNavProps) {
 
         {/* Botão de eventos destacado no centro */}
         <div className="relative flex items-center justify-center">
-        <button
+          <button
             type="button"
-          onClick={() => onViewChange('map')}
+            onClick={() => onViewChange("map")}
             className={`flex items-center justify-center h-16 w-16 rounded-full transition-all shadow-xl hover:shadow-2xl z-10 -translate-y-4 ${
-              currentView === 'map'
-                ? 'bg-primary text-primary-foreground scale-110'
-                : 'bg-primary text-primary-foreground hover:scale-105'
-          }`}
-        >
+              currentView === "map"
+                ? "bg-primary text-primary-foreground scale-110"
+                : "bg-primary text-primary-foreground hover:scale-105"
+            }`}
+          >
             <MapPin className="w-7 h-7" />
-        </button>
+          </button>
         </div>
 
         <button
           type="button"
-          onClick={() => onViewChange('profile')}
+          onClick={() => onViewChange("profile")}
           className={`flex flex-col items-center gap-0.5 px-3 py-1 rounded-2xl transition-all text-[11px] shadow-md hover:shadow-lg ${
-            currentView === 'profile'
-              ? 'bg-accent text-accent-foreground'
-              : 'bg-background text-muted-foreground hover:text-primary'
+            currentView === "profile"
+              ? "bg-accent text-accent-foreground"
+              : "bg-background text-muted-foreground hover:text-primary"
           }`}
         >
           <User className="w-5 h-5" />

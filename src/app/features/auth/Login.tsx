@@ -1,16 +1,26 @@
-import { useState } from 'react';
-import { LogIn, User, Lock, AlertCircle, Moon, Sun, Mail, Calendar, Chrome } from 'lucide-react';
-import { useAuth } from '../../contexts/AuthContext';
-import { useTheme } from '../../contexts/ThemeContext';
+import { useState } from "react";
+import {
+  LogIn,
+  User,
+  Lock,
+  AlertCircle,
+  Moon,
+  Sun,
+  Mail,
+  Calendar,
+  Chrome,
+} from "lucide-react";
+import { useAuth } from "../../contexts/AuthContext";
+import { useTheme } from "../../contexts/ThemeContext";
 
 export function Login() {
-  const [mode, setMode] = useState<'login' | 'register'>('login');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
-  const [birthDate, setBirthDate] = useState('');
-  const [error, setError] = useState('');
+  const [mode, setMode] = useState<"login" | "register">("login");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [birthDate, setBirthDate] = useState("");
+  const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const { login, register, loginWithGoogleMock } = useAuth();
   const { theme, toggleTheme } = useTheme();
@@ -18,42 +28,42 @@ export function Login() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
-    
+    setError("");
+
     // Validação de campos vazios
-    if (mode === 'login') {
+    if (mode === "login") {
       if (!username.trim()) {
-        setError('Por favor, digite seu usuário ou email');
+        setError("Por favor, digite seu usuário ou email");
         return;
       }
       if (!password) {
-        setError('Por favor, digite sua senha');
+        setError("Por favor, digite sua senha");
         return;
       }
     } else {
       const normalizedEmail = email.trim();
       if (!normalizedEmail) {
-        setError('Por favor, digite seu email');
+        setError("Por favor, digite seu email");
         return;
       }
       if (!emailRegex.test(normalizedEmail)) {
-        setError('Por favor, digite um email válido (exemplo: seu@email.com)');
+        setError("Por favor, digite um email válido (exemplo: seu@email.com)");
         return;
       }
       if (!name.trim()) {
-        setError('Por favor, digite seu nome');
+        setError("Por favor, digite seu nome");
         return;
       }
       if (!birthDate) {
-        setError('Por favor, selecione sua data de nascimento');
+        setError("Por favor, selecione sua data de nascimento");
         return;
       }
       if (!password) {
-        setError('Por favor, digite uma senha');
+        setError("Por favor, digite uma senha");
         return;
       }
       if (password.length < 4) {
-        setError('A senha deve ter pelo menos 4 caracteres');
+        setError("A senha deve ter pelo menos 4 caracteres");
         return;
       }
     }
@@ -63,31 +73,43 @@ export function Login() {
     // Simula um pequeno delay para melhor UX
     await new Promise((resolve) => setTimeout(resolve, 300));
 
-    let result = { ok: false, error: '' as string | undefined };
-    if (mode === 'login') {
+    let result = { ok: false, error: "" as string | undefined };
+    if (mode === "login") {
       result = await login(username.trim(), password);
     } else {
       const normalizedEmail = email.trim();
-      result = await register({ email: normalizedEmail, name: name.trim(), birthDate, password });
+      result = await register({
+        email: normalizedEmail,
+        name: name.trim(),
+        birthDate,
+        password,
+      });
     }
 
     if (!result.ok) {
       // Mensagens de erro mais específicas
       let errorMessage = result.error;
-      
+
       if (!errorMessage) {
-        if (mode === 'login') {
-          errorMessage = 'Usuário ou senha incorretos. Verifique se digitou corretamente.';
+        if (mode === "login") {
+          errorMessage =
+            "Usuário ou senha incorretos. Verifique se digitou corretamente.";
         } else {
-          errorMessage = 'Falha ao criar usuário. Verifique se todos os dados estão corretos.';
+          errorMessage =
+            "Falha ao criar usuário. Verifique se todos os dados estão corretos.";
         }
       }
-      
+
       // Detecta erros de conexão
-      if (errorMessage.includes('conexão') || errorMessage.includes('servidor') || errorMessage.includes('offline')) {
-        errorMessage = 'Não foi possível conectar ao servidor. Verifique se o backend está rodando.';
+      if (
+        errorMessage.includes("conexão") ||
+        errorMessage.includes("servidor") ||
+        errorMessage.includes("offline")
+      ) {
+        errorMessage =
+          "Não foi possível conectar ao servidor. Verifique se o backend está rodando.";
       }
-      
+
       setError(errorMessage);
       setIsLoading(false);
     } else {
@@ -102,10 +124,16 @@ export function Login() {
         type="button"
         onClick={toggleTheme}
         className="absolute right-4 top-4 flex items-center gap-2 rounded-full border border-border bg-card px-3 py-2 text-xs text-foreground shadow-sm hover:bg-accent transition-colors"
-        aria-label={theme === 'dark' ? 'Ativar modo claro' : 'Ativar modo escuro'}
+        aria-label={
+          theme === "dark" ? "Ativar modo claro" : "Ativar modo escuro"
+        }
       >
-        {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-        <span>{theme === 'dark' ? 'Claro' : 'Escuro'}</span>
+        {theme === "dark" ? (
+          <Sun className="h-4 w-4" />
+        ) : (
+          <Moon className="h-4 w-4" />
+        )}
+        <span>{theme === "dark" ? "Claro" : "Escuro"}</span>
       </button>
       <div className="w-full max-w-md">
         {/* Logo/Header */}
@@ -122,18 +150,22 @@ export function Login() {
           <div className="inline-flex rounded-full border border-border bg-card">
             <button
               type="button"
-              onClick={() => setMode('login')}
+              onClick={() => setMode("login")}
               className={`px-4 py-2 text-sm rounded-full transition-colors ${
-                mode === 'login' ? 'bg-primary text-primary-foreground' : 'text-foreground'
+                mode === "login"
+                  ? "bg-primary text-primary-foreground"
+                  : "text-foreground"
               }`}
             >
               Entrar
             </button>
             <button
               type="button"
-              onClick={() => setMode('register')}
+              onClick={() => setMode("register")}
               className={`px-4 py-2 text-sm rounded-full transition-colors ${
-                mode === 'register' ? 'bg-primary text-primary-foreground' : 'text-foreground'
+                mode === "register"
+                  ? "bg-primary text-primary-foreground"
+                  : "text-foreground"
               }`}
             >
               Criar conta
@@ -143,10 +175,13 @@ export function Login() {
 
         {/* Login/Register Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
-          {mode === 'login' && (
+          {mode === "login" && (
             <>
               <div className="space-y-2">
-                <label htmlFor="username" className="text-sm font-medium text-foreground">
+                <label
+                  htmlFor="username"
+                  className="text-sm font-medium text-foreground"
+                >
                   Usuário ou email
                 </label>
                 <div className="relative">
@@ -166,19 +201,20 @@ export function Login() {
             </>
           )}
 
-          {mode === 'register' && (
+          {mode === "register" && (
             <>
               <button
                 type="button"
                 onClick={async () => {
                   setIsLoading(true);
-                  setError('');
+                  setError("");
                   const result = await loginWithGoogleMock({
                     email: email || `google_user_${Date.now()}@konekt.com`,
-                    name: name || 'Google User',
-                    birthDate: birthDate || '2000-01-01',
+                    name: name || "Google User",
+                    birthDate: birthDate || "2000-01-01",
                   });
-                  if (!result.ok) setError(result.error || 'Falha no login Google (mock)');
+                  if (!result.ok)
+                    setError(result.error || "Falha no login Google (mock)");
                   setIsLoading(false);
                 }}
                 className="w-full py-3 rounded-lg border border-border bg-background text-foreground font-semibold hover:bg-accent transition-colors flex items-center justify-center gap-2"
@@ -188,7 +224,10 @@ export function Login() {
               </button>
 
               <div className="space-y-2">
-                <label htmlFor="email" className="text-sm font-medium text-foreground">
+                <label
+                  htmlFor="email"
+                  className="text-sm font-medium text-foreground"
+                >
                   Email
                 </label>
                 <div className="relative">
@@ -207,7 +246,10 @@ export function Login() {
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="name" className="text-sm font-medium text-foreground">
+                <label
+                  htmlFor="name"
+                  className="text-sm font-medium text-foreground"
+                >
                   Nome
                 </label>
                 <div className="relative">
@@ -226,7 +268,10 @@ export function Login() {
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="birthDate" className="text-sm font-medium text-foreground">
+                <label
+                  htmlFor="birthDate"
+                  className="text-sm font-medium text-foreground"
+                >
                   Data de nascimento
                 </label>
                 <div className="relative">
@@ -246,7 +291,10 @@ export function Login() {
 
           {/* Password Field */}
           <div className="space-y-2">
-            <label htmlFor="password" className="text-sm font-medium text-foreground">
+            <label
+              htmlFor="password"
+              className="text-sm font-medium text-foreground"
+            >
               Senha
             </label>
             <div className="relative">
@@ -269,11 +317,14 @@ export function Login() {
             <div className="flex items-start gap-3 p-4 rounded-lg bg-destructive/10 text-destructive text-sm border-2 border-destructive/30 animate-in fade-in slide-in-from-top-2">
               <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
               <div className="flex-1">
-                <p className="font-semibold mb-1">Erro ao {mode === 'login' ? 'entrar' : 'criar conta'}</p>
+                <p className="font-semibold mb-1">
+                  Erro ao {mode === "login" ? "entrar" : "criar conta"}
+                </p>
                 <p className="text-destructive/90">{error}</p>
-                {mode === 'login' && error.includes('incorretos') && (
+                {mode === "login" && error.includes("incorretos") && (
                   <p className="text-xs text-destructive/70 mt-2">
-                    💡 Dica: Verifique se digitou o usuário corretamente (ex: "Konekt" com K maiúsculo)
+                    💡 Dica: Verifique se digitou o usuário corretamente (ex:
+                    "Konekt" com K maiúsculo)
                   </p>
                 )}
               </div>
@@ -286,7 +337,13 @@ export function Login() {
             disabled={isLoading}
             className="w-full py-3 rounded-lg bg-primary text-primary-foreground font-semibold hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
           >
-            {isLoading ? (mode === 'login' ? 'Entrando...' : 'Criando...') : mode === 'login' ? 'Entrar' : 'Criar conta'}
+            {isLoading
+              ? mode === "login"
+                ? "Entrando..."
+                : "Criando..."
+              : mode === "login"
+                ? "Entrar"
+                : "Criar conta"}
           </button>
         </form>
 
@@ -295,5 +352,3 @@ export function Login() {
     </div>
   );
 }
-
-

@@ -1,20 +1,20 @@
-import fs from 'node:fs';
-import path from 'node:path';
+import fs from "node:fs";
+import path from "node:path";
 
-const DATA_PATH = path.join(process.cwd(), 'data.json');
-const UPLOAD_DIR = path.join(process.cwd(), 'uploads');
+const DATA_PATH = path.join(process.cwd(), "data.json");
+const UPLOAD_DIR = path.join(process.cwd(), "uploads");
 
 if (!fs.existsSync(DATA_PATH)) {
-  console.error('data.json não encontrado');
+  console.error("data.json não encontrado");
   process.exit(1);
 }
 
 if (!fs.existsSync(UPLOAD_DIR)) {
-  console.log('Diretório de uploads não existe');
+  console.log("Diretório de uploads não existe");
   process.exit(0);
 }
 
-const data = JSON.parse(fs.readFileSync(DATA_PATH, 'utf-8'));
+const data = JSON.parse(fs.readFileSync(DATA_PATH, "utf-8"));
 
 // Coletar todas as URLs de mídia referenciadas
 const referencedUrls = new Set();
@@ -23,19 +23,19 @@ const referencedUrls = new Set();
 if (Array.isArray(data.media)) {
   data.media.forEach((item) => {
     if (item.url) {
-      const filename = item.url.replace('/uploads/', '');
+      const filename = item.url.replace("/uploads/", "");
       referencedUrls.add(filename);
     }
   });
 }
 
 // Mídia de eventos
-if (data.eventMedia && typeof data.eventMedia === 'object') {
+if (data.eventMedia && typeof data.eventMedia === "object") {
   Object.values(data.eventMedia).forEach((mediaArray) => {
     if (Array.isArray(mediaArray)) {
       mediaArray.forEach((item) => {
         if (item.photoUrl) {
-          const url = item.photoUrl.replace(/^.*\/uploads\//, '');
+          const url = item.photoUrl.replace(/^.*\/uploads\//, "");
           referencedUrls.add(url);
         }
       });
@@ -46,8 +46,8 @@ if (data.eventMedia && typeof data.eventMedia === 'object') {
 // Avatares de usuários
 if (Array.isArray(data.users)) {
   data.users.forEach((user) => {
-    if (user.avatar && user.avatar.includes('/uploads/')) {
-      const filename = user.avatar.replace(/^.*\/uploads\//, '');
+    if (user.avatar && user.avatar.includes("/uploads/")) {
+      const filename = user.avatar.replace(/^.*\/uploads\//, "");
       referencedUrls.add(filename);
     }
   });
@@ -56,8 +56,8 @@ if (Array.isArray(data.users)) {
 // Imagens de eventos
 if (Array.isArray(data.events)) {
   data.events.forEach((event) => {
-    if (event.image && event.image.includes('/uploads/')) {
-      const filename = event.image.replace(/^.*\/uploads\//, '');
+    if (event.image && event.image.includes("/uploads/")) {
+      const filename = event.image.replace(/^.*\/uploads\//, "");
       referencedUrls.add(filename);
     }
   });
@@ -81,9 +81,6 @@ files.forEach((filename) => {
   }
 });
 
-console.log(`Limpeza de uploads concluída: ${removedCount} arquivos órfãos removidos, ${files.length - removedCount} arquivos mantidos`);
-
-
-
-
-
+console.log(
+  `Limpeza de uploads concluída: ${removedCount} arquivos órfãos removidos, ${files.length - removedCount} arquivos mantidos`,
+);

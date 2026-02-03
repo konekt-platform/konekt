@@ -1,5 +1,5 @@
-import { Event, User } from '../../types';
-import { apiFetch } from './client';
+import { Event, User } from "../../types";
+import { apiFetch } from "./client";
 
 export interface SearchFilters {
   eventType?: string;
@@ -20,22 +20,23 @@ export interface SearchHistoryEntry {
 
 export const searchRequest = async (
   query: string,
-  type: 'all' | 'events' | 'users' = 'all',
-  filters?: SearchFilters
+  type: "all" | "events" | "users" = "all",
+  filters?: SearchFilters,
 ): Promise<SearchResult> => {
   const params = new URLSearchParams({
     q: query,
     type,
   });
-  
+
   if (filters) {
-    params.append('filters', JSON.stringify(filters));
+    params.append("filters", JSON.stringify(filters));
   }
-  
+
   return apiFetch<SearchResult>(`/search?${params.toString()}`);
 };
 
-export const getSearchHistoryRequest = async (): Promise<SearchHistoryEntry[]> => {
-  return apiFetch<SearchHistoryEntry[]>('/users/me/search-history');
+export const getSearchHistoryRequest = async (): Promise<
+  SearchHistoryEntry[]
+> => {
+  return apiFetch<SearchHistoryEntry[]>("/users/me/search-history");
 };
-

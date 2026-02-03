@@ -1,5 +1,8 @@
-import { Event } from '../../../types';
-import { getAttendanceStatus, getAttendanceToneClasses } from '../utils/eventAttendance';
+import { Event } from "../../../types";
+import {
+  getAttendanceStatus,
+  getAttendanceToneClasses,
+} from "../utils/eventAttendance";
 
 interface EventAttendanceBadgeProps {
   event: Event;
@@ -18,4 +21,3 @@ export function EventAttendanceBadge({ event }: EventAttendanceBadgeProps) {
     </span>
   );
 }
-

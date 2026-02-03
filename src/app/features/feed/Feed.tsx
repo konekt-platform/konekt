@@ -1,31 +1,48 @@
-import { useGetPosts } from '../../hooks/useGetPosts';
-import { useGetEvents } from '../../hooks/useGetEvents';
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { PostCard } from './PostCard';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../components/ui/tabs';
-import { useInfiniteScroll } from '../../hooks/useInfiniteScroll';
-import { Search, UserPlus, X } from 'lucide-react';
-import { searchUsersRequest, toggleFollowRequest } from '../../services/api/users';
-import { User } from '../../types';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../../components/ui/dialog';
-import { useAuth } from '../../contexts/AuthContext';
-import { hasEventEnded } from '../map/utils/eventSchedule';
-import { getEventMediaRequest } from '../../services/api/events';
+import { useGetPosts } from "../../hooks/useGetPosts";
+import { useGetEvents } from "../../hooks/useGetEvents";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { PostCard } from "./PostCard";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "../../components/ui/tabs";
+import { useInfiniteScroll } from "../../hooks/useInfiniteScroll";
+import { Search, UserPlus, X } from "lucide-react";
+import {
+  searchUsersRequest,
+  toggleFollowRequest,
+} from "../../services/api/users";
+import { User } from "../../types";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "../../components/ui/dialog";
+import { useAuth } from "../../contexts/AuthContext";
+import { hasEventEnded } from "../map/utils/eventSchedule";
+import { getEventMediaRequest } from "../../services/api/events";
 
 export function Feed() {
   const { data: posts, isLoading, error } = useGetPosts();
   const { data: events } = useGetEvents();
   const { user: authUser, updateUser } = useAuth();
-  const [activeTab, setActiveTab] = useState<'events' | 'friends' | 'foryou'>('events');
+  const [activeTab, setActiveTab] = useState<"events" | "friends" | "foryou">(
+    "events",
+  );
   const PAGE_SIZE = 6;
-  const [userQuery, setUserQuery] = useState('');
+  const [userQuery, setUserQuery] = useState("");
   const [userResults, setUserResults] = useState<User[]>([]);
   const [isSearching, setIsSearching] = useState(false);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [allUsers, setAllUsers] = useState<User[]>([]);
   const [followLoading, setFollowLoading] = useState(false);
   const [shuffleSeed, setShuffleSeed] = useState(0);
-  const [eventMediaMap, setEventMediaMap] = useState<Record<number, string[]>>({});
+  const [eventMediaMap, setEventMediaMap] = useState<Record<number, string[]>>(
+    {},
+  );
   const [visibleCounts, setVisibleCounts] = useState({
     events: PAGE_SIZE,
     friends: PAGE_SIZE,
@@ -84,13 +101,16 @@ export function Feed() {
   }, [activeTab, totalByTab]);
 
   const canLoadMore = visibleCounts[activeTab] < totalByTab[activeTab];
-  const loadMoreRef = useInfiniteScroll({ enabled: canLoadMore, onLoadMore: handleLoadMore });
+  const loadMoreRef = useInfiniteScroll({
+    enabled: canLoadMore,
+    onLoadMore: handleLoadMore,
+  });
 
   const visibleEventPosts = pastEventPosts.slice(0, visibleCounts.events);
   const visibleFriendsPosts = friendsPosts.slice(0, visibleCounts.friends);
   const visibleForYouPosts = forYouPosts.slice(0, visibleCounts.foryou);
   const publicEvents = useMemo(
-    () => (events ?? []).filter((event) => event.visibility === 'public'),
+    () => (events ?? []).filter((event) => event.visibility === "public"),
     [events],
   );
   const forYouUsers = useMemo(() => {
@@ -99,7 +119,9 @@ export function Feed() {
     const newUsers = baseUsers.filter((user) => !followingSet.has(user.id));
     const city = authUser?.city?.trim().toLowerCase();
     const sameCity = city
-      ? newUsers.filter((user) => (user.city ?? '').trim().toLowerCase() === city)
+      ? newUsers.filter(
+          (user) => (user.city ?? "").trim().toLowerCase() === city,
+        )
       : newUsers;
     const pool = city && sameCity.length > 0 ? sameCity : newUsers;
     const shuffled = [...pool];
@@ -108,7 +130,13 @@ export function Feed() {
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
     return shuffled;
-  }, [allUsers, authUser?.id, authUser?.followingIds, authUser?.city, shuffleSeed]);
+  }, [
+    allUsers,
+    authUser?.id,
+    authUser?.followingIds,
+    authUser?.city,
+    shuffleSeed,
+  ]);
 
   useEffect(() => {
     const query = userQuery.trim();
@@ -131,28 +159,33 @@ export function Feed() {
 
   useEffect(() => {
     const loadUsers = async () => {
-      const users = await searchUsersRequest('');
+      const users = await searchUsersRequest("");
       setAllUsers(users);
     };
     loadUsers();
   }, []);
 
   useEffect(() => {
-    if (activeTab !== 'foryou') return;
+    if (activeTab !== "foryou") return;
     setShuffleSeed(Date.now());
   }, [activeTab, allUsers.length]);
 
   useEffect(() => {
     if (!events?.length || pastEventPosts.length === 0) return;
     const neededIds = pastEventPosts
-      .map((post) => events.find(
-        (event) =>
-          event.name === post.event.name &&
-          event.location === post.event.location,
-      )?.id)
-      .filter((id): id is number => typeof id === 'number');
+      .map(
+        (post) =>
+          events.find(
+            (event) =>
+              event.name === post.event.name &&
+              event.location === post.event.location,
+          )?.id,
+      )
+      .filter((id): id is number => typeof id === "number");
 
-    const missing = Array.from(new Set(neededIds)).filter((id) => !eventMediaMap[id]);
+    const missing = Array.from(new Set(neededIds)).filter(
+      (id) => !eventMediaMap[id],
+    );
     if (missing.length === 0) return;
 
     let cancelled = false;
@@ -160,7 +193,10 @@ export function Feed() {
       missing.map(async (eventId) => {
         try {
           const media = await getEventMediaRequest(eventId);
-          return { eventId, urls: media.map((item) => item.photoUrl).filter(Boolean) };
+          return {
+            eventId,
+            urls: media.map((item) => item.photoUrl).filter(Boolean),
+          };
         } catch {
           return { eventId, urls: [] };
         }
@@ -203,7 +239,9 @@ export function Feed() {
       <Tabs
         defaultValue="events"
         className="w-full"
-        onValueChange={(value) => setActiveTab(value as 'events' | 'friends' | 'foryou')}
+        onValueChange={(value) =>
+          setActiveTab(value as "events" | "friends" | "foryou")
+        }
       >
         {/* Barra de seleção fixa no topo durante o scroll */}
         <div className="sticky top-0 z-10 bg-background/95 backdrop-blur-sm border-b border-border pt-3 pb-2">
@@ -231,7 +269,7 @@ export function Feed() {
               <button
                 type="button"
                 onClick={() => {
-                  setUserQuery('');
+                  setUserQuery("");
                   setUserResults([]);
                   setIsSearching(false);
                 }}
@@ -247,9 +285,13 @@ export function Feed() {
         {userQuery.trim().length > 0 && (
           <div className="mx-auto mt-3 max-w-md rounded-2xl border border-border bg-card p-3">
             {isSearching ? (
-              <p className="text-xs text-muted-foreground">Procurando usuários...</p>
+              <p className="text-xs text-muted-foreground">
+                Procurando usuários...
+              </p>
             ) : userResults.length === 0 ? (
-              <p className="text-xs text-muted-foreground">Nenhum usuário encontrado.</p>
+              <p className="text-xs text-muted-foreground">
+                Nenhum usuário encontrado.
+              </p>
             ) : (
               <div className="space-y-2">
                 {userResults.map((user) => (
@@ -260,13 +302,21 @@ export function Feed() {
                       className="h-8 w-8 rounded-full object-cover border border-border"
                     />
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-semibold text-foreground truncate">@{user.username}</p>
-                      <p className="text-xs text-muted-foreground truncate">{user.name}</p>
+                      <p className="text-sm font-semibold text-foreground truncate">
+                        @{user.username}
+                      </p>
+                      <p className="text-xs text-muted-foreground truncate">
+                        {user.name}
+                      </p>
                     </div>
                     <button
                       type="button"
                       onClick={() => {
-                        window.dispatchEvent(new CustomEvent('konekt:navigate-to-profile', { detail: user.id }));
+                        window.dispatchEvent(
+                          new CustomEvent("konekt:navigate-to-profile", {
+                            detail: user.id,
+                          }),
+                        );
                       }}
                       className="rounded-full border border-border px-3 py-1 text-xs text-foreground hover:bg-accent transition-colors flex items-center gap-1 flex-shrink-0"
                     >
@@ -295,21 +345,34 @@ export function Feed() {
                       event.name === post.event.name &&
                       event.location === post.event.location,
                   );
-                  const description = matchingEvent?.description ?? post.caption;
-                  const eventMedia = matchingEvent ? eventMediaMap[matchingEvent.id] ?? [] : [];
+                  const description =
+                    matchingEvent?.description ?? post.caption;
+                  const eventMedia = matchingEvent
+                    ? (eventMediaMap[matchingEvent.id] ?? [])
+                    : [];
                   const combined = [
                     ...(post.images ?? []),
                     post.image,
                     matchingEvent?.image,
                     ...eventMedia,
-                  ].filter((value): value is string => typeof value === 'string' && value.length > 0);
+                  ].filter(
+                    (value): value is string =>
+                      typeof value === "string" && value.length > 0,
+                  );
                   const images = Array.from(new Set(combined));
-                  const postWithImages = images.length > 0 ? { ...post, images } : post;
-                  return <PostCard key={post.id} post={postWithImages} description={description} />;
+                  const postWithImages =
+                    images.length > 0 ? { ...post, images } : post;
+                  return (
+                    <PostCard
+                      key={post.id}
+                      post={postWithImages}
+                      description={description}
+                    />
+                  );
                 })}
               </div>
             )}
-            {activeTab === 'events' && canLoadMore && (
+            {activeTab === "events" && canLoadMore && (
               <div ref={loadMoreRef} className="h-8" />
             )}
           </div>
@@ -330,14 +393,17 @@ export function Feed() {
                     post={post}
                     description={post.caption}
                     onUserClick={(userId) => {
-                      const user = userResults.find((u) => u.id === userId) || post.author || null;
+                      const user =
+                        userResults.find((u) => u.id === userId) ||
+                        post.author ||
+                        null;
                       setSelectedUser(user);
                     }}
                   />
                 ))}
               </div>
             )}
-            {activeTab === 'friends' && canLoadMore && (
+            {activeTab === "friends" && canLoadMore && (
               <div ref={loadMoreRef} className="h-8" />
             )}
           </div>
@@ -348,7 +414,9 @@ export function Feed() {
           <div className="pb-20">
             <div className="mx-auto mt-2 mb-4 max-w-md rounded-2xl border border-border bg-card p-3">
               <div className="flex items-center justify-between mb-2">
-                <p className="text-sm font-semibold text-foreground">Usuários para você</p>
+                <p className="text-sm font-semibold text-foreground">
+                  Usuários para você
+                </p>
                 <button
                   type="button"
                   onClick={() => setShuffleSeed(Date.now())}
@@ -366,13 +434,21 @@ export function Feed() {
                       className="h-8 w-8 rounded-full object-cover border border-border"
                     />
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-semibold text-foreground">{user.name}</p>
-                      <p className="text-xs text-muted-foreground truncate">@{user.username}</p>
+                      <p className="text-sm font-semibold text-foreground">
+                        {user.name}
+                      </p>
+                      <p className="text-xs text-muted-foreground truncate">
+                        @{user.username}
+                      </p>
                     </div>
                     <button
                       type="button"
                       onClick={() => {
-                        window.dispatchEvent(new CustomEvent('konekt:navigate-to-profile', { detail: user.id }));
+                        window.dispatchEvent(
+                          new CustomEvent("konekt:navigate-to-profile", {
+                            detail: user.id,
+                          }),
+                        );
                       }}
                       className="rounded-full border border-border px-3 py-1 text-xs text-foreground hover:bg-accent transition-colors flex-shrink-0"
                     >
@@ -400,7 +476,7 @@ export function Feed() {
                     );
                     const description = isUserPost
                       ? post.caption
-                      : matchingEvent?.description ?? post.caption;
+                      : (matchingEvent?.description ?? post.caption);
 
                     return (
                       <div key={post.id}>
@@ -408,14 +484,18 @@ export function Feed() {
                           post={post}
                           description={description}
                           onUserClick={(userId) => {
-                            const user = userResults.find((u) => u.id === userId) || post.author || null;
+                            const user =
+                              userResults.find((u) => u.id === userId) ||
+                              post.author ||
+                              null;
                             setSelectedUser(user);
                           }}
                         />
                         {/* Espaço para anúncios / recomendações patrocinadas a cada 3 posts */}
                         {(index + 1) % 3 === 0 && (
                           <div className="my-4 rounded-2xl border border-dashed border-border bg-muted/60 p-4 text-xs text-muted-foreground text-center">
-                            Espaço reservado para anúncios e recomendações personalizadas.
+                            Espaço reservado para anúncios e recomendações
+                            personalizadas.
                           </div>
                         )}
                       </div>
@@ -424,14 +504,17 @@ export function Feed() {
                 </div>
               </>
             )}
-            {activeTab === 'foryou' && canLoadMore && (
+            {activeTab === "foryou" && canLoadMore && (
               <div ref={loadMoreRef} className="h-8" />
             )}
           </div>
         </TabsContent>
       </Tabs>
 
-      <Dialog open={!!selectedUser} onOpenChange={(open) => !open && setSelectedUser(null)}>
+      <Dialog
+        open={!!selectedUser}
+        onOpenChange={(open) => !open && setSelectedUser(null)}
+      >
         <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto">
           {selectedUser && (
             <>
@@ -446,9 +529,12 @@ export function Feed() {
                     className="h-12 w-12 rounded-full object-cover border border-border"
                   />
                   <div className="flex-1">
-                    <p className="text-base font-semibold text-foreground">{selectedUser.name}</p>
+                    <p className="text-base font-semibold text-foreground">
+                      {selectedUser.name}
+                    </p>
                     <p className="text-xs text-muted-foreground">
-                      Seguindo: {selectedUser.following ?? 0} · Seguidores: {selectedUser.followers ?? 0}
+                      Seguindo: {selectedUser.following ?? 0} · Seguidores:{" "}
+                      {selectedUser.followers ?? 0}
                     </p>
                   </div>
                   {authUser && authUser.id !== selectedUser.id && (
@@ -458,13 +544,19 @@ export function Feed() {
                         if (followLoading) return;
                         setFollowLoading(true);
                         try {
-                          const result = await toggleFollowRequest(selectedUser.id);
+                          const result = await toggleFollowRequest(
+                            selectedUser.id,
+                          );
                           setSelectedUser(result.user);
                           setAllUsers((prev) =>
-                            prev.map((user) => (user.id === result.user.id ? result.user : user)),
+                            prev.map((user) =>
+                              user.id === result.user.id ? result.user : user,
+                            ),
                           );
                           setUserResults((prev) =>
-                            prev.map((user) => (user.id === result.user.id ? result.user : user)),
+                            prev.map((user) =>
+                              user.id === result.user.id ? result.user : user,
+                            ),
                           );
                           updateUser(result.me);
                         } finally {
@@ -474,17 +566,23 @@ export function Feed() {
                       className="rounded-full bg-primary text-primary-foreground px-4 py-2 text-xs font-semibold disabled:opacity-60"
                       disabled={followLoading}
                     >
-                      {authUser.followingIds?.includes(selectedUser.id) ? 'Seguindo' : 'Seguir'}
+                      {authUser.followingIds?.includes(selectedUser.id)
+                        ? "Seguindo"
+                        : "Seguir"}
                     </button>
                   )}
                 </div>
 
                 <div>
-                  <p className="text-sm font-semibold text-foreground mb-2">Seguindo</p>
+                  <p className="text-sm font-semibold text-foreground mb-2">
+                    Seguindo
+                  </p>
                   {selectedUser.followingIds?.length ? (
                     <div className="flex flex-wrap gap-2">
                       {allUsers
-                        .filter((user) => selectedUser.followingIds?.includes(user.id))
+                        .filter((user) =>
+                          selectedUser.followingIds?.includes(user.id),
+                        )
                         .map((user) => (
                           <span
                             key={user.id}
@@ -495,7 +593,9 @@ export function Feed() {
                         ))}
                     </div>
                   ) : (
-                    <p className="text-xs text-muted-foreground">Sem seguindo no momento.</p>
+                    <p className="text-xs text-muted-foreground">
+                      Sem seguindo no momento.
+                    </p>
                   )}
                 </div>
 
@@ -504,7 +604,9 @@ export function Feed() {
                     Eventos públicos
                   </p>
                   {publicEvents.length === 0 ? (
-                    <p className="text-xs text-muted-foreground">Sem eventos públicos.</p>
+                    <p className="text-xs text-muted-foreground">
+                      Sem eventos públicos.
+                    </p>
                   ) : (
                     <div className="space-y-2">
                       {publicEvents.map((event) => (

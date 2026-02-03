@@ -1,6 +1,6 @@
-import { Event } from '../../../types';
-import { getPinSize } from '../utils/eventPins';
-import { EventCard } from './EventCard';
+import { Event } from "../../../types";
+import { getPinSize } from "../utils/eventPins";
+import { EventCard } from "./EventCard";
 
 interface EventCardsRailProps {
   events?: Event[];

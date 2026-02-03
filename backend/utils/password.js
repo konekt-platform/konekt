@@ -1,4 +1,4 @@
-import bcrypt from 'bcryptjs';
+import bcrypt from "bcryptjs";
 
 const SALT_ROUNDS = 10;
 
@@ -20,10 +20,5 @@ export function comparePassword(password, hash) {
  * Verifica se uma string é um hash bcrypt
  */
 export function isHashed(password) {
-  return typeof password === 'string' && password.startsWith('$2');
+  return typeof password === "string" && password.startsWith("$2");
 }
-
-
-
-
-

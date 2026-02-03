@@ -1,4 +1,4 @@
-import { Event } from '../../../types';
+import { Event } from "../../../types";
 
 export const isEventActive = (event: Event, now: Date = new Date()) => {
   const start = new Date(event.startsAt);
@@ -16,11 +16,11 @@ export const formatEventTimeRange = (event: Event) => {
   const end = new Date(event.endsAt);
 
   if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) {
-    return '';
+    return "";
   }
 
   const format = (value: Date) =>
-    value.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+    value.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
 
   return `${format(start)}–${format(end)}`;
 };
@@ -44,4 +44,3 @@ export const hasEventEnded = (event: Event, now: Date = new Date()) => {
 
   return now > end;
 };
-

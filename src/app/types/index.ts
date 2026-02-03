@@ -1,4 +1,4 @@
-export type EventType = 'esportes' | 'estudo' | 'lazer' | 'artes';
+export type EventType = "esportes" | "estudo" | "lazer" | "artes";
 
 // Raw event data from API
 export interface ApiEvent {
@@ -25,16 +25,16 @@ export interface Event extends ApiEvent {
   };
   distanceKm: number;
   maxAttendees: number;
-  visibility: 'public' | 'friends' | 'invite-only';
+  visibility: "public" | "friends" | "invite-only";
   requiresApproval: boolean;
   isLgbtFriendly: boolean;
-  genderFocus: 'all' | 'women' | 'men' | 'lgbt';
+  genderFocus: "all" | "women" | "men" | "lgbt";
   isRecurring: boolean;
   attendeeIds?: number[];
   pendingRequestIds?: number[];
   creatorId?: number;
   attendeesList?: { id: number; name: string; avatar: string }[];
-  userStatus?: 'attending' | 'pending';
+  userStatus?: "attending" | "pending";
   cancelled?: boolean;
 }
 
@@ -99,7 +99,7 @@ export interface Post {
   isEventPost?: boolean;
 }
 
-export type NotificationType = 'comment' | 'connection' | 'event' | 'reminder';
+export type NotificationType = "comment" | "connection" | "event" | "reminder";
 
 export interface Notification {
   id: number;
@@ -116,4 +116,4 @@ export interface Notification {
   };
 }
 
-export type View = 'feed' | 'map' | 'profile' | 'search';
+export type View = "feed" | "map" | "profile" | "search";

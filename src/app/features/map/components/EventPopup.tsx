@@ -1,7 +1,7 @@
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { Event } from '../../../types';
-import { getVisibilityColor, getVisibilityGlow } from '../utils/eventLabels';
-import { formatEventTimeRange } from '../utils/eventSchedule';
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Event } from "../../../types";
+import { getVisibilityColor, getVisibilityGlow } from "../utils/eventLabels";
+import { formatEventTimeRange } from "../utils/eventSchedule";
 
 interface EventPopupProps {
   event: Event;
@@ -23,11 +23,11 @@ export function EventPopup({
     ? overlappingEvents.findIndex((e) => e.id === event.id)
     : -1;
 
-  const handleNavigate = (direction: 'prev' | 'next') => {
+  const handleNavigate = (direction: "prev" | "next") => {
     if (!hasOverlap || !onNavigate) return;
 
     const total = overlappingEvents.length;
-    const offset = direction === 'prev' ? -1 : 1;
+    const offset = direction === "prev" ? -1 : 1;
     const targetIndex = (currentIndex + offset + total) % total;
     const targetEvent = overlappingEvents[targetIndex];
     if (targetEvent) {
@@ -42,31 +42,36 @@ export function EventPopup({
   return (
     <div
       className="w-[220px] rounded-xl overflow-hidden bg-background text-foreground"
-      style={{ border: `2px solid ${visibilityColor}`, boxShadow: visibilityGlow }}
+      style={{
+        border: `2px solid ${visibilityColor}`,
+        boxShadow: visibilityGlow,
+      }}
     >
       <div className="w-full h-[100px] relative rounded-t-xl overflow-hidden">
-        <img src={event.image} alt={event.name} className="w-full h-full object-cover" />
+        <img
+          src={event.image}
+          alt={event.name}
+          className="w-full h-full object-cover"
+        />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
         <div className="absolute bottom-2 left-2 right-2">
-          <p className="text-[12px] font-semibold text-white line-clamp-1">{event.name}</p>
+          <p className="text-[12px] font-semibold text-white line-clamp-1">
+            {event.name}
+          </p>
         </div>
         {hasOverlap && (
           <>
             <button
-              onClick={() => handleNavigate('prev')}
-              className={`absolute left-2 top-1/2 -translate-y-1/2 z-10 rounded-full p-2 transition-all ${
-                'bg-black/70 backdrop-blur-sm text-white hover:bg-black/90 hover:scale-110 cursor-pointer'
-              }`}
+              onClick={() => handleNavigate("prev")}
+              className={`absolute left-2 top-1/2 -translate-y-1/2 z-10 rounded-full p-2 transition-all ${"bg-black/70 backdrop-blur-sm text-white hover:bg-black/90 hover:scale-110 cursor-pointer"}`}
               type="button"
               aria-label="Evento anterior"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <button
-              onClick={() => handleNavigate('next')}
-              className={`absolute right-2 top-1/2 -translate-y-1/2 z-10 rounded-full p-2 transition-all ${
-                'bg-black/70 backdrop-blur-sm text-white hover:bg-black/90 hover:scale-110 cursor-pointer'
-              }`}
+              onClick={() => handleNavigate("next")}
+              className={`absolute right-2 top-1/2 -translate-y-1/2 z-10 rounded-full p-2 transition-all ${"bg-black/70 backdrop-blur-sm text-white hover:bg-black/90 hover:scale-110 cursor-pointer"}`}
               type="button"
               aria-label="Próximo evento"
             >
@@ -83,7 +88,10 @@ export function EventPopup({
         </div>
         {!hasOverlap && (
           <div className="absolute bottom-2 right-2 bg-black/70 backdrop-blur-sm text-white px-2.5 py-1 rounded-2xl text-[11px] font-semibold">
-            👥 <span key={`popup-attendees-${event.id}-${event.attendees}`}>{event.attendees || 0}</span>
+            👥{" "}
+            <span key={`popup-attendees-${event.id}-${event.attendees}`}>
+              {event.attendees || 0}
+            </span>
           </div>
         )}
       </div>

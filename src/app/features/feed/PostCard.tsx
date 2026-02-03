@@ -1,9 +1,21 @@
-import { useEffect, useState } from 'react';
-import { Heart, MessageCircle, Share2, MapPin, Users, User, ChevronLeft, ChevronRight } from 'lucide-react';
-import { Post } from '../../types';
-import { ShareDialog } from '../../components/ShareDialog';
-import { useAuth } from '../../contexts/AuthContext';
-import { addPostCommentRequest, togglePostLikeRequest } from '../../services/api/posts';
+import { useEffect, useState } from "react";
+import {
+  Heart,
+  MessageCircle,
+  Share2,
+  MapPin,
+  Users,
+  User,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
+import { Post } from "../../types";
+import { ShareDialog } from "../../components/ShareDialog";
+import { useAuth } from "../../contexts/AuthContext";
+import {
+  addPostCommentRequest,
+  togglePostLikeRequest,
+} from "../../services/api/posts";
 
 interface PostCardProps {
   post: Post;
@@ -18,13 +30,16 @@ export function PostCard({ post, description, onUserClick }: PostCardProps) {
   const { user: authUser } = useAuth();
   const attendees = post.attendees ?? [];
   const totalAttendees = post.totalAttendees ?? attendees.length;
-  const media = post.images && post.images.length > 0 ? post.images : [post.image];
+  const media =
+    post.images && post.images.length > 0 ? post.images : [post.image];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(post.likes ?? 0);
   const [showComments, setShowComments] = useState(false);
-  const [commentText, setCommentText] = useState('');
-  const [comments, setComments] = useState<Array<{ id: number; user: string; text: string; time: string }>>([]);
+  const [commentText, setCommentText] = useState("");
+  const [comments, setComments] = useState<
+    Array<{ id: number; user: string; text: string; time: string }>
+  >([]);
   const [commentsCount, setCommentsCount] = useState(post.comments ?? 0);
   const [shareOpen, setShareOpen] = useState(false);
 
@@ -39,16 +54,18 @@ export function PostCard({ post, description, onUserClick }: PostCardProps) {
         id: comment.id,
         user: comment.username,
         text: comment.text,
-        time: new Date(comment.createdAt).toLocaleTimeString('pt-BR', {
-          hour: '2-digit',
-          minute: '2-digit',
+        time: new Date(comment.createdAt).toLocaleTimeString("pt-BR", {
+          hour: "2-digit",
+          minute: "2-digit",
         }),
       })) ?? [];
     setComments(initialComments);
   }, [post, authUser?.id]);
 
   const shareUrl =
-    typeof window !== 'undefined' ? `${window.location.origin}/post/${post.id}` : `post/${post.id}`;
+    typeof window !== "undefined"
+      ? `${window.location.origin}/post/${post.id}`
+      : `post/${post.id}`;
 
   const handleLike = async () => {
     if (!authUser) return;
@@ -69,23 +86,23 @@ export function PostCard({ post, description, onUserClick }: PostCardProps) {
   const handleComment = async () => {
     if (!commentText.trim() || !authUser) return;
     const text = commentText.trim();
-    setCommentText('');
+    setCommentText("");
     try {
       const result = await addPostCommentRequest(post.id, text);
       const newComment = {
         id: result.comment.id,
         user: result.comment.username,
         text: result.comment.text,
-        time: 'agora',
+        time: "agora",
       };
       setComments((prev) => [...prev, newComment]);
       setCommentsCount(result.comments);
     } catch {
       const newComment = {
         id: Date.now(),
-        user: authUser.username ?? 'Você',
+        user: authUser.username ?? "Você",
         text,
-        time: 'agora',
+        time: "agora",
       };
       setComments((prev) => [...prev, newComment]);
       setCommentsCount((count) => count + 1);
@@ -113,10 +130,16 @@ export function PostCard({ post, description, onUserClick }: PostCardProps) {
             </div>
           )}
           <div className="flex-1">
-            <p className="text-[13px] font-semibold text-foreground">@{post.author.username}</p>
-            <p className="text-[11px] text-muted-foreground">{post.event.name}</p>
+            <p className="text-[13px] font-semibold text-foreground">
+              @{post.author.username}
+            </p>
+            <p className="text-[11px] text-muted-foreground">
+              {post.event.name}
+            </p>
           </div>
-          <span className="text-[11px] text-muted-foreground uppercase">{post.timeAgo}</span>
+          <span className="text-[11px] text-muted-foreground uppercase">
+            {post.timeAgo}
+          </span>
         </button>
       )}
 
@@ -126,8 +149,12 @@ export function PostCard({ post, description, onUserClick }: PostCardProps) {
           <div className="flex items-start justify-between">
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-1">
-                <h3 className="text-sm font-semibold text-foreground">{post.event.name}</h3>
-                <span className="text-[11px] text-muted-foreground uppercase">{post.timeAgo}</span>
+                <h3 className="text-sm font-semibold text-foreground">
+                  {post.event.name}
+                </h3>
+                <span className="text-[11px] text-muted-foreground uppercase">
+                  {post.timeAgo}
+                </span>
               </div>
               <div className="flex items-center gap-2 text-[12px] text-muted-foreground">
                 <MapPin className="w-3.5 h-3.5" />
@@ -146,7 +173,7 @@ export function PostCard({ post, description, onUserClick }: PostCardProps) {
           {attendees.length > 0 && (
             <div className="flex items-center gap-2">
               <div className="flex -space-x-2">
-                {attendees.slice(0, 4).map((attendee, index) => (
+                {attendees.slice(0, 4).map((attendee, index) =>
                   attendee.avatar ? (
                     <img
                       key={index}
@@ -163,21 +190,23 @@ export function PostCard({ post, description, onUserClick }: PostCardProps) {
                     >
                       <User className="w-3.5 h-3.5 text-muted-foreground" />
                     </div>
-                  )
-                ))}
+                  ),
+                )}
               </div>
               <p className="text-[12px] text-muted-foreground">
                 <span className="font-semibold">{attendees[0].name}</span>
                 {attendees.length > 1 && (
                   <span>
-                    {' e '}
+                    {" e "}
                     <span className="font-semibold">
-                      {Math.max(totalAttendees - 1, attendees.length - 1)}{' '}
-                      {Math.max(totalAttendees - 1, attendees.length - 1) === 1 ? 'pessoa' : 'pessoas'}
+                      {Math.max(totalAttendees - 1, attendees.length - 1)}{" "}
+                      {Math.max(totalAttendees - 1, attendees.length - 1) === 1
+                        ? "pessoa"
+                        : "pessoas"}
                     </span>
                   </span>
                 )}
-                {' participaram'}
+                {" participaram"}
               </p>
             </div>
           )}
@@ -187,7 +216,9 @@ export function PostCard({ post, description, onUserClick }: PostCardProps) {
       {/* Descrição acima da foto */}
       {description && (
         <div className="px-3 pb-3">
-          <p className="text-[13px] text-foreground leading-relaxed">{description}</p>
+          <p className="text-[13px] text-foreground leading-relaxed">
+            {description}
+          </p>
         </div>
       )}
 
@@ -202,7 +233,11 @@ export function PostCard({ post, description, onUserClick }: PostCardProps) {
           <>
             <button
               type="button"
-              onClick={() => setCurrentImageIndex((prev) => (prev - 1 + media.length) % media.length)}
+              onClick={() =>
+                setCurrentImageIndex(
+                  (prev) => (prev - 1 + media.length) % media.length,
+                )
+              }
               className="absolute left-2 top-1/2 -translate-y-1/2 z-10 rounded-full p-2 bg-black/70 backdrop-blur-sm text-white hover:bg-black/90"
               aria-label="Imagem anterior"
             >
@@ -210,7 +245,9 @@ export function PostCard({ post, description, onUserClick }: PostCardProps) {
             </button>
             <button
               type="button"
-              onClick={() => setCurrentImageIndex((prev) => (prev + 1) % media.length)}
+              onClick={() =>
+                setCurrentImageIndex((prev) => (prev + 1) % media.length)
+              }
               className="absolute right-2 top-1/2 -translate-y-1/2 z-10 rounded-full p-2 bg-black/70 backdrop-blur-sm text-white hover:bg-black/90"
               aria-label="Próxima imagem"
             >
@@ -221,7 +258,9 @@ export function PostCard({ post, description, onUserClick }: PostCardProps) {
                 <div
                   key={idx}
                   className={`h-1.5 rounded-full transition-all ${
-                    idx === currentImageIndex ? 'w-6 bg-white' : 'w-1.5 bg-white/50'
+                    idx === currentImageIndex
+                      ? "w-6 bg-white"
+                      : "w-1.5 bg-white/50"
                   }`}
                 />
               ))}
@@ -236,11 +275,13 @@ export function PostCard({ post, description, onUserClick }: PostCardProps) {
           <button
             onClick={handleLike}
             className={`flex items-center gap-2 transition-colors ${
-              isLiked ? 'text-destructive' : 'text-muted-foreground hover:text-destructive'
+              isLiked
+                ? "text-destructive"
+                : "text-muted-foreground hover:text-destructive"
             }`}
             type="button"
           >
-            <Heart className={`w-5 h-5 ${isLiked ? 'fill-current' : ''}`} />
+            <Heart className={`w-5 h-5 ${isLiked ? "fill-current" : ""}`} />
           </button>
           <button
             onClick={() => setShowComments(!showComments)}
@@ -256,7 +297,10 @@ export function PostCard({ post, description, onUserClick }: PostCardProps) {
           >
             <Share2 className="w-5 h-5" />
           </button>
-          <button className="ml-auto flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors" type="button">
+          <button
+            className="ml-auto flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
+            type="button"
+          >
             <Users className="w-4 h-4" />
             <span className="text-[12px] font-semibold">{totalAttendees}</span>
           </button>
@@ -280,9 +324,15 @@ export function PostCard({ post, description, onUserClick }: PostCardProps) {
           <div className="mt-3 pt-3 border-t border-border space-y-2">
             {comments.map((comment) => (
               <div key={comment.id} className="flex items-start gap-2">
-                <span className="text-[13px] font-semibold text-foreground">{comment.user}:</span>
-                <span className="text-[13px] text-foreground flex-1">{comment.text}</span>
-                <span className="text-[11px] text-muted-foreground">{comment.time}</span>
+                <span className="text-[13px] font-semibold text-foreground">
+                  {comment.user}:
+                </span>
+                <span className="text-[13px] text-foreground flex-1">
+                  {comment.text}
+                </span>
+                <span className="text-[11px] text-muted-foreground">
+                  {comment.time}
+                </span>
               </div>
             ))}
             <div className="flex gap-2 mt-2">
@@ -291,7 +341,7 @@ export function PostCard({ post, description, onUserClick }: PostCardProps) {
                 value={commentText}
                 onChange={(e) => setCommentText(e.target.value)}
                 onKeyDown={(e) => {
-                  if (e.key === 'Enter' && !e.shiftKey) {
+                  if (e.key === "Enter" && !e.shiftKey) {
                     e.preventDefault();
                     handleComment();
                   }

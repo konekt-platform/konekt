@@ -1,4 +1,4 @@
-import { EventType } from '../types';
+import { EventType } from "../types";
 
 export interface CategoryTheme {
   label: string;
@@ -8,31 +8,31 @@ export interface CategoryTheme {
 
 export const EVENT_CATEGORIES: Record<EventType, CategoryTheme> = {
   esportes: {
-    label: 'Esportes',
-    color: '#22c55e',
-    icon: '⚽',
+    label: "Esportes",
+    color: "#22c55e",
+    icon: "⚽",
   },
   estudo: {
-    label: 'Estudo',
-    color: '#3b82f6',
-    icon: '📚',
+    label: "Estudo",
+    color: "#3b82f6",
+    icon: "📚",
   },
   lazer: {
-    label: 'Lazer',
-    color: '#f97316',
-    icon: '🎮',
+    label: "Lazer",
+    color: "#f97316",
+    icon: "🎮",
   },
   artes: {
-    label: 'Artes',
-    color: '#a855f7',
-    icon: '🎨',
+    label: "Artes",
+    color: "#a855f7",
+    icon: "🎨",
   },
 };
 
 export const DEFAULT_CATEGORY: CategoryTheme = {
-  label: 'Evento',
-  color: '#6366f1',
-  icon: '📅',
+  label: "Evento",
+  color: "#6366f1",
+  icon: "📅",
 };
 
 export const getEventTheme = (type: EventType): CategoryTheme => {

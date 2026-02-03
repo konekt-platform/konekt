@@ -1,18 +1,56 @@
-import { useState, useMemo, useEffect, useCallback } from 'react';
-import { User as UserIcon, Plus, X, Check, Loader2, LogOut, Edit, Heart, MessageCircle, Share2, Users, ChevronLeft, ChevronRight, Moon, Sun, UserPlus, Ban, UserCheck, Lock, LogOut as LogOutIcon, Settings } from 'lucide-react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '../../components/ui/dialog';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../components/ui/tabs';
-import { useGetEvents } from '../../hooks/useGetEvents';
-import { useGetPosts } from '../../hooks/useGetPosts';
-import { useInfiniteScroll } from '../../hooks/useInfiniteScroll';
-import { useQueryClient } from '@tanstack/react-query';
-import { useMutation } from '@tanstack/react-query';
-import type { Event, Post, User } from '../../types';
-import { createPostRequest } from '../../services/api/posts';
-import { formatEventTimeRange, isEventActive, hasEventStarted, hasEventEnded } from '../map/utils/eventSchedule';
-import { useAuth } from '../../contexts/AuthContext';
-import { useTheme } from '../../contexts/ThemeContext';
-import { ShareDialog } from '../../components/ShareDialog';
+import { useState, useMemo, useEffect, useCallback } from "react";
+import {
+  User as UserIcon,
+  Plus,
+  X,
+  Check,
+  Loader2,
+  LogOut,
+  Edit,
+  Heart,
+  MessageCircle,
+  Share2,
+  Users,
+  ChevronLeft,
+  ChevronRight,
+  Moon,
+  Sun,
+  UserPlus,
+  Ban,
+  UserCheck,
+  Lock,
+  LogOut as LogOutIcon,
+  Settings,
+} from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "../../components/ui/dialog";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "../../components/ui/tabs";
+import { useGetEvents } from "../../hooks/useGetEvents";
+import { useGetPosts } from "../../hooks/useGetPosts";
+import { useInfiniteScroll } from "../../hooks/useInfiniteScroll";
+import { useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
+import type { Event, Post, User } from "../../types";
+import { createPostRequest } from "../../services/api/posts";
+import {
+  formatEventTimeRange,
+  isEventActive,
+  hasEventStarted,
+  hasEventEnded,
+} from "../map/utils/eventSchedule";
+import { useAuth } from "../../contexts/AuthContext";
+import { useTheme } from "../../contexts/ThemeContext";
+import { ShareDialog } from "../../components/ShareDialog";
 import {
   getFavoritesRequest,
   searchUsersRequest,
@@ -24,31 +62,47 @@ import {
   blockUserRequest,
   unblockUserRequest,
   getFriendsRequest,
-} from '../../services/api/users';
-import { PrivacySettings } from '../../types';
-import { API_URL, getAuthHeaders } from '../../services/api/client';
-import { EventFullCard } from '../map/components/EventFullCard';
-import { Avatar, AvatarImage, AvatarFallback } from '../../components/ui/avatar';
+} from "../../services/api/users";
+import { PrivacySettings } from "../../types";
+import { API_URL, getAuthHeaders } from "../../services/api/client";
+import { EventFullCard } from "../map/components/EventFullCard";
+import {
+  Avatar,
+  AvatarImage,
+  AvatarFallback,
+} from "../../components/ui/avatar";
 
 interface Photo {
   id: string;
   url: string;
   eventId: number;
-  owner: 'me' | 'other';
-  status: 'posted' | 'pending';
+  owner: "me" | "other";
+  status: "posted" | "pending";
   allowReuse?: boolean;
 }
 
-const EventRow = ({ event, onSelect }: { event: Event; onSelect: () => void }) => {
+const EventRow = ({
+  event,
+  onSelect,
+}: {
+  event: Event;
+  onSelect: () => void;
+}) => {
   return (
     <button
       type="button"
       onClick={onSelect}
       className="flex w-full items-center gap-3 rounded-xl border border-border bg-card p-3 text-left hover:bg-accent transition-colors"
     >
-      <img src={event.image} alt={event.name} className="h-12 w-12 rounded-lg object-cover" />
+      <img
+        src={event.image}
+        alt={event.name}
+        className="h-12 w-12 rounded-lg object-cover"
+      />
       <div className="flex-1">
-        <p className="text-sm font-semibold text-foreground line-clamp-1">{event.name}</p>
+        <p className="text-sm font-semibold text-foreground line-clamp-1">
+          {event.name}
+        </p>
         <p className="text-xs text-muted-foreground line-clamp-1">
           {event.location} · {event.date}
         </p>
@@ -65,27 +119,38 @@ interface ProfileViewProps {
   onBack?: () => void;
 }
 
-export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) {
+export function ProfileView({
+  viewingUserId = null,
+  onBack,
+}: ProfileViewProps) {
   const { data: events } = useGetEvents();
-  const { user: authUser, logout, logoutAll, changePassword, updateUser } = useAuth();
+  const {
+    user: authUser,
+    logout,
+    logoutAll,
+    changePassword,
+    updateUser,
+  } = useAuth();
   const { theme, toggleTheme } = useTheme();
   const [viewingUser, setViewingUser] = useState<User | null>(null);
   const [isFollowing, setIsFollowing] = useState(false);
   const [isBlocked, setIsBlocked] = useState(false);
-  const [userName, setUserName] = useState(authUser?.name || 'Seu Perfil');
-  const [userAvatar, setUserAvatar] = useState<string | null>(authUser?.avatar || null);
-  const [userBio, setUserBio] = useState(authUser?.bio || '');
+  const [userName, setUserName] = useState(authUser?.name || "Seu Perfil");
+  const [userAvatar, setUserAvatar] = useState<string | null>(
+    authUser?.avatar || null,
+  );
+  const [userBio, setUserBio] = useState(authUser?.bio || "");
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
   const [editProfileOpen, setEditProfileOpen] = useState(false);
   const [friendsOpen, setFriendsOpen] = useState(false);
   const [friends, setFriends] = useState<User[]>([]);
   const [friendsSearchOpen, setFriendsSearchOpen] = useState(false);
-  const [friendQuery, setFriendQuery] = useState('');
+  const [friendQuery, setFriendQuery] = useState("");
   const [allUsers, setAllUsers] = useState<User[]>([]);
   const [friendsLoading, setFriendsLoading] = useState(false);
   const [friendSearchLoading, setFriendSearchLoading] = useState(false);
   const [draftName, setDraftName] = useState(userName);
-  const [draftAvatar, setDraftAvatar] = useState(userAvatar ?? '');
+  const [draftAvatar, setDraftAvatar] = useState(userAvatar ?? "");
   const [avatarUploading, setAvatarUploading] = useState(false);
   const [draftBio, setDraftBio] = useState(userBio);
   const [privacyOpen, setPrivacyOpen] = useState(false);
@@ -96,30 +161,40 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
     showFollowers: true,
   });
   const [changePasswordOpen, setChangePasswordOpen] = useState(false);
-  const [currentPassword, setCurrentPassword] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [passwordError, setPasswordError] = useState('');
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const [passwordLoading, setPasswordLoading] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
-  const timeRange = selectedEvent ? formatEventTimeRange(selectedEvent) : '';
+  const timeRange = selectedEvent ? formatEventTimeRange(selectedEvent) : "";
   const canPostMedia = selectedEvent ? isEventActive(selectedEvent) : false;
 
   // Estados para criar post
   const [createPostOpen, setCreatePostOpen] = useState(false);
   const [postEventId, setPostEventId] = useState<number | null>(null);
-  const [selectedPhotoIds, setSelectedPhotoIds] = useState<Set<string>>(new Set());
+  const [selectedPhotoIds, setSelectedPhotoIds] = useState<Set<string>>(
+    new Set(),
+  );
   const [showMoreEvents, setShowMoreEvents] = useState(false);
   const [ownedPhotos, setOwnedPhotos] = useState<Photo[]>([]);
-  const [postCaption, setPostCaption] = useState('');
+  const [postCaption, setPostCaption] = useState("");
   const MAX_POST_MEDIA = 5;
-  const [photoLimitMessage, setPhotoLimitMessage] = useState('');
+  const [photoLimitMessage, setPhotoLimitMessage] = useState("");
 
   // Eventos favoritados (X) - apenas eventos que o usuário quer deixar no perfil
-  const [favoriteEventIds, setFavoriteEventIds] = useState<Set<number>>(new Set());
-  const favoriteKey = authUser ? `konekt_favorite_events_${authUser.id}` : 'konekt_favorite_events';
-  const [hiddenPastEventIds, setHiddenPastEventIds] = useState<Set<number>>(new Set());
-  const hiddenPastKey = authUser ? `konekt_past_hidden_${authUser.id}` : 'konekt_past_hidden';
+  const [favoriteEventIds, setFavoriteEventIds] = useState<Set<number>>(
+    new Set(),
+  );
+  const favoriteKey = authUser
+    ? `konekt_favorite_events_${authUser.id}`
+    : "konekt_favorite_events";
+  const [hiddenPastEventIds, setHiddenPastEventIds] = useState<Set<number>>(
+    new Set(),
+  );
+  const hiddenPastKey = authUser
+    ? `konekt_past_hidden_${authUser.id}`
+    : "konekt_past_hidden";
 
   // Estado para modal de detalhes do post
   const [selectedPost, setSelectedPost] = useState<Post | null>(null);
@@ -127,8 +202,10 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
   const [isLiked, setIsLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(0);
   const [showComments, setShowComments] = useState(false);
-  const [commentText, setCommentText] = useState('');
-  const [comments, setComments] = useState<Array<{ id: number; user: string; text: string; time: string }>>([]);
+  const [commentText, setCommentText] = useState("");
+  const [comments, setComments] = useState<
+    Array<{ id: number; user: string; text: string; time: string }>
+  >([]);
   const [shareOpen, setShareOpen] = useState(false);
   const POSTS_PAGE_SIZE = 6;
   const [visiblePostsCount, setVisiblePostsCount] = useState(POSTS_PAGE_SIZE);
@@ -139,13 +216,14 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
       setIsLiked(false);
       setLikesCount(selectedPost.likes);
       setShowComments(false);
-      setCommentText('');
+      setCommentText("");
       setComments([]);
       setCurrentImageIndex(0);
     }
   }, [selectedPost]);
 
-  const isViewingOtherProfile = viewingUserId !== null && viewingUserId !== authUser?.id;
+  const isViewingOtherProfile =
+    viewingUserId !== null && viewingUserId !== authUser?.id;
 
   // Carrega configurações de privacidade
   useEffect(() => {
@@ -163,13 +241,13 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
     if (viewingUserId && viewingUserId !== authUser?.id) {
       const loadUser = async () => {
         try {
-          const users = await searchUsersRequest('');
+          const users = await searchUsersRequest("");
           const user = users.find((u) => u.id === viewingUserId);
           if (user) {
             setViewingUser(user);
             setUserName(user.name || user.username);
             setUserAvatar(user.avatar || null);
-            setUserBio(user.bio || '');
+            setUserBio(user.bio || "");
             // Verifica se já está seguindo
             setIsFollowing(authUser?.followingIds?.includes(user.id) || false);
           }
@@ -187,12 +265,12 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
     if (!authUser || viewingUserId) return; // Não atualiza se estiver vendo perfil de outro usuário
     // Prioriza avatar do authUser (que já vem com overrides do localStorage)
     const avatar = authUser.avatar || null;
-    setUserName(authUser.name || 'Seu Perfil');
+    setUserName(authUser.name || "Seu Perfil");
     setUserAvatar(avatar);
-    setUserBio(authUser.bio || '');
-    setDraftName(authUser.name || 'Seu Perfil');
-    setDraftAvatar(avatar || '');
-    setDraftBio(authUser.bio || '');
+    setUserBio(authUser.bio || "");
+    setDraftName(authUser.name || "Seu Perfil");
+    setDraftAvatar(avatar || "");
+    setDraftBio(authUser.bio || "");
   }, [authUser, viewingUserId]);
 
   useEffect(() => {
@@ -203,7 +281,9 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
         setFavoriteEventIds(new Set(result.eventIds));
       } catch {
         try {
-          const raw = localStorage.getItem(`konekt_favorite_events_${authUser.id}`);
+          const raw = localStorage.getItem(
+            `konekt_favorite_events_${authUser.id}`,
+          );
           const ids = raw ? (JSON.parse(raw) as number[]) : [];
           setFavoriteEventIds(new Set(ids));
         } catch {
@@ -231,15 +311,16 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
       const ids = Array.isArray(event.detail) ? event.detail : [];
       setFavoriteEventIds(new Set(ids));
     };
-    window.addEventListener('konekt:favorites-updated', handler);
-    return () => window.removeEventListener('konekt:favorites-updated', handler);
+    window.addEventListener("konekt:favorites-updated", handler);
+    return () =>
+      window.removeEventListener("konekt:favorites-updated", handler);
   }, [authUser?.id]);
 
   useEffect(() => {
     const loadUsers = async () => {
       setFriendsLoading(true);
       try {
-        const users = await searchUsersRequest('');
+        const users = await searchUsersRequest("");
         setAllUsers(users);
       } finally {
         setFriendsLoading(false);
@@ -250,7 +331,7 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
 
   useEffect(() => {
     if (!friendsSearchOpen) {
-      setFriendQuery('');
+      setFriendQuery("");
       return;
     }
     const query = friendQuery.trim().toLowerCase();
@@ -278,32 +359,37 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
     if (!commentText.trim()) return;
     const newComment = {
       id: Date.now(),
-      user: 'Você',
+      user: "Você",
       text: commentText.trim(),
-      time: 'agora',
+      time: "agora",
     };
     setComments((prev) => [...prev, newComment]);
-    setCommentText('');
+    setCommentText("");
   };
 
   const uploadAvatar = async (file: File) => {
     // Validação client-side
     const MAX_SIZE = 5 * 1024 * 1024; // 5MB
-    const ALLOWED_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+    const ALLOWED_TYPES = [
+      "image/jpeg",
+      "image/jpg",
+      "image/png",
+      "image/webp",
+    ];
 
     if (!ALLOWED_TYPES.includes(file.type)) {
-      throw new Error('Formato de imagem não suportado. Use JPG, PNG ou WEBP');
+      throw new Error("Formato de imagem não suportado. Use JPG, PNG ou WEBP");
     }
 
     if (file.size > MAX_SIZE) {
-      throw new Error('Arquivo muito grande. Tamanho máximo: 5MB');
+      throw new Error("Arquivo muito grande. Tamanho máximo: 5MB");
     }
 
     const formData = new FormData();
-    formData.append('avatar', file);
+    formData.append("avatar", file);
 
     const res = await fetch(`${API_URL}/users/me/avatar`, {
-      method: 'POST',
+      method: "POST",
       headers: {
         ...(getAuthHeaders() as any),
       },
@@ -311,14 +397,16 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
     });
 
     if (!res.ok) {
-      const errorData = await res.json().catch(() => ({ error: 'Falha ao enviar imagem' }));
-      throw new Error(errorData.error || 'Falha ao enviar imagem');
+      const errorData = await res
+        .json()
+        .catch(() => ({ error: "Falha ao enviar imagem" }));
+      throw new Error(errorData.error || "Falha ao enviar imagem");
     }
 
     const data = await res.json();
     const url = data?.avatar;
     if (!url) {
-      throw new Error('Resposta inválida do upload');
+      throw new Error("Resposta inválida do upload");
     }
 
     // Atualizar usuário automaticamente
@@ -326,15 +414,15 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
       updateUser({ avatar: url });
     }
 
-    return url.startsWith('http') ? url : `${API_URL}${url}`;
+    return url.startsWith("http") ? url : `${API_URL}${url}`;
   };
 
   const shareUrl =
-    selectedPost && typeof window !== 'undefined'
+    selectedPost && typeof window !== "undefined"
       ? `${window.location.origin}/post/${selectedPost.id}`
       : selectedPost
         ? `post/${selectedPost.id}`
-        : '';
+        : "";
 
   // Para o carrossel, vamos usar apenas a imagem do post por enquanto
   // (no futuro pode ter múltiplas fotos)
@@ -343,9 +431,11 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
   const visibleEvents = useMemo(() => {
     if (!events) return [];
     const hasConnections =
-      (authUser?.followingIds?.length ?? 0) + (authUser?.followerIds?.length ?? 0) > 0;
+      (authUser?.followingIds?.length ?? 0) +
+        (authUser?.followerIds?.length ?? 0) >
+      0;
     if (!hasConnections) {
-      return events.filter((event) => event.visibility === 'public');
+      return events.filter((event) => event.visibility === "public");
     }
     return events;
   }, [events, authUser?.followingIds, authUser?.followerIds]);
@@ -373,10 +463,18 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
     const userId = authUser?.id;
     const isParticipant = (event: Event) => {
       if (!userId) return false;
-      const attendeeIds = (event as Event & { attendeeIds?: number[] }).attendeeIds;
-      if (Array.isArray(attendeeIds) && attendeeIds.includes(userId)) return true;
-      const attendeesList = (event as Event & { attendeesList?: Array<{ id: number }> }).attendeesList;
-      if (Array.isArray(attendeesList) && attendeesList.some((attendee) => attendee.id === userId)) return true;
+      const attendeeIds = (event as Event & { attendeeIds?: number[] })
+        .attendeeIds;
+      if (Array.isArray(attendeeIds) && attendeeIds.includes(userId))
+        return true;
+      const attendeesList = (
+        event as Event & { attendeesList?: Array<{ id: number }> }
+      ).attendeesList;
+      if (
+        Array.isArray(attendeesList) &&
+        attendeesList.some((attendee) => attendee.id === userId)
+      )
+        return true;
       const creatorId = (event as Event & { creatorId?: number }).creatorId;
       if (creatorId === userId) return true;
       return false;
@@ -387,7 +485,9 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
       : visibleEvents;
 
     sourceEvents.forEach((event) => {
-      const startsAt = new Date(event.startsAt || `${event.date} ${event.time}`);
+      const startsAt = new Date(
+        event.startsAt || `${event.date} ${event.time}`,
+      );
       const ended = hasEventEnded(event, now);
       const isActiveNow = isEventActive(event);
 
@@ -416,12 +516,19 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
     };
 
     past.sort(sortByDate);
-    const filteredPast = past.filter((event) => !hiddenPastEventIds.has(event.id));
+    const filteredPast = past.filter(
+      (event) => !hiddenPastEventIds.has(event.id),
+    );
 
     // Participando (para outras lógicas) é a união de futuros + acontecendo
     const participating = [...upcoming, ...active];
 
-    return { upcomingEvents: upcoming, activeEvents: active, pastEventsList: filteredPast, participatingEventsList: participating };
+    return {
+      upcomingEvents: upcoming,
+      activeEvents: active,
+      pastEventsList: filteredPast,
+      participatingEventsList: participating,
+    };
   }, [visibleEvents, authUser?.id, hiddenPastEventIds]);
 
   const queryClient = useQueryClient();
@@ -435,8 +542,8 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
       id: `seed-${event.id}`,
       url: event.image,
       eventId: event.id,
-      owner: 'other' as const,
-      status: 'posted' as const,
+      owner: "other" as const,
+      status: "posted" as const,
       allowReuse: true,
     }));
 
@@ -449,29 +556,37 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
     return visibleEvents.filter((event) => favoriteEventIds.has(event.id));
   }, [visibleEvents, favoriteEventIds]);
 
-  const applyFavorites = useCallback((ids: number[]) => {
-    setFavoriteEventIds(new Set(ids));
-    try {
-      localStorage.setItem(favoriteKey, JSON.stringify(ids));
-    } catch {
-      // ignore storage errors
-    }
-    window.dispatchEvent(new CustomEvent('konekt:favorites-updated', { detail: ids }));
-  }, [favoriteKey]);
+  const applyFavorites = useCallback(
+    (ids: number[]) => {
+      setFavoriteEventIds(new Set(ids));
+      try {
+        localStorage.setItem(favoriteKey, JSON.stringify(ids));
+      } catch {
+        // ignore storage errors
+      }
+      window.dispatchEvent(
+        new CustomEvent("konekt:favorites-updated", { detail: ids }),
+      );
+    },
+    [favoriteKey],
+  );
 
-  const toggleFavorite = useCallback((eventId: number) => {
-    const current = Array.from(favoriteEventIds);
-    const next = favoriteEventIds.has(eventId)
-      ? current.filter((id) => id !== eventId)
-      : [...current, eventId];
-    if (!authUser) {
-      applyFavorites(next);
-      return;
-    }
-    updateFavoritesRequest(next)
-      .then((result) => applyFavorites(result.eventIds))
-      .catch(() => applyFavorites(next));
-  }, [applyFavorites, authUser, favoriteEventIds]);
+  const toggleFavorite = useCallback(
+    (eventId: number) => {
+      const current = Array.from(favoriteEventIds);
+      const next = favoriteEventIds.has(eventId)
+        ? current.filter((id) => id !== eventId)
+        : [...current, eventId];
+      if (!authUser) {
+        applyFavorites(next);
+        return;
+      }
+      updateFavoritesRequest(next)
+        .then((result) => applyFavorites(result.eventIds))
+        .catch(() => applyFavorites(next));
+    },
+    [applyFavorites, authUser, favoriteEventIds],
+  );
 
   useEffect(() => {
     if (!authUser) return;
@@ -490,8 +605,13 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
     if (!allPosts || !visibleEvents) return [];
 
     // Todos os eventos que o usuário participou (futuros e passados)
-    const allParticipatedEvents = [...participatingEventsList, ...pastEventsList];
-    const participatedEventNames = new Set(allParticipatedEvents.map((event) => event.name));
+    const allParticipatedEvents = [
+      ...participatingEventsList,
+      ...pastEventsList,
+    ];
+    const participatedEventNames = new Set(
+      allParticipatedEvents.map((event) => event.name),
+    );
 
     // Coleta todas as fotos dos posts dos eventos participados
     const photos: Array<{
@@ -500,18 +620,22 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
       eventId: number;
       eventName: string;
       postId: number;
-      owner: 'me' | 'other';
+      owner: "me" | "other";
     }> = [];
 
     allPosts.forEach((post) => {
       // Verifica se o post é de um evento que o usuário participou
       if (participatedEventNames.has(post.event.name)) {
         // Encontra o ID do evento correspondente
-        const event = allParticipatedEvents.find((e) => e.name === post.event.name);
+        const event = allParticipatedEvents.find(
+          (e) => e.name === post.event.name,
+        );
         if (event) {
           // Verifica se o post é do próprio usuário (usando author ou fallback para "Você")
           const isMyPost =
-            post.author?.id === 1 || (post.attendees?.some((attendee) => attendee.name === 'Você') ?? false);
+            post.author?.id === 1 ||
+            (post.attendees?.some((attendee) => attendee.name === "Você") ??
+              false);
 
           photos.push({
             id: `post-${post.id}`,
@@ -519,7 +643,7 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
             eventId: event.id,
             eventName: post.event.name,
             postId: post.id,
-            owner: isMyPost ? 'me' : 'other',
+            owner: isMyPost ? "me" : "other",
           });
         }
       }
@@ -533,7 +657,8 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
     return galleryPhotos.filter(
       (photo) =>
         photo.eventId === postEventId &&
-        (photo.owner === 'me' || (photo.owner === 'other' && photo.allowReuse === true)),
+        (photo.owner === "me" ||
+          (photo.owner === "other" && photo.allowReuse === true)),
     );
   }, [galleryPhotos, postEventId]);
 
@@ -542,14 +667,14 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
       const next = new Set(prev);
       if (next.has(photoId)) {
         next.delete(photoId);
-        setPhotoLimitMessage('');
+        setPhotoLimitMessage("");
       } else {
         if (next.size >= MAX_POST_MEDIA) {
           setPhotoLimitMessage(`Limite de ${MAX_POST_MEDIA} mídias por post.`);
           return next;
         }
         next.add(photoId);
-        setPhotoLimitMessage('');
+        setPhotoLimitMessage("");
       }
       return next;
     });
@@ -561,13 +686,16 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
     return allPosts.filter(
       (post) =>
         post.author?.id === authUser?.id || // Usuário autenticado
-        (post.attendees?.some((attendee) => attendee.name === 'Você') ?? false) || // Fallback para posts antigos
-        post.attendees?.[0]?.name === 'Você',
+        (post.attendees?.some((attendee) => attendee.name === "Você") ??
+          false) || // Fallback para posts antigos
+        post.attendees?.[0]?.name === "Você",
     );
   }, [allPosts, authUser?.id]);
 
-  const totalEventsCount = upcomingEvents.length + activeEvents.length + pastEventsList.length;
-  const friendsCount = authUser?.followingIds?.length ?? authUser?.following ?? 0;
+  const totalEventsCount =
+    upcomingEvents.length + activeEvents.length + pastEventsList.length;
+  const friendsCount =
+    authUser?.followingIds?.length ?? authUser?.following ?? 0;
   const postsCount = userPosts.length;
   const followingUsers = useMemo(() => {
     if (!authUser?.followingIds?.length) return [];
@@ -582,8 +710,8 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
       if (followingIds.has(user.id)) return false;
       if (!query) return true;
       return (
-        user.username?.toLowerCase().includes(query)
-        || user.name?.toLowerCase().includes(query)
+        user.username?.toLowerCase().includes(query) ||
+        user.name?.toLowerCase().includes(query)
       );
     });
   }, [allUsers, authUser?.followingIds, authUser?.id, friendQuery]);
@@ -593,7 +721,9 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
   }, [visibleEvents]);
 
   const handleLoadMorePosts = useCallback(() => {
-    setVisiblePostsCount((prev) => Math.min(prev + POSTS_PAGE_SIZE, userPosts.length));
+    setVisiblePostsCount((prev) =>
+      Math.min(prev + POSTS_PAGE_SIZE, userPosts.length),
+    );
   }, [userPosts.length]);
 
   const canLoadMorePosts = visiblePostsCount < userPosts.length;
@@ -606,7 +736,7 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
   const createPostMutation = useMutation({
     mutationFn: createPostRequest,
     onSuccess: (newPost) => {
-      queryClient.setQueryData<Post[]>(['posts'], (prev) => {
+      queryClient.setQueryData<Post[]>(["posts"], (prev) => {
         const list = prev ? [...prev] : [];
         if (!list.find((post) => post.id === newPost.id)) {
           list.unshift(newPost);
@@ -614,14 +744,18 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
         return list;
       });
       // Invalida o cache para recarregar os posts
-      queryClient.invalidateQueries({ queryKey: ['posts'] });
+      queryClient.invalidateQueries({ queryKey: ["posts"] });
 
       // Atualiza as fotos do perfil
-      const selectedPhotos = availablePhotos.filter((photo) => selectedPhotoIds.has(photo.id));
+      const selectedPhotos = availablePhotos.filter((photo) =>
+        selectedPhotoIds.has(photo.id),
+      );
       selectedPhotos.forEach((photo) => {
-        if (photo.owner === 'me') {
+        if (photo.owner === "me") {
           setOwnedPhotos((prev) =>
-            prev.map((p) => (p.id === photo.id ? { ...p, status: 'posted' as const } : p)),
+            prev.map((p) =>
+              p.id === photo.id ? { ...p, status: "posted" as const } : p,
+            ),
           );
         }
       });
@@ -631,7 +765,7 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
         setCreatePostOpen(false);
         setSelectedPhotoIds(new Set());
         setPostEventId(null);
-        setPostCaption('');
+        setPostCaption("");
         setShowMoreEvents(false);
       }, 1500);
     },
@@ -643,7 +777,9 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
     const event = eventsById.get(postEventId);
     if (!event) return;
 
-    const selectedPhotos = availablePhotos.filter((photo) => selectedPhotoIds.has(photo.id));
+    const selectedPhotos = availablePhotos.filter((photo) =>
+      selectedPhotoIds.has(photo.id),
+    );
     if (selectedPhotos.length === 0) return;
 
     // Usa a primeira foto selecionada como imagem principal do post
@@ -658,25 +794,25 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
         date: event.date,
       },
       image: mainPhoto.url,
-      attendees: [
-        { name: 'Você', avatar: userAvatar || '' },
-      ],
+      attendees: [{ name: "Você", avatar: userAvatar || "" }],
       totalAttendees: event.attendees,
       likes: 0,
       comments: 0,
-      timeAgo: 'agora',
+      timeAgo: "agora",
       caption: postCaption || undefined,
-      author: authUser ? {
-        id: authUser.id,
-        username: authUser.username,
-        name: userName || authUser.name,
-        avatar: userAvatar || authUser.avatar || '',
-      } : {
-        id: 1,
-        username: 'fabiano_silva',
-        name: userName || 'Fabiano Silva',
-        avatar: userAvatar || '',
-      },
+      author: authUser
+        ? {
+            id: authUser.id,
+            username: authUser.username,
+            name: userName || authUser.name,
+            avatar: userAvatar || authUser.avatar || "",
+          }
+        : {
+            id: 1,
+            username: "fabiano_silva",
+            name: userName || "Fabiano Silva",
+            avatar: userAvatar || "",
+          },
       isEventPost: false,
     };
 
@@ -686,9 +822,13 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
 
   // isViewingOtherProfile is already declared in the component scope
   const displayUser = isViewingOtherProfile ? viewingUser : authUser;
-  const displayName = isViewingOtherProfile ? (viewingUser?.name || viewingUser?.username) : userName;
-  const displayAvatar = isViewingOtherProfile ? (viewingUser?.avatar || null) : userAvatar;
-  const displayBio = isViewingOtherProfile ? (viewingUser?.bio || '') : userBio;
+  const displayName = isViewingOtherProfile
+    ? viewingUser?.name || viewingUser?.username
+    : userName;
+  const displayAvatar = isViewingOtherProfile
+    ? viewingUser?.avatar || null
+    : userAvatar;
+  const displayBio = isViewingOtherProfile ? viewingUser?.bio || "" : userBio;
 
   return (
     <div className="h-full overflow-y-auto bg-background">
@@ -721,9 +861,16 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
             </Avatar>
           </div>
           <div className="flex-1">
-            <h2 className="text-lg text-foreground font-semibold line-clamp-1">{displayName}</h2>
-            <p className={`mt-1 text-xs ${displayBio ? 'text-foreground' : 'text-muted-foreground'}`}>
-              {displayBio || (isViewingOtherProfile ? '' : 'Adicione uma descrição ao seu perfil.')}
+            <h2 className="text-lg text-foreground font-semibold line-clamp-1">
+              {displayName}
+            </h2>
+            <p
+              className={`mt-1 text-xs ${displayBio ? "text-foreground" : "text-muted-foreground"}`}
+            >
+              {displayBio ||
+                (isViewingOtherProfile
+                  ? ""
+                  : "Adicione uma descrição ao seu perfil.")}
             </p>
             {isViewingOtherProfile && (
               <div className="mt-3 flex gap-2">
@@ -736,7 +883,9 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                       setIsFollowing((prev) => !prev);
                       if (authUser) {
                         const newFollowingIds = isFollowing
-                          ? authUser.followingIds?.filter((id) => id !== viewingUser.id) || []
+                          ? authUser.followingIds?.filter(
+                              (id) => id !== viewingUser.id,
+                            ) || []
                           : [...(authUser.followingIds || []), viewingUser.id];
                         updateUser({ followingIds: newFollowingIds });
                       }
@@ -747,7 +896,7 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                   className="flex-1 rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-colors flex items-center justify-center gap-2"
                 >
                   <UserPlus className="h-4 w-4" />
-                  <span>{isFollowing ? 'Deixar de seguir' : 'Seguir'}</span>
+                  <span>{isFollowing ? "Deixar de seguir" : "Seguir"}</span>
                 </button>
                 <button
                   type="button"
@@ -769,14 +918,16 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                   className="rounded-lg border border-border bg-background px-4 py-2 text-sm font-semibold text-foreground hover:bg-accent transition-colors flex items-center gap-2"
                 >
                   <Ban className="h-4 w-4" />
-                  <span>{isBlocked ? 'Desbloquear' : 'Bloquear'}</span>
+                  <span>{isBlocked ? "Desbloquear" : "Bloquear"}</span>
                 </button>
               </div>
             )}
             {!isViewingOtherProfile && (
               <div className="mt-3 grid grid-cols-3 gap-3 text-center">
                 <div>
-                  <p className="text-sm font-semibold text-foreground">{postsCount}</p>
+                  <p className="text-sm font-semibold text-foreground">
+                    {postsCount}
+                  </p>
                   <p className="text-[11px] text-muted-foreground">posts</p>
                 </div>
                 <button
@@ -792,11 +943,15 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                   }}
                   className="rounded-lg hover:bg-accent/60 transition-colors py-1"
                 >
-                  <p className="text-sm font-semibold text-foreground">{friendsCount}</p>
+                  <p className="text-sm font-semibold text-foreground">
+                    {friendsCount}
+                  </p>
                   <p className="text-[11px] text-muted-foreground">amigos</p>
                 </button>
                 <div>
-                  <p className="text-sm font-semibold text-foreground">{totalEventsCount}</p>
+                  <p className="text-sm font-semibold text-foreground">
+                    {totalEventsCount}
+                  </p>
                   <p className="text-[11px] text-muted-foreground">eventos</p>
                 </div>
               </div>
@@ -814,7 +969,7 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                 type="button"
                 onClick={() => {
                   setDraftName(userName);
-                  setDraftAvatar(userAvatar ?? '');
+                  setDraftAvatar(userAvatar ?? "");
                   setEditProfileOpen(true);
                   setProfileMenuOpen(false);
                 }}
@@ -850,8 +1005,12 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                 onClick={toggleTheme}
                 className="flex w-full items-center gap-2 px-4 py-3 text-sm text-foreground hover:bg-accent transition-colors"
               >
-                {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-                <span>{theme === 'dark' ? 'Modo claro' : 'Modo escuro'}</span>
+                {theme === "dark" ? (
+                  <Sun className="w-4 h-4" />
+                ) : (
+                  <Moon className="w-4 h-4" />
+                )}
+                <span>{theme === "dark" ? "Modo claro" : "Modo escuro"}</span>
               </button>
               <button
                 type="button"
@@ -860,7 +1019,10 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                   if (result.ok) {
                     setProfileMenuOpen(false);
                   } else {
-                    alert(result.error || 'Erro ao fazer logout de todos os dispositivos');
+                    alert(
+                      result.error ||
+                        "Erro ao fazer logout de todos os dispositivos",
+                    );
                   }
                 }}
                 className="flex w-full items-center gap-2 px-4 py-3 text-sm text-foreground hover:bg-accent transition-colors border-t border-border"
@@ -913,10 +1075,16 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                     }}
                     className="flex flex-col overflow-hidden bg-background text-left hover:opacity-90 transition-opacity"
                   >
-                    <img src={post.image} alt={post.event.name} className="w-full aspect-square object-cover" />
+                    <img
+                      src={post.image}
+                      alt={post.event.name}
+                      className="w-full aspect-square object-cover"
+                    />
                   </button>
                 ))}
-                {canLoadMorePosts && <div ref={loadMorePostsRef} className="col-span-3 h-6" />}
+                {canLoadMorePosts && (
+                  <div ref={loadMorePostsRef} className="col-span-3 h-6" />
+                )}
               </div>
             )}
           </TabsContent>
@@ -924,7 +1092,8 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
           <TabsContent value="favoritos" className="mt-4">
             {favoriteEvents.length === 0 ? (
               <p className="text-sm text-muted-foreground text-center py-8">
-                Nenhum evento favoritado ainda. Adicione eventos aos seus favoritos para vê-los aqui!
+                Nenhum evento favoritado ainda. Adicione eventos aos seus
+                favoritos para vê-los aqui!
               </p>
             ) : (
               <div className="space-y-3">
@@ -933,11 +1102,18 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                     key={event.id}
                     className="flex items-center gap-3 rounded-xl border border-border bg-card p-3"
                   >
-                    <img src={event.image} alt={event.name} className="h-16 w-16 rounded-lg object-cover" />
+                    <img
+                      src={event.image}
+                      alt={event.name}
+                      className="h-16 w-16 rounded-lg object-cover"
+                    />
                     <div className="flex-1">
-                      <p className="text-sm font-semibold text-foreground line-clamp-1">{event.name}</p>
+                      <p className="text-sm font-semibold text-foreground line-clamp-1">
+                        {event.name}
+                      </p>
                       <p className="text-xs text-muted-foreground line-clamp-1">
-                        {event.location} · {event.date} às {formatEventTimeRange(event) || event.time}
+                        {event.location} · {event.date} às{" "}
+                        {formatEventTimeRange(event) || event.time}
                       </p>
                     </div>
                     <button
@@ -981,7 +1157,10 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                         className="flex items-center gap-3 rounded-xl border border-border bg-card p-3"
                       >
                         <div className="flex-1">
-                          <EventRow event={event} onSelect={() => setSelectedEvent(event)} />
+                          <EventRow
+                            event={event}
+                            onSelect={() => setSelectedEvent(event)}
+                          />
                         </div>
                       </div>
                     ))}
@@ -1002,7 +1181,10 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                         className="flex items-center gap-3 rounded-xl border border-border bg-card p-3"
                       >
                         <div className="flex-1">
-                          <EventRow event={event} onSelect={() => setSelectedEvent(event)} />
+                          <EventRow
+                            event={event}
+                            onSelect={() => setSelectedEvent(event)}
+                          />
                         </div>
                         <button
                           type="button"
@@ -1011,7 +1193,10 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                             next.add(event.id);
                             setHiddenPastEventIds(next);
                             try {
-                              localStorage.setItem(hiddenPastKey, JSON.stringify(Array.from(next)));
+                              localStorage.setItem(
+                                hiddenPastKey,
+                                JSON.stringify(Array.from(next)),
+                              );
                             } catch {
                               // ignore storage errors
                             }
@@ -1040,7 +1225,10 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                         className="flex items-center gap-3 rounded-xl border border-border bg-card p-3"
                       >
                         <div className="flex-1">
-                          <EventRow event={event} onSelect={() => setSelectedEvent(event)} />
+                          <EventRow
+                            event={event}
+                            onSelect={() => setSelectedEvent(event)}
+                          />
                         </div>
                       </div>
                     ))}
@@ -1081,7 +1269,7 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
         <DialogContent className="max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>
-              {postEventId ? 'Selecione as fotos' : 'Escolha um evento'}
+              {postEventId ? "Selecione as fotos" : "Escolha um evento"}
             </DialogTitle>
           </DialogHeader>
 
@@ -1090,10 +1278,14 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
               // Lista de eventos já participados
               <>
                 <p className="text-sm text-muted-foreground mb-4">
-                  Selecione um evento que você já participou para criar um post com fotos existentes
+                  Selecione um evento que você já participou para criar um post
+                  com fotos existentes
                 </p>
                 <div className="space-y-2 max-h-[400px] overflow-y-auto">
-                  {(showMoreEvents ? pastEventsList : pastEventsList.slice(0, 5)).map((event) => (
+                  {(showMoreEvents
+                    ? pastEventsList
+                    : pastEventsList.slice(0, 5)
+                  ).map((event) => (
                     <button
                       key={event.id}
                       type="button"
@@ -1122,7 +1314,9 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                     onClick={() => setShowMoreEvents((prev) => !prev)}
                     className="w-full rounded-lg border border-border bg-background px-4 py-2 text-sm font-semibold text-foreground hover:bg-accent transition-colors"
                   >
-                    {showMoreEvents ? 'Mostrar menos' : `Mostrar mais (${pastEventsList.length - 5})`}
+                    {showMoreEvents
+                      ? "Mostrar menos"
+                      : `Mostrar mais (${pastEventsList.length - 5})`}
                   </button>
                 )}
               </>
@@ -1153,7 +1347,8 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                     </div>
                   </div>
                   <label className="text-sm font-semibold text-foreground mb-2 block">
-                    Selecione as fotos ({selectedPhotoIds.size}/{MAX_POST_MEDIA})
+                    Selecione as fotos ({selectedPhotoIds.size}/{MAX_POST_MEDIA}
+                    )
                   </label>
                   {availablePhotos.length === 0 ? (
                     <p className="text-sm text-muted-foreground text-center py-8">
@@ -1163,18 +1358,24 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                     <div className="grid grid-cols-3 gap-2 max-h-[400px] overflow-y-auto mb-4">
                       {availablePhotos.map((photo) => {
                         const isSelected = selectedPhotoIds.has(photo.id);
-                        const eventName = eventsById.get(photo.eventId)?.name ?? 'Evento';
+                        const eventName =
+                          eventsById.get(photo.eventId)?.name ?? "Evento";
                         return (
                           <button
                             key={photo.id}
                             type="button"
                             onClick={() => togglePhotoSelection(photo.id)}
-                            className={`relative aspect-square rounded-lg overflow-hidden border-2 transition-all ${isSelected
-                              ? 'border-primary ring-2 ring-primary/20'
-                              : 'border-border hover:border-primary/50'
-                              }`}
+                            className={`relative aspect-square rounded-lg overflow-hidden border-2 transition-all ${
+                              isSelected
+                                ? "border-primary ring-2 ring-primary/20"
+                                : "border-border hover:border-primary/50"
+                            }`}
                           >
-                            <img src={photo.url} alt={eventName} className="h-full w-full object-cover" />
+                            <img
+                              src={photo.url}
+                              alt={eventName}
+                              className="h-full w-full object-cover"
+                            />
                             {isSelected && (
                               <div className="absolute inset-0 bg-primary/20 flex items-center justify-center">
                                 <div className="rounded-full bg-primary text-primary-foreground p-1">
@@ -1182,7 +1383,7 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                                 </div>
                               </div>
                             )}
-                            {photo.owner === 'other' && (
+                            {photo.owner === "other" && (
                               <span className="absolute top-1 left-1 rounded bg-black/60 px-1.5 py-0.5 text-[10px] text-white">
                                 Outro
                               </span>
@@ -1193,7 +1394,9 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                     </div>
                   )}
                   {photoLimitMessage && (
-                    <p className="text-xs text-destructive">{photoLimitMessage}</p>
+                    <p className="text-xs text-destructive">
+                      {photoLimitMessage}
+                    </p>
                   )}
                 </div>
 
@@ -1218,27 +1421,32 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                 <button
                   type="button"
                   onClick={handleCreatePost}
-                  disabled={selectedPhotoIds.size === 0 || createPostMutation.isPending}
-                  className={`w-full rounded-lg px-4 py-2 text-sm font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 ${createPostMutation.isSuccess && !createPostMutation.isPending
-                    ? 'bg-green-500 text-white'
-                    : 'bg-primary text-primary-foreground'
-                    }`}
+                  disabled={
+                    selectedPhotoIds.size === 0 || createPostMutation.isPending
+                  }
+                  className={`w-full rounded-lg px-4 py-2 text-sm font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 ${
+                    createPostMutation.isSuccess &&
+                    !createPostMutation.isPending
+                      ? "bg-green-500 text-white"
+                      : "bg-primary text-primary-foreground"
+                  }`}
                 >
                   {createPostMutation.isPending ? (
                     <>
                       <Loader2 className="w-4 h-4 animate-spin" />
                       <span>Postando...</span>
                     </>
-                  ) : createPostMutation.isSuccess && !createPostMutation.isPending ? (
+                  ) : createPostMutation.isSuccess &&
+                    !createPostMutation.isPending ? (
                     <>
                       <Check className="w-4 h-4" />
                       <span>Postado com sucesso!</span>
                     </>
                   ) : (
                     <>
-                      Postar{' '}
+                      Postar{" "}
                       {selectedPhotoIds.size > 0 &&
-                        `${selectedPhotoIds.size} foto${selectedPhotoIds.size > 1 ? 's' : ''}`}
+                        `${selectedPhotoIds.size} foto${selectedPhotoIds.size > 1 ? "s" : ""}`}
                     </>
                   )}
                 </button>
@@ -1253,13 +1461,19 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
         <DialogContent className="max-w-md">
           <DialogHeader>
             <DialogTitle>Editar perfil</DialogTitle>
-            <DialogDescription>Atualize seu nome e foto de perfil.</DialogDescription>
+            <DialogDescription>
+              Atualize seu nome e foto de perfil.
+            </DialogDescription>
           </DialogHeader>
           <div className="space-y-4">
             <div className="flex items-center gap-4">
               <div className="h-16 w-16 rounded-full bg-accent overflow-hidden flex items-center justify-center border border-border">
                 {draftAvatar ? (
-                  <img src={draftAvatar} alt={draftName} className="h-full w-full object-cover" />
+                  <img
+                    src={draftAvatar}
+                    alt={draftName}
+                    className="h-full w-full object-cover"
+                  />
                 ) : (
                   <UserIcon className="w-8 h-8 text-primary" />
                 )}
@@ -1275,7 +1489,9 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                   />
                 </div>
                 <div>
-                  <label className="text-xs text-muted-foreground">Descrição</label>
+                  <label className="text-xs text-muted-foreground">
+                    Descrição
+                  </label>
                   <textarea
                     value={draftBio}
                     onChange={(e) => setDraftBio(e.target.value)}
@@ -1285,7 +1501,9 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-xs text-muted-foreground">Foto de perfil</label>
+                  <label className="text-xs text-muted-foreground">
+                    Foto de perfil
+                  </label>
                   <div className="flex flex-wrap gap-2">
                     <label className="cursor-pointer rounded-lg border border-border bg-background px-3 py-2 text-xs text-foreground hover:bg-accent transition-colors">
                       Enviar foto
@@ -1309,7 +1527,7 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                               // Se o upload falhar, usa base64 como fallback
                               const reader = new FileReader();
                               reader.onload = () => {
-                                if (typeof reader.result === 'string') {
+                                if (typeof reader.result === "string") {
                                   const base64Url = reader.result;
                                   setDraftAvatar(base64Url);
                                   // Salva base64 no localStorage como fallback
@@ -1347,7 +1565,7 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                               // Se o upload falhar, usa base64 como fallback
                               const reader = new FileReader();
                               reader.onload = () => {
-                                if (typeof reader.result === 'string') {
+                                if (typeof reader.result === "string") {
                                   const base64Url = reader.result;
                                   setDraftAvatar(base64Url);
                                   // Salva base64 no localStorage como fallback
@@ -1364,7 +1582,9 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                     </label>
                   </div>
                   <div>
-                    <label className="text-xs text-muted-foreground">URL da foto</label>
+                    <label className="text-xs text-muted-foreground">
+                      URL da foto
+                    </label>
                     <input
                       value={draftAvatar}
                       onChange={(e) => setDraftAvatar(e.target.value)}
@@ -1372,7 +1592,9 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                       placeholder="https://..."
                     />
                     {avatarUploading && (
-                      <p className="mt-1 text-xs text-muted-foreground">Enviando foto...</p>
+                      <p className="mt-1 text-xs text-muted-foreground">
+                        Enviando foto...
+                      </p>
                     )}
                   </div>
                 </div>
@@ -1390,25 +1612,41 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                 type="button"
                 className="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-colors flex items-center gap-2"
                 onClick={async () => {
-                  const nextName = draftName || 'Seu Perfil';
-                  const nextAvatar = draftAvatar.trim() ? draftAvatar.trim() : '';
+                  const nextName = draftName || "Seu Perfil";
+                  const nextAvatar = draftAvatar.trim()
+                    ? draftAvatar.trim()
+                    : "";
                   const nextBio = draftBio.trim();
                   setUserName(nextName);
                   setUserAvatar(nextAvatar || null);
                   setUserBio(nextBio);
                   // Atualiza local primeiro para feedback imediato
-                  updateUser({ name: nextName, avatar: nextAvatar, bio: nextBio });
+                  updateUser({
+                    name: nextName,
+                    avatar: nextAvatar,
+                    bio: nextBio,
+                  });
                   try {
                     // Tenta salvar no backend
-                    const updatedUser = await updateMeRequest({ name: nextName, avatar: nextAvatar, bio: nextBio });
+                    const updatedUser = await updateMeRequest({
+                      name: nextName,
+                      avatar: nextAvatar,
+                      bio: nextBio,
+                    });
                     // Se o backend retornou o usuário atualizado, usa os dados do backend
                     if (updatedUser) {
-                      updateUser({ name: updatedUser.name, avatar: updatedUser.avatar, bio: updatedUser.bio });
+                      updateUser({
+                        name: updatedUser.name,
+                        avatar: updatedUser.avatar,
+                        bio: updatedUser.bio,
+                      });
                       setUserAvatar(updatedUser.avatar || null);
                     }
                   } catch {
                     // Mantem local quando offline - a foto já está salva no localStorage via updateUser
-                    console.warn('Falha ao salvar no backend, mantendo apenas local');
+                    console.warn(
+                      "Falha ao salvar no backend, mantendo apenas local",
+                    );
                   }
                   setEditProfileOpen(false);
                 }}
@@ -1452,7 +1690,9 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
               ) : (
                 <div className="space-y-2 max-h-48 overflow-y-auto">
                   {suggestedFriends.length === 0 ? (
-                    <p className="text-xs text-muted-foreground">Nenhum usuário encontrado.</p>
+                    <p className="text-xs text-muted-foreground">
+                      Nenhum usuário encontrado.
+                    </p>
                   ) : (
                     suggestedFriends.map((user) => (
                       <div key={user.id} className="flex items-center gap-3">
@@ -1462,8 +1702,12 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                           className="h-9 w-9 rounded-full object-cover border border-border"
                         />
                         <div className="flex-1">
-                          <p className="text-sm font-semibold text-foreground">@{user.username}</p>
-                          <p className="text-xs text-muted-foreground">{user.name}</p>
+                          <p className="text-sm font-semibold text-foreground">
+                            @{user.username}
+                          </p>
+                          <p className="text-xs text-muted-foreground">
+                            {user.name}
+                          </p>
                         </div>
                         <button
                           type="button"
@@ -1472,7 +1716,11 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                               const result = await toggleFollowRequest(user.id);
                               updateUser(result.me);
                               setAllUsers((prev) =>
-                                prev.map((item) => (item.id === result.user.id ? result.user : item)),
+                                prev.map((item) =>
+                                  item.id === result.user.id
+                                    ? result.user
+                                    : item,
+                                ),
                               );
                             } catch {
                               // ignore
@@ -1492,7 +1740,9 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
           {friendsLoading ? (
             <p className="text-sm text-muted-foreground">Carregando...</p>
           ) : followingUsers.length === 0 ? (
-            <p className="text-sm text-muted-foreground">Você ainda não segue ninguém.</p>
+            <p className="text-sm text-muted-foreground">
+              Você ainda não segue ninguém.
+            </p>
           ) : (
             <div className="space-y-3">
               {followingUsers.map((user) => (
@@ -1509,7 +1759,9 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                     </div>
                   )}
                   <div className="flex-1">
-                    <p className="text-sm font-semibold text-foreground">@{user.username}</p>
+                    <p className="text-sm font-semibold text-foreground">
+                      @{user.username}
+                    </p>
                     <p className="text-xs text-muted-foreground">{user.name}</p>
                   </div>
                 </div>
@@ -1519,16 +1771,25 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
         </DialogContent>
       </Dialog>
 
-      <Dialog open={!!selectedEvent} onOpenChange={(open) => (!open ? setSelectedEvent(null) : null)}>
+      <Dialog
+        open={!!selectedEvent}
+        onOpenChange={(open) => (!open ? setSelectedEvent(null) : null)}
+      >
         <DialogContent className="max-w-md p-0 overflow-hidden">
           {selectedEvent && (
-            <EventFullCard event={selectedEvent} onClose={() => setSelectedEvent(null)} />
+            <EventFullCard
+              event={selectedEvent}
+              onClose={() => setSelectedEvent(null)}
+            />
           )}
         </DialogContent>
       </Dialog>
 
       {/* Modal de detalhes do post */}
-      <Dialog open={selectedPost !== null} onOpenChange={(open) => !open && setSelectedPost(null)}>
+      <Dialog
+        open={selectedPost !== null}
+        onOpenChange={(open) => !open && setSelectedPost(null)}
+      >
         <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto p-0">
           {selectedPost && (
             <>
@@ -1543,14 +1804,23 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                   <>
                     <button
                       type="button"
-                      onClick={() => setCurrentImageIndex((prev) => (prev - 1 + postImages.length) % postImages.length)}
+                      onClick={() =>
+                        setCurrentImageIndex(
+                          (prev) =>
+                            (prev - 1 + postImages.length) % postImages.length,
+                        )
+                      }
                       className="absolute left-2 top-1/2 -translate-y-1/2 z-10 rounded-full p-2 bg-black/70 backdrop-blur-sm text-white hover:bg-black/90"
                     >
                       <ChevronLeft className="w-5 h-5" />
                     </button>
                     <button
                       type="button"
-                      onClick={() => setCurrentImageIndex((prev) => (prev + 1) % postImages.length)}
+                      onClick={() =>
+                        setCurrentImageIndex(
+                          (prev) => (prev + 1) % postImages.length,
+                        )
+                      }
                       className="absolute right-2 top-1/2 -translate-y-1/2 z-10 rounded-full p-2 bg-black/70 backdrop-blur-sm text-white hover:bg-black/90"
                     >
                       <ChevronRight className="w-5 h-5" />
@@ -1559,8 +1829,11 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                       {postImages.map((_, idx) => (
                         <div
                           key={idx}
-                          className={`h-1.5 rounded-full transition-all ${idx === currentImageIndex ? 'w-6 bg-white' : 'w-1.5 bg-white/50'
-                            }`}
+                          className={`h-1.5 rounded-full transition-all ${
+                            idx === currentImageIndex
+                              ? "w-6 bg-white"
+                              : "w-1.5 bg-white/50"
+                          }`}
                         />
                       ))}
                     </div>
@@ -1573,14 +1846,16 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                 {/* Informações do evento + mini card do evento */}
                 <div className="space-y-3">
                   <div>
-                    <h3 className="text-lg font-semibold text-foreground mb-1">{selectedPost.event.name}</h3>
+                    <h3 className="text-lg font-semibold text-foreground mb-1">
+                      {selectedPost.event.name}
+                    </h3>
                     <div className="flex items-center gap-2 text-sm text-muted-foreground">
                       <span>{selectedPost.event.location}</span>
                       <span>•</span>
                       <span>{selectedPost.event.date}</span>
                     </div>
                   </div>
-                  {events && (
+                  {events &&
                     (() => {
                       const relatedEvent = events.find(
                         (event) =>
@@ -1600,13 +1875,13 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                               {relatedEvent.name}
                             </p>
                             <p className="text-xs text-muted-foreground line-clamp-2">
-                              {relatedEvent.location} · {relatedEvent.date} às {relatedEvent.time}
+                              {relatedEvent.location} · {relatedEvent.date} às{" "}
+                              {relatedEvent.time}
                             </p>
                           </div>
                         </div>
                       );
-                    })()
-                  )}
+                    })()}
                 </div>
 
                 {/* Ações (curtir, comentar, compartilhar) */}
@@ -1614,10 +1889,15 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                   <button
                     type="button"
                     onClick={handleLike}
-                    className={`flex items-center gap-2 transition-colors ${isLiked ? 'text-destructive' : 'text-muted-foreground hover:text-destructive'
-                      }`}
+                    className={`flex items-center gap-2 transition-colors ${
+                      isLiked
+                        ? "text-destructive"
+                        : "text-muted-foreground hover:text-destructive"
+                    }`}
                   >
-                    <Heart className={`w-6 h-6 ${isLiked ? 'fill-current' : ''}`} />
+                    <Heart
+                      className={`w-6 h-6 ${isLiked ? "fill-current" : ""}`}
+                    />
                   </button>
                   <button
                     type="button"
@@ -1638,7 +1918,9 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                     className="ml-auto flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
                   >
                     <Users className="w-5 h-5" />
-                    <span className="text-sm font-semibold">{selectedPost.totalAttendees}</span>
+                    <span className="text-sm font-semibold">
+                      {selectedPost.totalAttendees}
+                    </span>
                   </button>
                 </div>
 
@@ -1651,7 +1933,10 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                 {selectedPost.caption && (
                   <div>
                     <p className="text-sm text-foreground">
-                      <span className="font-semibold">{selectedPost.event.name}</span> {selectedPost.caption}
+                      <span className="font-semibold">
+                        {selectedPost.event.name}
+                      </span>{" "}
+                      {selectedPost.caption}
                     </p>
                   </div>
                 )}
@@ -1663,7 +1948,8 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                     onClick={() => setShowComments(!showComments)}
                     className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                   >
-                    Ver todos os {selectedPost.comments + comments.length} comentários
+                    Ver todos os {selectedPost.comments + comments.length}{" "}
+                    comentários
                   </button>
                 )}
 
@@ -1671,9 +1957,15 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                   <div className="space-y-2 pt-3 border-t border-border">
                     {comments.map((comment) => (
                       <div key={comment.id} className="flex items-start gap-2">
-                        <span className="text-sm font-semibold text-foreground">{comment.user}:</span>
-                        <span className="text-sm text-foreground flex-1">{comment.text}</span>
-                        <span className="text-xs text-muted-foreground">{comment.time}</span>
+                        <span className="text-sm font-semibold text-foreground">
+                          {comment.user}:
+                        </span>
+                        <span className="text-sm text-foreground flex-1">
+                          {comment.text}
+                        </span>
+                        <span className="text-xs text-muted-foreground">
+                          {comment.time}
+                        </span>
                       </div>
                     ))}
                     <div className="flex gap-2 mt-2">
@@ -1682,7 +1974,7 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                         value={commentText}
                         onChange={(e) => setCommentText(e.target.value)}
                         onKeyDown={(e) => {
-                          if (e.key === 'Enter' && !e.shiftKey) {
+                          if (e.key === "Enter" && !e.shiftKey) {
                             e.preventDefault();
                             handleComment();
                           }
@@ -1702,7 +1994,9 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                   </div>
                 )}
 
-                <p className="text-xs text-muted-foreground uppercase">{selectedPost.timeAgo}</p>
+                <p className="text-xs text-muted-foreground uppercase">
+                  {selectedPost.timeAgo}
+                </p>
               </div>
             </>
           )}
@@ -1722,11 +2016,16 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
         <DialogContent className="max-w-md">
           <DialogHeader>
             <DialogTitle>Alterar Senha</DialogTitle>
-            <DialogDescription>Digite sua senha atual e a nova senha</DialogDescription>
+            <DialogDescription>
+              Digite sua senha atual e a nova senha
+            </DialogDescription>
           </DialogHeader>
           <div className="space-y-4">
             <div>
-              <label htmlFor="currentPassword" className="text-sm font-medium text-foreground block mb-2">
+              <label
+                htmlFor="currentPassword"
+                className="text-sm font-medium text-foreground block mb-2"
+              >
                 Senha atual
               </label>
               <input
@@ -1735,14 +2034,17 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                 value={currentPassword}
                 onChange={(e) => {
                   setCurrentPassword(e.target.value);
-                  setPasswordError('');
+                  setPasswordError("");
                 }}
                 placeholder="Digite sua senha atual"
                 className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
             <div>
-              <label htmlFor="newPassword" className="text-sm font-medium text-foreground block mb-2">
+              <label
+                htmlFor="newPassword"
+                className="text-sm font-medium text-foreground block mb-2"
+              >
                 Nova senha
               </label>
               <input
@@ -1751,14 +2053,17 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                 value={newPassword}
                 onChange={(e) => {
                   setNewPassword(e.target.value);
-                  setPasswordError('');
+                  setPasswordError("");
                 }}
                 placeholder="Digite a nova senha (mínimo 6 caracteres)"
                 className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
             <div>
-              <label htmlFor="confirmPassword" className="text-sm font-medium text-foreground block mb-2">
+              <label
+                htmlFor="confirmPassword"
+                className="text-sm font-medium text-foreground block mb-2"
+              >
                 Confirmar nova senha
               </label>
               <input
@@ -1767,7 +2072,7 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                 value={confirmPassword}
                 onChange={(e) => {
                   setConfirmPassword(e.target.value);
-                  setPasswordError('');
+                  setPasswordError("");
                 }}
                 placeholder="Confirme a nova senha"
                 className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
@@ -1783,10 +2088,10 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                 type="button"
                 onClick={() => {
                   setChangePasswordOpen(false);
-                  setCurrentPassword('');
-                  setNewPassword('');
-                  setConfirmPassword('');
-                  setPasswordError('');
+                  setCurrentPassword("");
+                  setNewPassword("");
+                  setConfirmPassword("");
+                  setPasswordError("");
                 }}
                 className="flex-1 rounded-lg border border-border bg-background px-4 py-2 text-sm font-semibold text-foreground hover:bg-accent transition-colors"
               >
@@ -1795,36 +2100,41 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
               <button
                 type="button"
                 onClick={async () => {
-                  setPasswordError('');
+                  setPasswordError("");
 
                   if (!currentPassword || !newPassword || !confirmPassword) {
-                    setPasswordError('Todos os campos são obrigatórios');
+                    setPasswordError("Todos os campos são obrigatórios");
                     return;
                   }
 
                   if (newPassword.length < 6) {
-                    setPasswordError('A nova senha deve ter no mínimo 6 caracteres');
+                    setPasswordError(
+                      "A nova senha deve ter no mínimo 6 caracteres",
+                    );
                     return;
                   }
 
                   if (newPassword !== confirmPassword) {
-                    setPasswordError('As senhas não coincidem');
+                    setPasswordError("As senhas não coincidem");
                     return;
                   }
 
                   setPasswordLoading(true);
-                  const result = await changePassword(currentPassword, newPassword);
+                  const result = await changePassword(
+                    currentPassword,
+                    newPassword,
+                  );
                   setPasswordLoading(false);
 
                   if (result.ok) {
                     setChangePasswordOpen(false);
-                    setCurrentPassword('');
-                    setNewPassword('');
-                    setConfirmPassword('');
-                    setPasswordError('');
-                    alert('Senha alterada com sucesso!');
+                    setCurrentPassword("");
+                    setNewPassword("");
+                    setConfirmPassword("");
+                    setPasswordError("");
+                    alert("Senha alterada com sucesso!");
                   } else {
-                    setPasswordError(result.error || 'Erro ao alterar senha');
+                    setPasswordError(result.error || "Erro ao alterar senha");
                   }
                 }}
                 disabled={passwordLoading}
@@ -1836,7 +2146,7 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
                     <span>Alterando...</span>
                   </>
                 ) : (
-                  'Alterar senha'
+                  "Alterar senha"
                 )}
               </button>
             </div>
@@ -1849,101 +2159,147 @@ export function ProfileView({ viewingUserId = null, onBack }: ProfileViewProps) 
         <DialogContent className="max-w-md">
           <DialogHeader>
             <DialogTitle>Configurações de Privacidade</DialogTitle>
-            <DialogDescription>Controle quem pode ver suas informações</DialogDescription>
+            <DialogDescription>
+              Controle quem pode ver suas informações
+            </DialogDescription>
           </DialogHeader>
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <div className="flex-1">
-                <p className="text-sm font-medium text-foreground">Perfil público</p>
-                <p className="text-xs text-muted-foreground">Permitir que outros usuários vejam seu perfil</p>
+                <p className="text-sm font-medium text-foreground">
+                  Perfil público
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  Permitir que outros usuários vejam seu perfil
+                </p>
               </div>
               <button
                 type="button"
                 onClick={() => {
-                  const newSettings = { ...privacySettings, profilePublic: !privacySettings.profilePublic };
+                  const newSettings = {
+                    ...privacySettings,
+                    profilePublic: !privacySettings.profilePublic,
+                  };
                   setPrivacySettings(newSettings);
                   updatePrivacySettingsRequest(newSettings).catch(() => {
                     setPrivacySettings(privacySettings);
                   });
                 }}
-                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${privacySettings.profilePublic ? 'bg-primary' : 'bg-muted'
-                  }`}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  privacySettings.profilePublic ? "bg-primary" : "bg-muted"
+                }`}
               >
                 <span
-                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${privacySettings.profilePublic ? 'translate-x-6' : 'translate-x-1'
-                    }`}
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                    privacySettings.profilePublic
+                      ? "translate-x-6"
+                      : "translate-x-1"
+                  }`}
                 />
               </button>
             </div>
 
             <div className="flex items-center justify-between">
               <div className="flex-1">
-                <p className="text-sm font-medium text-foreground">Mostrar email</p>
-                <p className="text-xs text-muted-foreground">Exibir seu email no perfil</p>
+                <p className="text-sm font-medium text-foreground">
+                  Mostrar email
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  Exibir seu email no perfil
+                </p>
               </div>
               <button
                 type="button"
                 onClick={() => {
-                  const newSettings = { ...privacySettings, showEmail: !privacySettings.showEmail };
+                  const newSettings = {
+                    ...privacySettings,
+                    showEmail: !privacySettings.showEmail,
+                  };
                   setPrivacySettings(newSettings);
                   updatePrivacySettingsRequest(newSettings).catch(() => {
                     setPrivacySettings(privacySettings);
                   });
                 }}
-                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${privacySettings.showEmail ? 'bg-primary' : 'bg-muted'
-                  }`}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  privacySettings.showEmail ? "bg-primary" : "bg-muted"
+                }`}
               >
                 <span
-                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${privacySettings.showEmail ? 'translate-x-6' : 'translate-x-1'
-                    }`}
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                    privacySettings.showEmail
+                      ? "translate-x-6"
+                      : "translate-x-1"
+                  }`}
                 />
               </button>
             </div>
 
             <div className="flex items-center justify-between">
               <div className="flex-1">
-                <p className="text-sm font-medium text-foreground">Mostrar data de nascimento</p>
-                <p className="text-xs text-muted-foreground">Exibir sua data de nascimento</p>
+                <p className="text-sm font-medium text-foreground">
+                  Mostrar data de nascimento
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  Exibir sua data de nascimento
+                </p>
               </div>
               <button
                 type="button"
                 onClick={() => {
-                  const newSettings = { ...privacySettings, showBirthDate: !privacySettings.showBirthDate };
+                  const newSettings = {
+                    ...privacySettings,
+                    showBirthDate: !privacySettings.showBirthDate,
+                  };
                   setPrivacySettings(newSettings);
                   updatePrivacySettingsRequest(newSettings).catch(() => {
                     setPrivacySettings(privacySettings);
                   });
                 }}
-                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${privacySettings.showBirthDate ? 'bg-primary' : 'bg-muted'
-                  }`}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  privacySettings.showBirthDate ? "bg-primary" : "bg-muted"
+                }`}
               >
                 <span
-                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${privacySettings.showBirthDate ? 'translate-x-6' : 'translate-x-1'
-                    }`}
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                    privacySettings.showBirthDate
+                      ? "translate-x-6"
+                      : "translate-x-1"
+                  }`}
                 />
               </button>
             </div>
 
             <div className="flex items-center justify-between">
               <div className="flex-1">
-                <p className="text-sm font-medium text-foreground">Mostrar seguidores</p>
-                <p className="text-xs text-muted-foreground">Exibir lista de seguidores e seguindo</p>
+                <p className="text-sm font-medium text-foreground">
+                  Mostrar seguidores
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  Exibir lista de seguidores e seguindo
+                </p>
               </div>
               <button
                 type="button"
                 onClick={() => {
-                  const newSettings = { ...privacySettings, showFollowers: !privacySettings.showFollowers };
+                  const newSettings = {
+                    ...privacySettings,
+                    showFollowers: !privacySettings.showFollowers,
+                  };
                   setPrivacySettings(newSettings);
                   updatePrivacySettingsRequest(newSettings).catch(() => {
                     setPrivacySettings(privacySettings);
                   });
                 }}
-                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${privacySettings.showFollowers ? 'bg-primary' : 'bg-muted'
-                  }`}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  privacySettings.showFollowers ? "bg-primary" : "bg-muted"
+                }`}
               >
                 <span
-                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${privacySettings.showFollowers ? 'translate-x-6' : 'translate-x-1'
-                    }`}
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                    privacySettings.showFollowers
+                      ? "translate-x-6"
+                      : "translate-x-1"
+                  }`}
                 />
               </button>
             </div>

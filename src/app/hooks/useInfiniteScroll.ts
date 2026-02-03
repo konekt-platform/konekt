@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
 
 interface InfiniteScrollOptions {
   enabled: boolean;
@@ -6,7 +6,11 @@ interface InfiniteScrollOptions {
   rootMargin?: string;
 }
 
-export function useInfiniteScroll({ enabled, onLoadMore, rootMargin = '200px' }: InfiniteScrollOptions) {
+export function useInfiniteScroll({
+  enabled,
+  onLoadMore,
+  rootMargin = "200px",
+}: InfiniteScrollOptions) {
   const targetRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -29,4 +33,3 @@ export function useInfiniteScroll({ enabled, onLoadMore, rootMargin = '200px' }:
 
   return targetRef;
 }
-

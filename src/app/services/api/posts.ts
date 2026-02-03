@@ -1,10 +1,10 @@
-import { Post } from '../../types';
-import { apiFetch } from './client';
-import { getMockPosts, addPost } from './mocks';
+import { Post } from "../../types";
+import { apiFetch } from "./client";
+import { getMockPosts, addPost } from "./mocks";
 
 export const getPostsRequest = async (): Promise<Post[]> => {
   try {
-    return await apiFetch<Post[]>('/posts');
+    return await apiFetch<Post[]>("/posts");
   } catch {
     return getMockPosts();
   }
@@ -12,7 +12,7 @@ export const getPostsRequest = async (): Promise<Post[]> => {
 
 export const togglePostLikeRequest = async (postId: number) => {
   return apiFetch<{ likes: number; liked: boolean }>(`/posts/${postId}/like`, {
-    method: 'POST',
+    method: "POST",
   });
 };
 
@@ -27,15 +27,15 @@ export const addPostCommentRequest = async (postId: number, text: string) => {
     };
     comments: number;
   }>(`/posts/${postId}/comments`, {
-    method: 'POST',
+    method: "POST",
     body: JSON.stringify({ text }),
   });
 };
 
 export const createPostRequest = async (post: Post): Promise<Post> => {
   try {
-    return await apiFetch<Post>('/posts', {
-      method: 'POST',
+    return await apiFetch<Post>("/posts", {
+      method: "POST",
       body: JSON.stringify(post),
     });
   } catch {

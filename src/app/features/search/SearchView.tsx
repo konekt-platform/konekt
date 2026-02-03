@@ -1,10 +1,33 @@
-import { useState, useEffect, useMemo } from 'react';
-import { Search, X, Calendar, Users, Filter, ChevronLeft, Clock, User as UserIcon } from 'lucide-react';
-import { Event, User, EventType } from '../../types';
-import { searchRequest, getSearchHistoryRequest, SearchHistoryEntry, SearchFilters } from '../../services/api/search';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../components/ui/tabs';
-import { EventCard } from '../map/components/EventCard';
-import { Avatar, AvatarImage, AvatarFallback } from '../../components/ui/avatar';
+import { useState, useEffect, useMemo } from "react";
+import {
+  Search,
+  X,
+  Calendar,
+  Users,
+  Filter,
+  ChevronLeft,
+  Clock,
+  User as UserIcon,
+} from "lucide-react";
+import { Event, User, EventType } from "../../types";
+import {
+  searchRequest,
+  getSearchHistoryRequest,
+  SearchHistoryEntry,
+  SearchFilters,
+} from "../../services/api/search";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "../../components/ui/tabs";
+import { EventCard } from "../map/components/EventCard";
+import {
+  Avatar,
+  AvatarImage,
+  AvatarFallback,
+} from "../../components/ui/avatar";
 
 interface SearchViewProps {
   onBack: () => void;
@@ -12,15 +35,26 @@ interface SearchViewProps {
   onNavigateToEvent?: (eventId: number) => void;
 }
 
-export function SearchView({ onBack, onNavigateToProfile, onNavigateToEvent }: SearchViewProps) {
-  const [query, setQuery] = useState('');
-  const [searchType, setSearchType] = useState<'all' | 'events' | 'users'>('all');
-  const [results, setResults] = useState<{ events: Event[]; users: User[] }>({ events: [], users: [] });
+export function SearchView({
+  onBack,
+  onNavigateToProfile,
+  onNavigateToEvent,
+}: SearchViewProps) {
+  const [query, setQuery] = useState("");
+  const [searchType, setSearchType] = useState<"all" | "events" | "users">(
+    "all",
+  );
+  const [results, setResults] = useState<{ events: Event[]; users: User[] }>({
+    events: [],
+    users: [],
+  });
   const [loading, setLoading] = useState(false);
   const [searchHistory, setSearchHistory] = useState<SearchHistoryEntry[]>([]);
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [filters, setFilters] = useState<SearchFilters>({});
-  const [debounceTimer, setDebounceTimer] = useState<ReturnType<typeof setTimeout> | null>(null);
+  const [debounceTimer, setDebounceTimer] = useState<ReturnType<
+    typeof setTimeout
+  > | null>(null);
 
   // Carregar histórico de buscas
   useEffect(() => {
@@ -44,7 +78,7 @@ export function SearchView({ onBack, onNavigateToProfile, onNavigateToEvent }: S
 
     const timer = setTimeout(() => {
       setLoading(true);
-      searchRequest(query, searchType === 'all' ? 'all' : searchType, filters)
+      searchRequest(query, searchType === "all" ? "all" : searchType, filters)
         .then(setResults)
         .catch(() => {
           setResults({ events: [], users: [] });
@@ -61,10 +95,16 @@ export function SearchView({ onBack, onNavigateToProfile, onNavigateToEvent }: S
 
   const handleSearchFromHistory = (historyEntry: SearchHistoryEntry) => {
     setQuery(historyEntry.query);
-    setSearchType(historyEntry.type === 'events' ? 'events' : historyEntry.type === 'users' ? 'users' : 'all');
+    setSearchType(
+      historyEntry.type === "events"
+        ? "events"
+        : historyEntry.type === "users"
+          ? "users"
+          : "all",
+    );
   };
 
-  const eventTypes: EventType[] = ['esportes', 'estudo', 'lazer', 'artes'];
+  const eventTypes: EventType[] = ["esportes", "estudo", "lazer", "artes"];
 
   return (
     <div className="h-full w-full flex flex-col bg-background">
@@ -90,7 +130,7 @@ export function SearchView({ onBack, onNavigateToProfile, onNavigateToEvent }: S
             {query && (
               <button
                 type="button"
-                onClick={() => setQuery('')}
+                onClick={() => setQuery("")}
                 className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-1 hover:bg-accent transition-colors"
               >
                 <X className="w-4 h-4" />
@@ -100,10 +140,11 @@ export function SearchView({ onBack, onNavigateToProfile, onNavigateToEvent }: S
           <button
             type="button"
             onClick={() => setFiltersOpen(!filtersOpen)}
-            className={`rounded-lg p-2 transition-colors ${filtersOpen || Object.keys(filters).length > 0
-              ? 'bg-primary text-primary-foreground'
-              : 'hover:bg-accent'
-              }`}
+            className={`rounded-lg p-2 transition-colors ${
+              filtersOpen || Object.keys(filters).length > 0
+                ? "bg-primary text-primary-foreground"
+                : "hover:bg-accent"
+            }`}
           >
             <Filter className="w-5 h-5" />
           </button>
@@ -113,10 +154,17 @@ export function SearchView({ onBack, onNavigateToProfile, onNavigateToEvent }: S
         {filtersOpen && (
           <div className="px-4 pb-4 space-y-3 border-t border-border">
             <div>
-              <label className="text-xs text-muted-foreground mb-1 block">Tipo de evento</label>
+              <label className="text-xs text-muted-foreground mb-1 block">
+                Tipo de evento
+              </label>
               <select
-                value={filters.eventType || ''}
-                onChange={(e) => setFilters({ ...filters, eventType: e.target.value || undefined })}
+                value={filters.eventType || ""}
+                onChange={(e) =>
+                  setFilters({
+                    ...filters,
+                    eventType: e.target.value || undefined,
+                  })
+                }
                 className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
               >
                 <option value="">Todos</option>
@@ -129,20 +177,34 @@ export function SearchView({ onBack, onNavigateToProfile, onNavigateToEvent }: S
             </div>
             <div className="grid grid-cols-2 gap-2">
               <div>
-                <label className="text-xs text-muted-foreground mb-1 block">Data inicial</label>
+                <label className="text-xs text-muted-foreground mb-1 block">
+                  Data inicial
+                </label>
                 <input
                   type="date"
-                  value={filters.dateFrom || ''}
-                  onChange={(e) => setFilters({ ...filters, dateFrom: e.target.value || undefined })}
+                  value={filters.dateFrom || ""}
+                  onChange={(e) =>
+                    setFilters({
+                      ...filters,
+                      dateFrom: e.target.value || undefined,
+                    })
+                  }
                   className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
                 />
               </div>
               <div>
-                <label className="text-xs text-muted-foreground mb-1 block">Data final</label>
+                <label className="text-xs text-muted-foreground mb-1 block">
+                  Data final
+                </label>
                 <input
                   type="date"
-                  value={filters.dateTo || ''}
-                  onChange={(e) => setFilters({ ...filters, dateTo: e.target.value || undefined })}
+                  value={filters.dateTo || ""}
+                  onChange={(e) =>
+                    setFilters({
+                      ...filters,
+                      dateTo: e.target.value || undefined,
+                    })
+                  }
                   className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
                 />
               </div>
@@ -151,11 +213,20 @@ export function SearchView({ onBack, onNavigateToProfile, onNavigateToEvent }: S
         )}
 
         {/* Tabs */}
-        <Tabs value={searchType} onValueChange={(v) => setSearchType(v as 'all' | 'events' | 'users')}>
+        <Tabs
+          value={searchType}
+          onValueChange={(v) => setSearchType(v as "all" | "events" | "users")}
+        >
           <TabsList className="w-full rounded-none border-b border-border bg-transparent">
-            <TabsTrigger value="all" className="flex-1">Tudo</TabsTrigger>
-            <TabsTrigger value="events" className="flex-1">Eventos</TabsTrigger>
-            <TabsTrigger value="users" className="flex-1">Usuários</TabsTrigger>
+            <TabsTrigger value="all" className="flex-1">
+              Tudo
+            </TabsTrigger>
+            <TabsTrigger value="events" className="flex-1">
+              Eventos
+            </TabsTrigger>
+            <TabsTrigger value="users" className="flex-1">
+              Usuários
+            </TabsTrigger>
           </TabsList>
         </Tabs>
       </div>
@@ -166,7 +237,9 @@ export function SearchView({ onBack, onNavigateToProfile, onNavigateToEvent }: S
           <div className="p-4">
             <div className="flex items-center gap-2 mb-3">
               <Clock className="w-4 h-4 text-muted-foreground" />
-              <h3 className="text-sm font-semibold text-foreground">Buscas recentes</h3>
+              <h3 className="text-sm font-semibold text-foreground">
+                Buscas recentes
+              </h3>
             </div>
             <div className="space-y-2">
               {searchHistory.map((entry, idx) => (
@@ -178,7 +251,11 @@ export function SearchView({ onBack, onNavigateToProfile, onNavigateToEvent }: S
                 >
                   <p className="text-sm text-foreground">{entry.query}</p>
                   <p className="text-xs text-muted-foreground">
-                    {entry.type === 'all' ? 'Tudo' : entry.type === 'events' ? 'Eventos' : 'Usuários'}
+                    {entry.type === "all"
+                      ? "Tudo"
+                      : entry.type === "events"
+                        ? "Eventos"
+                        : "Usuários"}
                   </p>
                 </button>
               ))}
@@ -194,7 +271,7 @@ export function SearchView({ onBack, onNavigateToProfile, onNavigateToEvent }: S
 
         {query && !loading && (
           <>
-            {(searchType === 'all' || searchType === 'events') && (
+            {(searchType === "all" || searchType === "events") && (
               <div className="p-4">
                 <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
                   <Calendar className="w-4 h-4" />
@@ -221,7 +298,7 @@ export function SearchView({ onBack, onNavigateToProfile, onNavigateToEvent }: S
               </div>
             )}
 
-            {(searchType === 'all' || searchType === 'users') && (
+            {(searchType === "all" || searchType === "users") && (
               <div className="p-4">
                 <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
                   <Users className="w-4 h-4" />
@@ -247,10 +324,16 @@ export function SearchView({ onBack, onNavigateToProfile, onNavigateToEvent }: S
                           </AvatarFallback>
                         </Avatar>
                         <div className="flex-1 text-left">
-                          <p className="text-sm font-semibold text-foreground">{user.name || user.username}</p>
-                          <p className="text-xs text-muted-foreground">@{user.username}</p>
+                          <p className="text-sm font-semibold text-foreground">
+                            {user.name || user.username}
+                          </p>
+                          <p className="text-xs text-muted-foreground">
+                            @{user.username}
+                          </p>
                           {user.bio && (
-                            <p className="text-xs text-muted-foreground mt-1 line-clamp-1">{user.bio}</p>
+                            <p className="text-xs text-muted-foreground mt-1 line-clamp-1">
+                              {user.bio}
+                            </p>
                           )}
                         </div>
                       </button>
@@ -265,4 +348,3 @@ export function SearchView({ onBack, onNavigateToProfile, onNavigateToEvent }: S
     </div>
   );
 }
-

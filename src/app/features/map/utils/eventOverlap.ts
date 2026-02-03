@@ -1,4 +1,4 @@
-import { Event } from '../../../types';
+import { Event } from "../../../types";
 
 /**
  * Calcula a distância em metros entre duas coordenadas usando a fórmula de Haversine
@@ -98,4 +98,3 @@ export function findOverlappingEvents(
   // corretamente para anterior/próximo.
   return overlapping.sort((a, b) => a.id - b.id);
 }
-

@@ -1,20 +1,20 @@
-import { Event } from '../../../types';
-import { getGenderFocusLabel, getVisibilityLabel } from '../utils/eventLabels';
+import { Event } from "../../../types";
+import { getGenderFocusLabel, getVisibilityLabel } from "../utils/eventLabels";
 
 interface EventChipsProps {
   event: Event;
-  variant: 'card' | 'popup';
+  variant: "card" | "popup";
 }
 
 export function EventChips({ event, variant }: EventChipsProps) {
   const chips: string[] = [];
 
   chips.push(`${event.distanceKm} km`);
-  if (event.genderFocus === 'women') {
+  if (event.genderFocus === "women") {
     chips.push(getGenderFocusLabel(event.genderFocus));
   }
   if (event.isLgbtFriendly) {
-    chips.push('LGBTQIA+ friendly');
+    chips.push("LGBTQIA+ friendly");
   }
 
   return (
@@ -30,4 +30,3 @@ export function EventChips({ event, variant }: EventChipsProps) {
     </div>
   );
 }
-

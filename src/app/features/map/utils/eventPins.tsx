@@ -1,7 +1,7 @@
-import { renderToStaticMarkup } from 'react-dom/server';
-import L from 'leaflet';
-import { Event } from '../../../types';
-import { EventMarkerIcon } from '../components/EventMarkerIcon';
+import { renderToStaticMarkup } from "react-dom/server";
+import L from "leaflet";
+import { Event } from "../../../types";
+import { EventMarkerIcon } from "../components/EventMarkerIcon";
 
 export const getPinSize = () => {
   return { size: 44, badge: 18 };
@@ -15,7 +15,7 @@ export const createCustomIcon = (event: Event) => {
 
   return L.divIcon({
     html: html,
-    className: 'custom-marker',
+    className: "custom-marker",
     iconSize: [size, size],
     iconAnchor: [size / 2, size / 2],
   });

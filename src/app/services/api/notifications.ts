@@ -1,7 +1,11 @@
-import { Event, Notification } from '../../types';
-import { apiFetch } from './client';
-import { getMockNotifications, markNotificationAsRead, removeNotification } from './mocks';
-import { getEventsRequest } from './events';
+import { Event, Notification } from "../../types";
+import { apiFetch } from "./client";
+import {
+  getMockNotifications,
+  markNotificationAsRead,
+  removeNotification,
+} from "./mocks";
+import { getEventsRequest } from "./events";
 
 type NotificationState = {
   notified: string[];
@@ -9,7 +13,7 @@ type NotificationState = {
 };
 
 const getNotificationState = (userId?: number): NotificationState => {
-  const key = `konekt_event_notifications_${userId ?? 'guest'}`;
+  const key = `konekt_event_notifications_${userId ?? "guest"}`;
   try {
     const raw = localStorage.getItem(key);
     if (!raw) return { notified: [], signatures: {} };
@@ -23,8 +27,11 @@ const getNotificationState = (userId?: number): NotificationState => {
   }
 };
 
-const setNotificationState = (userId: number | undefined, state: NotificationState) => {
-  const key = `konekt_event_notifications_${userId ?? 'guest'}`;
+const setNotificationState = (
+  userId: number | undefined,
+  state: NotificationState,
+) => {
+  const key = `konekt_event_notifications_${userId ?? "guest"}`;
   try {
     localStorage.setItem(key, JSON.stringify(state));
   } catch {
@@ -38,7 +45,9 @@ const parseEventStart = (event: Event) => {
     if (!Number.isNaN(date.getTime())) return date;
   }
   if (event.date && event.time) {
-    const time = event.time.includes('–') ? event.time.split('–')[0] : event.time;
+    const time = event.time.includes("–")
+      ? event.time.split("–")[0]
+      : event.time;
     const date = new Date(`${event.date} ${time}`);
     if (!Number.isNaN(date.getTime())) return date;
   }
@@ -47,7 +56,7 @@ const parseEventStart = (event: Event) => {
 
 const getUserId = (): number | undefined => {
   try {
-    const raw = localStorage.getItem('konekt_user');
+    const raw = localStorage.getItem("konekt_user");
     if (!raw) return undefined;
     const parsed = JSON.parse(raw) as { id?: number };
     return parsed.id;
@@ -60,8 +69,14 @@ const isParticipant = (event: Event, userId: number | undefined) => {
   if (!userId) return false;
   const attendeeIds = (event as Event & { attendeeIds?: number[] }).attendeeIds;
   if (Array.isArray(attendeeIds) && attendeeIds.includes(userId)) return true;
-  const attendeesList = (event as Event & { attendeesList?: Array<{ id: number }> }).attendeesList;
-  if (Array.isArray(attendeesList) && attendeesList.some((attendee) => attendee.id === userId)) return true;
+  const attendeesList = (
+    event as Event & { attendeesList?: Array<{ id: number }> }
+  ).attendeesList;
+  if (
+    Array.isArray(attendeesList) &&
+    attendeesList.some((attendee) => attendee.id === userId)
+  )
+    return true;
   const creatorId = (event as Event & { creatorId?: number }).creatorId;
   if (creatorId === userId) return true;
   try {
@@ -103,9 +118,9 @@ const buildEventNotifications = (events: Event[]): Notification[] => {
       if (!notified.has(key)) {
         notifications.push({
           id: Date.now() + notifications.length,
-          type: 'event',
+          type: "event",
           message: `O evento ${event.name} foi atualizado`,
-          time: 'agora',
+          time: "agora",
           unread: true,
         });
         notified.add(key);
@@ -122,9 +137,9 @@ const buildEventNotifications = (events: Event[]): Notification[] => {
       if (!notified.has(key)) {
         notifications.push({
           id: Date.now() + notifications.length,
-          type: 'reminder',
+          type: "reminder",
           message: `${event.name} acontece hoje`,
-          time: 'agora',
+          time: "agora",
           unread: true,
         });
         notified.add(key);
@@ -137,9 +152,9 @@ const buildEventNotifications = (events: Event[]): Notification[] => {
       if (!notified.has(key)) {
         notifications.push({
           id: Date.now() + notifications.length,
-          type: 'reminder',
+          type: "reminder",
           message: `${event.name} começa em 1 hora`,
-          time: 'agora',
+          time: "agora",
           unread: true,
         });
         notified.add(key);
@@ -158,7 +173,7 @@ const buildEventNotifications = (events: Event[]): Notification[] => {
 export const getNotificationsRequest = async (): Promise<Notification[]> => {
   try {
     const [notifications, events] = await Promise.all([
-      apiFetch<Notification[]>('/notifications'),
+      apiFetch<Notification[]>("/notifications"),
       getEventsRequest(),
     ]);
     const eventNotifications = buildEventNotifications(events);
@@ -173,7 +188,7 @@ export const getNotificationsRequest = async (): Promise<Notification[]> => {
 
 export const markAsReadRequest = async (id: number): Promise<void> => {
   try {
-    await apiFetch(`/notifications/${id}/read`, { method: 'PUT' });
+    await apiFetch(`/notifications/${id}/read`, { method: "PUT" });
   } catch {
     markNotificationAsRead(id);
   }
@@ -181,7 +196,7 @@ export const markAsReadRequest = async (id: number): Promise<void> => {
 
 export const removeNotificationRequest = async (id: number): Promise<void> => {
   try {
-    await apiFetch(`/notifications/${id}`, { method: 'DELETE' });
+    await apiFetch(`/notifications/${id}`, { method: "DELETE" });
   } catch {
     removeNotification(id);
   }
