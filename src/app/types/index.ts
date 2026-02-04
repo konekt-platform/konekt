@@ -14,6 +14,7 @@ export interface ApiEvent {
   endsAt: string;
   image: string;
   description: string;
+  labels?: string[];
 }
 
 // Enriched event object for View

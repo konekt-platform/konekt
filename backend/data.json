@@ -221,7 +221,7 @@
       "maxAttendees": 20,
       "visibility": "public",
       "requiresApproval": false,
-      "isLgbtFriendly": true,
+      "isLgbtFriendly": false,
       "genderFocus": "all",
       "isRecurring": true,
       "theme": {
@@ -265,7 +265,8 @@
         }
       ],
       "createdAt": "2026-02-01T10:00:00.000Z",
-      "updatedAt": "2026-02-01T10:00:00.000Z"
+      "updatedAt": "2026-02-01T10:00:00.000Z",
+      "labels": []
     },
     {
       "id": 102,
@@ -337,7 +338,10 @@
         }
       ],
       "createdAt": "2026-02-02T14:30:00.000Z",
-      "updatedAt": "2026-02-02T14:30:00.000Z"
+      "updatedAt": "2026-02-02T14:30:00.000Z",
+      "labels": [
+        "lgbt-friendly"
+      ]
     },
     {
       "id": 103,
@@ -397,7 +401,10 @@
         }
       ],
       "createdAt": "2026-02-01T09:00:00.000Z",
-      "updatedAt": "2026-02-01T09:00:00.000Z"
+      "updatedAt": "2026-02-01T09:00:00.000Z",
+      "labels": [
+        "lgbt-friendly"
+      ]
     },
     {
       "id": 104,
@@ -419,7 +426,7 @@
       "maxAttendees": 30,
       "visibility": "public",
       "requiresApproval": false,
-      "isLgbtFriendly": true,
+      "isLgbtFriendly": false,
       "genderFocus": "all",
       "isRecurring": true,
       "theme": {
@@ -451,7 +458,8 @@
         }
       ],
       "createdAt": "2026-02-02T10:00:00.000Z",
-      "updatedAt": "2026-02-02T10:00:00.000Z"
+      "updatedAt": "2026-02-02T10:00:00.000Z",
+      "labels": []
     },
     {
       "id": 105,
@@ -511,7 +519,10 @@
         }
       ],
       "createdAt": "2026-02-03T10:00:00.000Z",
-      "updatedAt": "2026-02-03T10:00:00.000Z"
+      "updatedAt": "2026-02-03T10:00:00.000Z",
+      "labels": [
+        "lgbt-friendly"
+      ]
     },
     {
       "id": 106,
@@ -577,7 +588,10 @@
         }
       ],
       "createdAt": "2026-02-01T14:00:00.000Z",
-      "updatedAt": "2026-02-01T14:00:00.000Z"
+      "updatedAt": "2026-02-01T14:00:00.000Z",
+      "labels": [
+        "lgbt-friendly"
+      ]
     },
     {
       "id": 107,
@@ -599,7 +613,7 @@
       "maxAttendees": 15,
       "visibility": "public",
       "requiresApproval": false,
-      "isLgbtFriendly": true,
+      "isLgbtFriendly": false,
       "genderFocus": "all",
       "isRecurring": true,
       "theme": {
@@ -625,7 +639,8 @@
         }
       ],
       "createdAt": "2026-02-02T11:00:00.000Z",
-      "updatedAt": "2026-02-02T11:00:00.000Z"
+      "updatedAt": "2026-02-02T11:00:00.000Z",
+      "labels": []
     },
     {
       "id": 108,
@@ -685,7 +700,10 @@
         }
       ],
       "createdAt": "2026-02-03T09:00:00.000Z",
-      "updatedAt": "2026-02-03T09:00:00.000Z"
+      "updatedAt": "2026-02-03T09:00:00.000Z",
+      "labels": [
+        "lgbt-friendly"
+      ]
     },
     {
       "id": 109,
@@ -751,7 +769,10 @@
         }
       ],
       "createdAt": "2026-02-03T11:00:00.000Z",
-      "updatedAt": "2026-02-03T11:00:00.000Z"
+      "updatedAt": "2026-02-03T11:00:00.000Z",
+      "labels": [
+        "lgbt-friendly"
+      ]
     },
     {
       "id": 110,
@@ -773,7 +794,7 @@
       "maxAttendees": 80,
       "visibility": "public",
       "requiresApproval": false,
-      "isLgbtFriendly": true,
+      "isLgbtFriendly": false,
       "genderFocus": "all",
       "isRecurring": false,
       "theme": {
@@ -805,7 +826,8 @@
         }
       ],
       "createdAt": "2026-02-03T12:00:00.000Z",
-      "updatedAt": "2026-02-03T12:00:00.000Z"
+      "updatedAt": "2026-02-03T12:00:00.000Z",
+      "labels": []
     },
     {
       "id": 111,
@@ -925,7 +947,10 @@
         }
       ],
       "createdAt": "2026-02-03T13:00:00.000Z",
-      "updatedAt": "2026-02-03T13:00:00.000Z"
+      "updatedAt": "2026-02-03T13:00:00.000Z",
+      "labels": [
+        "lgbt-friendly"
+      ]
     },
     {
       "id": 112,
@@ -1009,7 +1034,10 @@
         }
       ],
       "createdAt": "2026-02-03T14:00:00.000Z",
-      "updatedAt": "2026-02-03T14:00:00.000Z"
+      "updatedAt": "2026-02-03T14:00:00.000Z",
+      "labels": [
+        "lgbt-friendly"
+      ]
     },
     {
       "id": 113,
@@ -1031,7 +1059,7 @@
       "maxAttendees": 30,
       "visibility": "public",
       "requiresApproval": false,
-      "isLgbtFriendly": true,
+      "isLgbtFriendly": false,
       "genderFocus": "all",
       "isRecurring": true,
       "theme": {
@@ -1075,7 +1103,8 @@
         }
       ],
       "createdAt": "2026-02-03T15:00:00.000Z",
-      "updatedAt": "2026-02-03T15:00:00.000Z"
+      "updatedAt": "2026-02-03T15:00:00.000Z",
+      "labels": []
     },
     {
       "id": 114,
@@ -1123,7 +1152,10 @@
         }
       ],
       "createdAt": "2026-02-03T16:00:00.000Z",
-      "updatedAt": "2026-02-03T16:00:00.000Z"
+      "updatedAt": "2026-02-03T16:00:00.000Z",
+      "labels": [
+        "lgbt-friendly"
+      ]
     },
     {
       "id": 115,
@@ -1171,7 +1203,10 @@
         }
       ],
       "createdAt": "2026-02-03T17:00:00.000Z",
-      "updatedAt": "2026-02-03T17:00:00.000Z"
+      "updatedAt": "2026-02-03T17:00:00.000Z",
+      "labels": [
+        "lgbt-friendly"
+      ]
     },
     {
       "id": 116,
@@ -1193,7 +1228,7 @@
       "maxAttendees": 20,
       "visibility": "friends",
       "requiresApproval": false,
-      "isLgbtFriendly": true,
+      "isLgbtFriendly": false,
       "genderFocus": "all",
       "isRecurring": false,
       "theme": {
@@ -1219,7 +1254,8 @@
         }
       ],
       "createdAt": "2026-02-03T18:00:00.000Z",
-      "updatedAt": "2026-02-03T18:00:00.000Z"
+      "updatedAt": "2026-02-03T18:00:00.000Z",
+      "labels": []
     },
     {
       "id": 117,
@@ -1273,7 +1309,10 @@
         }
       ],
       "createdAt": "2026-02-03T19:00:00.000Z",
-      "updatedAt": "2026-02-03T19:00:00.000Z"
+      "updatedAt": "2026-02-03T19:00:00.000Z",
+      "labels": [
+        "lgbt-friendly"
+      ]
     }
   ],
   "posts": [
@@ -1562,7 +1601,14 @@
   ],
   "expenses": [],
   "eventParticipations": {},
-  "tokens": [],
+  "tokens": [
+    {
+      "token": "c93e0681ef928d68da07a857d52008e30cdbf691a4863b4e",
+      "userId": 1,
+      "createdAt": "2026-02-04T00:58:59.871Z",
+      "lastActivity": "2026-02-04T00:59:54.861Z"
+    }
+  ],
   "notifications": [],
   "media": [],
   "eventChats": {},

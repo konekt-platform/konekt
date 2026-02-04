@@ -13,7 +13,24 @@ export function EventChips({ event, variant }: EventChipsProps) {
   if (event.genderFocus === "women") {
     chips.push(getGenderFocusLabel(event.genderFocus));
   }
-  if (event.isLgbtFriendly) {
+
+  // Display labels from the new array
+  if (event.labels && event.labels.length > 0) {
+    event.labels.forEach(label => {
+      // Map common labels to display text if needed, or capitalize
+      if (label === 'lgbt-friendly') {
+        chips.push("LGBTQIA+ friendly");
+      } else if (label === 'newbie-friendly') {
+        chips.push("Iniciantes"); 
+      } else if (label === 'pet-friendly') {
+        chips.push("Pet Friendly");
+      } else {
+        // Fallback for custom labels: capitalize first letter
+        chips.push(label.charAt(0).toUpperCase() + label.slice(1).replace(/-/g, ' '));
+      }
+    });
+  } else if (event.isLgbtFriendly) {
+    // Backward compatibility if no labels array but legacy flag is true
     chips.push("LGBTQIA+ friendly");
   }
 

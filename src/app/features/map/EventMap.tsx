@@ -438,6 +438,7 @@ export function EventMap({
           isCollapsed={activePanel !== "create"}
           onClose={closeAllPanels}
           selectedPosition={selectedPosition}
+          userPosition={userPosition}
           onMapClick={(lat, lng) => {
             setSelectedPosition([lat, lng]);
             if (mapRef.current) {
@@ -447,7 +448,7 @@ export function EventMap({
           onFocusMapForSelection={() => {
             setSelectingLocation(true);
             setCreateOpen(false);
-            const target = selectedPosition ?? [-7.2159, -35.9108];
+            const target = selectedPosition ?? userPosition ?? [-7.2159, -35.9108];
             mapRef.current?.flyTo(target, 16, { animate: false });
           }}
           onShowAddressOnMap={(address, position) => {

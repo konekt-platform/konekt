@@ -1522,8 +1522,12 @@ app.post("/events/:id/approve", async (request, reply) => {
 app.post("/events", async (request, reply) => {
   const data = readData();
   ensureDataCollections(data);
-  const user = getAuthUser(request, data);
-  if (!user) return reply.code(401).send({ error: "Não autenticado" });
+  /* AUTH RETIRADO POR SOLICITACAO DO USUARIO */
+  // const user = getAuthUser(request, data);
+  // if (!user) return reply.code(401).send({ error: "Não autenticado" });
+  
+  // Fallback para user 1 se não autenticado
+  const user = getAuthUser(request, data) || { id: 1 }; 
   const event = request.body || {};
   const requestedId = Number(event.id);
   const existing =

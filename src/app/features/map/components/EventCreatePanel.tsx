@@ -151,6 +151,7 @@ interface EventCreatePanelProps {
   onShowAddressOnMap?: (address: string, position?: [number, number]) => void;
   onEventCreated?: (event: Event) => void;
   onLocationConfirmed?: (address: string, position: [number, number]) => void;
+  userPosition?: [number, number] | null;
 }
 
 type LocationMode = "map" | "address" | null;
@@ -165,6 +166,7 @@ export function EventCreatePanel({
   onShowAddressOnMap,
   onEventCreated,
   onLocationConfirmed,
+  userPosition,
 }: EventCreatePanelProps) {
   const { user: authUser } = useAuth();
   const [locationMode, setLocationMode] = useState<LocationMode>("address");
@@ -178,6 +180,7 @@ export function EventCreatePanel({
   >("public");
   const [maxAttendees, setMaxAttendees] = useState(20);
   const [eventType, setEventType] = useState<EventType>("estudo");
+  const [selectedLabels, setSelectedLabels] = useState<string[]>([]);
   const [isResolvingAddress, setIsResolvingAddress] = useState(false);
   const [addressSuggestions, setAddressSuggestions] = useState<
     AddressSuggestion[]
@@ -206,6 +209,7 @@ export function EventCreatePanel({
       setEventVisibility("public");
       setMaxAttendees(20);
       setEventType("estudo");
+      setSelectedLabels([]);
       setIsResolvingAddress(false);
       setAddressSuggestions([]);
       setAddressLoading(false);
@@ -223,6 +227,40 @@ export function EventCreatePanel({
       }
     }
   }, [isOpen]);
+
+  // Pre-fill user location address on open (one-off)
+  useEffect(() => {
+    if (isOpen && userPosition && !eventLocation && !selectedPosition && locationMode === "address") {
+      const [lat, lng] = userPosition;
+      
+      const controller = new AbortController();
+      // Only set if not already resolving
+      if (!addressAbortRef.current) {
+         addressAbortRef.current = controller;
+         setIsResolvingAddress(true);
+         setEventLocation("📍 Buscando sua localização...");
+         
+         reverseGeocode(lat, lng, controller.signal)
+          .then((address) => {
+            if (!controller.signal.aborted) {
+               setEventLocation(address || `Lat: ${lat.toFixed(4)}, Lng: ${lng.toFixed(4)}`);
+               setIsResolvingAddress(false);
+            }
+          })
+          .catch(() => {
+             if (!controller.signal.aborted) {
+               setIsResolvingAddress(false);
+               setEventLocation("Minha localização atual"); 
+             }
+          })
+          .finally(() => {
+            if (addressAbortRef.current === controller) {
+              addressAbortRef.current = null;
+            }
+          });
+      }
+    }
+  }, [isOpen]); // Only run when isOpen changes, not when userPosition updates (to avoid loop)
 
   // Quando a localização é confirmada no mapa (quando selectedPosition muda e não estamos no modo mapa), atualiza o endereço
   useEffect(() => {
@@ -476,6 +514,10 @@ export function EventCreatePanel({
       }
       handleClose();
     },
+    onError: (err) => {
+      console.error("Erro ao criar evento:", err);
+      setError("Erro ao criar evento. Tente novamente.");
+    },
   });
 
   const handleClose = () => {
@@ -491,7 +533,7 @@ export function EventCreatePanel({
     }
 
     // Tenta usar a posição selecionada, senão usa a localização do usuário, senão usa padrão
-    let position: [number, number] = [-7.2159, -35.9108];
+    let position: [number, number] = userPosition ?? [-7.2159, -35.9108];
     if (locationMode === "map" && selectedPosition) {
       position = selectedPosition;
     } else if (locationMode === "address" && selectedAddressPosition) {
@@ -504,6 +546,7 @@ export function EventCreatePanel({
     const startsAt = new Date(eventStart).toISOString();
     const endsAt = new Date(eventEnd).toISOString();
     if (new Date(endsAt).getTime() <= new Date(startsAt).getTime()) {
+      setError("A data de término deve ser após a data de início");
       return;
     }
 
@@ -541,7 +584,8 @@ export function EventCreatePanel({
       maxAttendees,
       visibility: eventVisibility,
       requiresApproval: eventVisibility === "invite-only",
-      isLgbtFriendly: true,
+      isLgbtFriendly: selectedLabels.includes("lgbt-friendly"),
+      labels: selectedLabels,
       genderFocus: "all",
       isRecurring: false,
       theme: getEventTheme(eventType),
@@ -802,6 +846,36 @@ export function EventCreatePanel({
                   onChange={(e) => setMaxAttendees(Number(e.target.value))}
                   className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
                 />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-xs text-muted-foreground">Tags</label>
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    { id: "lgbt-friendly", label: "🏳️‍🌈 LGBTQIA+ Friendly" },
+                    { id: "newbie-friendly", label: "👋 Iniciantes" },
+                    { id: "pet-friendly", label: "🐾 Pet Friendly" },
+                  ].map((tag) => (
+                    <button
+                      key={tag.id}
+                      type="button"
+                      onClick={() => {
+                        setSelectedLabels((prev) =>
+                          prev.includes(tag.id)
+                            ? prev.filter((id) => id !== tag.id)
+                            : [...prev, tag.id],
+                        );
+                      }}
+                      className={`rounded-full px-3 py-1 text-xs font-medium border transition-colors ${
+                        selectedLabels.includes(tag.id)
+                          ? "bg-primary text-primary-foreground border-primary"
+                          : "bg-background text-foreground border-border hover:bg-accent"
+                      }`}
+                    >
+                      {tag.label}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
 
