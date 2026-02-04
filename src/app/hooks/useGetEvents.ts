@@ -11,7 +11,7 @@ export const useGetEvents = () => {
       if (typeof document !== "undefined" && document.hidden) {
         return false;
       }
-      return 1000; // Polling a cada 1 segundo quando ativo
+      return 5000; // Polling a cada 1 segundo quando ativo
     },
     refetchIntervalInBackground: false, // Não fazer polling em background
     refetchOnWindowFocus: true, // Atualiza quando a janela ganha foco

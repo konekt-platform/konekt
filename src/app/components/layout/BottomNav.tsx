@@ -8,7 +8,7 @@ interface BottomNavProps {
 
 export function BottomNav({ currentView, onViewChange }: BottomNavProps) {
   return (
-    <nav className="border-t border-border bg-background/95 backdrop-blur-lg lg:pr-80 relative">
+    <nav className="border-t border-border bg-background/95 backdrop-blur-lg lg:pr-80 relative z-[2000]">
       <div className="flex items-center justify-around px-4 py-1">
         <button
           type="button"

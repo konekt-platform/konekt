@@ -191,8 +191,6 @@ export function EventMap({
   const queryClient = useQueryClient();
   const { data: events } = useGetEvents();
   const { user: authUser } = useAuth();
-  // Posição padrão (Campina Grande) caso geolocalização não esteja disponível
-  const defaultPosition: [number, number] = [-7.2159, -35.9108];
   const [userPosition, setUserPosition] = useState<[number, number] | null>(
     null,
   );
@@ -278,12 +276,12 @@ export function EventMap({
     setFiltersOpen(false);
   };
 
-  const [isFirstLocation, setIsFirstLocation] = useState(true);
+  const isFirstLocationRef = useRef(true);
 
   // Função para centralizar mapa na localização do usuário
   const centerOnUserLocation = () => {
     if (mapRef.current && userPosition) {
-      mapRef.current.flyTo(userPosition, 16, { animate: true });
+      mapRef.current.flyTo(userPosition, 15, { animate: true });
     } else {
       // Se não tiver posição, tenta obter novamente
       if ("geolocation" in navigator) {
@@ -296,7 +294,7 @@ export function EventMap({
             setUserPosition(nextPosition);
             setLocationError(false);
             if (mapRef.current) {
-              mapRef.current.flyTo(nextPosition, 16, { animate: true });
+              mapRef.current.flyTo(nextPosition, 15, { animate: true });
             }
           },
           (error) => {
@@ -337,9 +335,9 @@ export function EventMap({
           setUserPosition(nextPosition);
           setLocationError(false);
           // Centraliza na primeira vez
-          if (isFirstLocation && mapRef.current) {
-            mapRef.current.flyTo(nextPosition, 15, { animate: true });
-            setIsFirstLocation(false);
+          if (isFirstLocationRef.current && mapRef.current) {
+            mapRef.current.setView(nextPosition, 15, { animate: false });
+            isFirstLocationRef.current = false;
           }
         },
         (error) => {
@@ -419,7 +417,7 @@ export function EventMap({
         navigator.geolocation.clearWatch(watchId);
       }
     };
-  }, [isFirstLocation]);
+  }, []);
 
   return (
     <div className="h-full relative">
@@ -443,23 +441,23 @@ export function EventMap({
           onMapClick={(lat, lng) => {
             setSelectedPosition([lat, lng]);
             if (mapRef.current) {
-              mapRef.current.flyTo([lat, lng], 16, { animate: true });
+              mapRef.current.flyTo([lat, lng], 16, { animate: false });
             }
           }}
           onFocusMapForSelection={() => {
             setSelectingLocation(true);
             setCreateOpen(false);
             const target = selectedPosition ?? [-7.2159, -35.9108];
-            mapRef.current?.flyTo(target, 16, { animate: true });
+            mapRef.current?.flyTo(target, 16, { animate: false });
           }}
           onShowAddressOnMap={(address, position) => {
             setSelectionMessage(
               "Centralizando mapa para você conferir o endereço",
             );
             if (position) {
-              mapRef.current?.flyTo(position, 15, { animate: true });
+              mapRef.current?.flyTo(position, 5, { animate: false });
             } else {
-              mapRef.current?.flyTo([-7.2159, -35.9108], 15, { animate: true });
+              // mapRef.current?.flyTo([-7.2159, -35.9108], 15, { animate: true });
             }
             setTimeout(() => setSelectionMessage(null), 2500);
           }}
@@ -471,7 +469,7 @@ export function EventMap({
             // Centraliza o mapa no evento criado
             if (mapRef.current && createdEvent.position) {
               mapRef.current.flyTo(createdEvent.position, 16, {
-                animate: true,
+                animate: false,
               });
               // Aguarda um pouco para o evento aparecer no mapa antes de tentar abrir o popup
               setTimeout(() => {
@@ -512,9 +510,9 @@ export function EventMap({
         <div className="h-full w-full overflow-hidden">
           <MapContainer
             center={[-7.2159, -35.9108]}
-            zoom={14}
+            zoom={5}
             zoomControl={false}
-            style={{ height: "100%", width: "100%" }}
+            style={{ height: "110%", width: "100%" }}
             ref={mapRef}
           >
             <TileLayer
@@ -571,11 +569,6 @@ export function EventMap({
                     },
                     popupopen: () => {
                       setOpenPopupEventId(event.id);
-                      mapRef.current?.flyTo(
-                        event.position,
-                        mapRef.current?.getZoom() ?? 16,
-                        { animate: true },
-                      );
                     },
                     popupclose: () => {
                       setOpenPopupEventId(null);
@@ -605,7 +598,7 @@ export function EventMap({
                         if (targetMarker) {
                           mapRef.current?.flyTo(
                             targetEvent.position,
-                            mapRef.current?.getZoom() ?? 16,
+                            15,
                             { animate: true },
                           );
 
@@ -653,7 +646,7 @@ export function EventMap({
             });
 
             // Move o mapa para o evento
-            mapRef.current?.flyTo(event.position, 16, { animate: true });
+            mapRef.current?.flyTo(event.position, 15, { animate: true });
 
             // Abre o popup do evento após um pequeno delay
             setTimeout(() => {
@@ -754,11 +747,6 @@ export function EventMap({
               setCreateOpen(willOpen);
               setFiltersOpen(false);
               setNotificationsOpen(false);
-
-              // Se estiver abrindo o painel de criação, centraliza no usuário
-              if (willOpen) {
-                centerOnUserLocation();
-              }
             }}
             className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-3 py-2 text-xs font-semibold text-primary-foreground shadow-lg"
           >
