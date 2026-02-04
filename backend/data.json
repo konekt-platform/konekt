@@ -198,6 +198,546 @@
       "following": 80,
       "followerIds": [],
       "followingIds": []
+    },
+    {
+      "id": 1011,
+      "username": "camila.runner",
+      "name": "Camila Rodrigues",
+      "avatar": "https://randomuser.me/api/portraits/women/68.jpg",
+      "password": "123",
+      "bio": "Corredora e maratonista 🏃‍♀️",
+      "followers": 890,
+      "following": 250,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1012,
+      "username": "thiago.sk8",
+      "name": "Thiago Mendes",
+      "avatar": "https://randomuser.me/api/portraits/men/71.jpg",
+      "password": "123",
+      "bio": "Skatista profissional 🛹✨",
+      "followers": 2100,
+      "following": 180,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1013,
+      "username": "patricia.books",
+      "name": "Patrícia Lopes",
+      "avatar": "https://randomuser.me/api/portraits/women/22.jpg",
+      "password": "123",
+      "bio": "Professora de literatura e bookstagrammer 📚",
+      "followers": 1450,
+      "following": 320,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1014,
+      "username": "ricardo.teatro",
+      "name": "Ricardo Nunes",
+      "avatar": "https://randomuser.me/api/portraits/men/39.jpg",
+      "password": "123",
+      "bio": "Ator e diretor de teatro 🎭",
+      "followers": 670,
+      "following": 410,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1015,
+      "username": "sofia.leitora",
+      "name": "Sofia Martins",
+      "avatar": "https://randomuser.me/api/portraits/women/50.jpg",
+      "password": "123",
+      "bio": "Devoradora de livros e escritora nas horas vagas ✍️",
+      "followers": 540,
+      "following": 290,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1016,
+      "username": "gabriel.run",
+      "name": "Gabriel Costa",
+      "avatar": "https://randomuser.me/api/portraits/men/25.jpg",
+      "password": "123",
+      "bio": "Corredor urbano e personal trainer 💪🏃",
+      "followers": 1120,
+      "following": 150,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1017,
+      "username": "beatriz.skate",
+      "name": "Beatriz Santos",
+      "avatar": "https://randomuser.me/api/portraits/women/35.jpg",
+      "password": "123",
+      "bio": "Skatista e fotógrafa urbana 🛹📷",
+      "followers": 980,
+      "following": 220,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1018,
+      "username": "amanda.atriz",
+      "name": "Amanda Silva",
+      "avatar": "https://randomuser.me/api/portraits/women/77.jpg",
+      "password": "123",
+      "bio": "Atriz de teatro e cinema 🎬🎭",
+      "followers": 2300,
+      "following": 450,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1019,
+      "username": "carlos.leitor",
+      "name": "Carlos Ferreira",
+      "avatar": "https://randomuser.me/api/portraits/men/52.jpg",
+      "password": "123",
+      "bio": "Bibliotecário e crítico literário 📖",
+      "followers": 780,
+      "following": 340,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1020,
+      "username": "larissa.fit",
+      "name": "Larissa Oliveira",
+      "avatar": "https://randomuser.me/api/portraits/women/41.jpg",
+      "password": "123",
+      "bio": "Atleta e entusiasta de corridas de rua 🏃‍♀️💨",
+      "followers": 1650,
+      "following": 380,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1021,
+      "username": "diego.volei",
+      "name": "Diego Almeida",
+      "avatar": "https://randomuser.me/api/portraits/men/67.jpg",
+      "password": "123",
+      "bio": "Jogador de vôlei de praia 🏐☀️",
+      "followers": 890,
+      "following": 210,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1022,
+      "username": "julia.natureza",
+      "name": "Júlia Campos",
+      "avatar": "https://randomuser.me/api/portraits/women/29.jpg",
+      "password": "123",
+      "bio": "Amante de piqueniques e natureza 🌿🧺",
+      "followers": 560,
+      "following": 340,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1023,
+      "username": "rodrigo.tech",
+      "name": "Rodrigo Barbosa",
+      "avatar": "https://randomuser.me/api/portraits/men/48.jpg",
+      "password": "123",
+      "bio": "Desenvolvedor Full Stack e tech enthusiast 💻",
+      "followers": 1340,
+      "following": 280,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1024,
+      "username": "isabela.run",
+      "name": "Isabela Martins",
+      "avatar": "https://randomuser.me/api/portraits/women/56.jpg",
+      "password": "123",
+      "bio": "Corredora amadora e nutricionista 🏃‍♀️🥗",
+      "followers": 2100,
+      "following": 450,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1025,
+      "username": "vinicius.skate",
+      "name": "Vinícius Lima",
+      "avatar": "https://randomuser.me/api/portraits/men/73.jpg",
+      "password": "123",
+      "bio": "Skatista urbano e videomaker 🛹🎥",
+      "followers": 1780,
+      "following": 320,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1026,
+      "username": "carolina.books",
+      "name": "Carolina Souza",
+      "avatar": "https://randomuser.me/api/portraits/women/63.jpg",
+      "password": "123",
+      "bio": "Leitora compulsiva e jornalista 📚✍️",
+      "followers": 980,
+      "following": 410,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1027,
+      "username": "henrique.teatro",
+      "name": "Henrique Costa",
+      "avatar": "https://randomuser.me/api/portraits/men/41.jpg",
+      "password": "123",
+      "bio": "Ator de teatro musical 🎭🎵",
+      "followers": 1120,
+      "following": 380,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1028,
+      "username": "leticia.yoga",
+      "name": "Letícia Rocha",
+      "avatar": "https://randomuser.me/api/portraits/women/47.jpg",
+      "password": "123",
+      "bio": "Professora de yoga e meditação 🧘‍♀️✨",
+      "followers": 2340,
+      "following": 190,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1029,
+      "username": "gustavo.samba",
+      "name": "Gustavo Pereira",
+      "avatar": "https://randomuser.me/api/portraits/men/58.jpg",
+      "password": "123",
+      "bio": "Sambista e percussionista 🥁🎶",
+      "followers": 670,
+      "following": 290,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1030,
+      "username": "bianca.vinil",
+      "name": "Bianca Oliveira",
+      "avatar": "https://randomuser.me/api/portraits/women/38.jpg",
+      "password": "123",
+      "bio": "Colecionadora de vinis e DJ 💿🎧",
+      "followers": 1450,
+      "following": 520,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1031,
+      "username": "matheus.volei",
+      "name": "Matheus Silva",
+      "avatar": "https://randomuser.me/api/portraits/men/36.jpg",
+      "password": "123",
+      "bio": "Vôlei é vida! 🏐💪",
+      "followers": 540,
+      "following": 180,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1032,
+      "username": "aline.piquenique",
+      "name": "Aline Santos",
+      "avatar": "https://randomuser.me/api/portraits/women/54.jpg",
+      "password": "123",
+      "bio": "Chef amadora e amante de encontros ao ar livre 🍰🌳",
+      "followers": 890,
+      "following": 310,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1033,
+      "username": "felipe.runner",
+      "name": "Felipe Cardoso",
+      "avatar": "https://randomuser.me/api/portraits/men/44.jpg",
+      "password": "123",
+      "bio": "Maratonista e coach de corrida 🏃💨",
+      "followers": 1890,
+      "following": 270,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1034,
+      "username": "natalia.tech",
+      "name": "Natália Ferreira",
+      "avatar": "https://randomuser.me/api/portraits/women/61.jpg",
+      "password": "123",
+      "bio": "Data Scientist e AI enthusiast 🤖📊",
+      "followers": 2100,
+      "following": 340,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1035,
+      "username": "andre.skate",
+      "name": "André Ribeiro",
+      "avatar": "https://randomuser.me/api/portraits/men/51.jpg",
+      "password": "123",
+      "bio": "Skatista old school 🛹🔥",
+      "followers": 1230,
+      "following": 290,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1036,
+      "username": "priscila.livros",
+      "name": "Priscila Mendes",
+      "avatar": "https://randomuser.me/api/portraits/women/43.jpg",
+      "password": "123",
+      "bio": "Bibliotecária e amante de literatura brasileira 📖❤️",
+      "followers": 780,
+      "following": 420,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1037,
+      "username": "leonardo.ator",
+      "name": "Leonardo Dias",
+      "avatar": "https://randomuser.me/api/portraits/men/59.jpg",
+      "password": "123",
+      "bio": "Ator de teatro experimental 🎭✨",
+      "followers": 920,
+      "following": 360,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1038,
+      "username": "vanessa.funcional",
+      "name": "Vanessa Lima",
+      "avatar": "https://randomuser.me/api/portraits/women/52.jpg",
+      "password": "123",
+      "bio": "Personal trainer e atleta funcional 💪🏋️‍♀️",
+      "followers": 3200,
+      "following": 180,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1039,
+      "username": "caio.ceramica",
+      "name": "Caio Martins",
+      "avatar": "https://randomuser.me/api/portraits/men/64.jpg",
+      "password": "123",
+      "bio": "Ceramista e artista plástico 🏺🎨",
+      "followers": 1100,
+      "following": 440,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1040,
+      "username": "tatiana.sangue",
+      "name": "Tatiana Alves",
+      "avatar": "https://randomuser.me/api/portraits/women/59.jpg",
+      "password": "123",
+      "bio": "Enfermeira e ativista de doação de sangue ❤️🩸",
+      "followers": 560,
+      "following": 230,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1041,
+      "username": "renato.rock",
+      "name": "Renato Souza",
+      "avatar": "https://randomuser.me/api/portraits/men/69.jpg",
+      "password": "123",
+      "bio": "Guitarrista de rock alternativo 🎸🤘",
+      "followers": 1670,
+      "following": 310,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1042,
+      "username": "daniela.comedia",
+      "name": "Daniela Costa",
+      "avatar": "https://randomuser.me/api/portraits/women/66.jpg",
+      "password": "123",
+      "bio": "Comediante stand-up 😂🎤",
+      "followers": 2890,
+      "following": 420,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1043,
+      "username": "marcelo.volei",
+      "name": "Marcelo Ferreira",
+      "avatar": "https://randomuser.me/api/portraits/men/76.jpg",
+      "password": "123",
+      "bio": "Ex-jogador profissional de vôlei 🏐🏆",
+      "followers": 4500,
+      "following": 120,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1044,
+      "username": "camila.piquenique",
+      "name": "Camila Rocha",
+      "avatar": "https://randomuser.me/api/portraits/women/71.jpg",
+      "password": "123",
+      "bio": "Fotógrafa de natureza e eventos 📷🌿",
+      "followers": 1340,
+      "following": 380,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1045,
+      "username": "thiago.corrida",
+      "name": "Thiago Barbosa",
+      "avatar": "https://randomuser.me/api/portraits/men/78.jpg",
+      "password": "123",
+      "bio": "Corredor de ultra maratona 🏃‍♂️⚡",
+      "followers": 2340,
+      "following": 190,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1046,
+      "username": "jessica.dev",
+      "name": "Jéssica Oliveira",
+      "avatar": "https://randomuser.me/api/portraits/women/74.jpg",
+      "password": "123",
+      "bio": "Frontend Developer e UX Designer 💻🎨",
+      "followers": 1890,
+      "following": 340,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1047,
+      "username": "lucas.board",
+      "name": "Lucas Mendes",
+      "avatar": "https://randomuser.me/api/portraits/men/81.jpg",
+      "password": "123",
+      "bio": "Skatista e designer gráfico 🛹🖌️",
+      "followers": 1560,
+      "following": 280,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1048,
+      "username": "mariana.leitura",
+      "name": "Mariana Dias",
+      "avatar": "https://randomuser.me/api/portraits/women/79.jpg",
+      "password": "123",
+      "bio": "Professora de português e crítica literária 📚✏️",
+      "followers": 890,
+      "following": 470,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1049,
+      "username": "paulo.palco",
+      "name": "Paulo Henrique",
+      "avatar": "https://randomuser.me/api/portraits/men/83.jpg",
+      "password": "123",
+      "bio": "Diretor de teatro e dramaturgo 🎭📝",
+      "followers": 1120,
+      "following": 390,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1050,
+      "username": "raquel.yoga",
+      "name": "Raquel Santos",
+      "avatar": "https://randomuser.me/api/portraits/women/82.jpg",
+      "password": "123",
+      "bio": "Instrutora de hatha yoga 🧘‍♀️🌸",
+      "followers": 1780,
+      "following": 210,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1051,
+      "username": "sergio.samba",
+      "name": "Sérgio Almeida",
+      "avatar": "https://randomuser.me/api/portraits/men/86.jpg",
+      "password": "123",
+      "bio": "Cavaquinista e compositor de samba 🎵🥁",
+      "followers": 980,
+      "following": 320,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1052,
+      "username": "fernanda.discos",
+      "name": "Fernanda Ribeiro",
+      "avatar": "https://randomuser.me/api/portraits/women/85.jpg",
+      "password": "123",
+      "bio": "Colecionadora de vinis raros 💿🎶",
+      "followers": 1230,
+      "following": 450,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1053,
+      "username": "roberto.humor",
+      "name": "Roberto Lima",
+      "avatar": "https://randomuser.me/api/portraits/men/89.jpg",
+      "password": "123",
+      "bio": "Comediante e roteirista 😄✍️",
+      "followers": 3100,
+      "following": 280,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1054,
+      "username": "adriana.fit",
+      "name": "Adriana Costa",
+      "avatar": "https://randomuser.me/api/portraits/women/88.jpg",
+      "password": "123",
+      "bio": "Atleta crossfit e nutricionista esportiva 💪🥗",
+      "followers": 2670,
+      "following": 310,
+      "followerIds": [],
+      "followingIds": []
+    },
+    {
+      "id": 1055,
+      "username": "eduardo.arte",
+      "name": "Eduardo Martins",
+      "avatar": "https://randomuser.me/api/portraits/men/91.jpg",
+      "password": "123",
+      "bio": "Escultor e professor de artes 🗿🎨",
+      "followers": 1450,
+      "following": 380,
+      "followerIds": [],
+      "followingIds": []
     }
   ],
   "events": [
@@ -210,7 +750,7 @@
         -23.587416,
         -46.657634
       ],
-      "attendees": 5,
+      "attendees": 15,
       "date": "Sábado, 14 de fev.",
       "time": "09:00–12:00",
       "startsAt": "2026-02-14T09:00:00.000Z",
@@ -235,7 +775,17 @@
         1769118164352,
         "2bcbdcca-2496-4148-903c-b8d5059b827f",
         1,
-        1001
+        1001,
+        1021,
+        1031,
+        1043,
+        1007,
+        1002,
+        1008,
+        1009,
+        1010,
+        1006,
+        1004
       ],
       "attendeesList": [
         {
@@ -262,6 +812,56 @@
           "id": 1001,
           "name": "Marcos Silva",
           "avatar": "https://randomuser.me/api/portraits/men/32.jpg"
+        },
+        {
+          "id": 1021,
+          "name": "Diego Almeida",
+          "avatar": "https://randomuser.me/api/portraits/men/67.jpg"
+        },
+        {
+          "id": 1031,
+          "name": "Matheus Silva",
+          "avatar": "https://randomuser.me/api/portraits/men/36.jpg"
+        },
+        {
+          "id": 1043,
+          "name": "Marcelo Ferreira",
+          "avatar": "https://randomuser.me/api/portraits/men/76.jpg"
+        },
+        {
+          "id": 1007,
+          "name": "Fernanda Costa",
+          "avatar": "https://randomuser.me/api/portraits/women/33.jpg"
+        },
+        {
+          "id": 1002,
+          "name": "Ana Clara",
+          "avatar": "https://randomuser.me/api/portraits/women/28.jpg"
+        },
+        {
+          "id": 1008,
+          "name": "Rafael Santos",
+          "avatar": "https://randomuser.me/api/portraits/men/62.jpg"
+        },
+        {
+          "id": 1009,
+          "name": "Juliana Lima",
+          "avatar": "https://randomuser.me/api/portraits/women/12.jpg"
+        },
+        {
+          "id": 1010,
+          "name": "Bruno Alves",
+          "avatar": "https://randomuser.me/api/portraits/men/88.jpg"
+        },
+        {
+          "id": 1006,
+          "name": "Lucas Oliveira",
+          "avatar": "https://randomuser.me/api/portraits/men/45.jpg"
+        },
+        {
+          "id": 1004,
+          "name": "Mariana Artes",
+          "avatar": "https://randomuser.me/api/portraits/women/90.jpg"
         }
       ],
       "createdAt": "2026-02-01T10:00:00.000Z",
@@ -277,7 +877,7 @@
         -23.547565,
         -46.721473
       ],
-      "attendees": 6,
+      "attendees": 26,
       "date": "Domingo, 15 de fev.",
       "time": "14:00–17:00",
       "startsAt": "2026-02-15T14:00:00.000Z",
@@ -303,7 +903,27 @@
         1002,
         1007,
         1008,
-        1009
+        1009,
+        1022,
+        1032,
+        1044,
+        1004,
+        1769112730380,
+        1003,
+        1010,
+        1005,
+        1006,
+        1001,
+        1011,
+        1015,
+        1019,
+        1026,
+        1036,
+        1048,
+        1013,
+        1028,
+        1050,
+        1038
       ],
       "attendeesList": [
         {
@@ -335,6 +955,106 @@
           "id": 1009,
           "name": "Juliana Lima",
           "avatar": "https://randomuser.me/api/portraits/women/12.jpg"
+        },
+        {
+          "id": 1022,
+          "name": "Júlia Campos",
+          "avatar": "https://randomuser.me/api/portraits/women/29.jpg"
+        },
+        {
+          "id": 1032,
+          "name": "Aline Santos",
+          "avatar": "https://randomuser.me/api/portraits/women/54.jpg"
+        },
+        {
+          "id": 1044,
+          "name": "Camila Rocha",
+          "avatar": "https://randomuser.me/api/portraits/women/71.jpg"
+        },
+        {
+          "id": 1004,
+          "name": "Mariana Artes",
+          "avatar": "https://randomuser.me/api/portraits/women/90.jpg"
+        },
+        {
+          "id": 1769112730380,
+          "name": "Fabiano França",
+          "avatar": "https://pond-climbing-advisory-jerusalem.trycloudflare.com/uploads/avatars/avatar-1769112730380-1769526100098.jpg"
+        },
+        {
+          "id": 1003,
+          "name": "João do Cavaco",
+          "avatar": "https://randomuser.me/api/portraits/men/55.jpg"
+        },
+        {
+          "id": 1010,
+          "name": "Bruno Alves",
+          "avatar": "https://randomuser.me/api/portraits/men/88.jpg"
+        },
+        {
+          "id": 1005,
+          "name": "Pedro Piadas",
+          "avatar": "https://randomuser.me/api/portraits/men/15.jpg"
+        },
+        {
+          "id": 1006,
+          "name": "Lucas Oliveira",
+          "avatar": "https://randomuser.me/api/portraits/men/45.jpg"
+        },
+        {
+          "id": 1001,
+          "name": "Marcos Silva",
+          "avatar": "https://randomuser.me/api/portraits/men/32.jpg"
+        },
+        {
+          "id": 1011,
+          "name": "Camila Rodrigues",
+          "avatar": "https://randomuser.me/api/portraits/women/68.jpg"
+        },
+        {
+          "id": 1015,
+          "name": "Sofia Martins",
+          "avatar": "https://randomuser.me/api/portraits/women/50.jpg"
+        },
+        {
+          "id": 1019,
+          "name": "Carlos Ferreira",
+          "avatar": "https://randomuser.me/api/portraits/men/52.jpg"
+        },
+        {
+          "id": 1026,
+          "name": "Carolina Souza",
+          "avatar": "https://randomuser.me/api/portraits/women/63.jpg"
+        },
+        {
+          "id": 1036,
+          "name": "Priscila Mendes",
+          "avatar": "https://randomuser.me/api/portraits/women/43.jpg"
+        },
+        {
+          "id": 1048,
+          "name": "Mariana Dias",
+          "avatar": "https://randomuser.me/api/portraits/women/79.jpg"
+        },
+        {
+          "id": 1013,
+          "name": "Patrícia Lopes",
+          "avatar": "https://randomuser.me/api/portraits/women/22.jpg"
+        },
+        {
+          "id": 1028,
+          "name": "Letícia Rocha",
+          "avatar": "https://randomuser.me/api/portraits/women/47.jpg"
+        },
+        {
+          "id": 1050,
+          "name": "Raquel Santos",
+          "avatar": "https://randomuser.me/api/portraits/women/82.jpg"
+        },
+        {
+          "id": 1038,
+          "name": "Vanessa Lima",
+          "avatar": "https://randomuser.me/api/portraits/women/52.jpg"
         }
       ],
       "createdAt": "2026-02-02T14:30:00.000Z",
@@ -352,7 +1072,7 @@
         -23.561414,
         -46.655881
       ],
-      "attendees": 4,
+      "attendees": 59,
       "date": "Quarta, 11 de fev.",
       "time": "19:30–21:00",
       "startsAt": "2026-02-11T19:30:00.000Z",
@@ -376,7 +1096,62 @@
         1,
         1769112730380,
         1001,
-        1002
+        1002,
+        1007,
+        1011,
+        1016,
+        1020,
+        1024,
+        1033,
+        1045,
+        1003,
+        1004,
+        1005,
+        1006,
+        1008,
+        1009,
+        1010,
+        "2bcbdcca-2496-4148-903c-b8d5059b827f",
+        1769118164352,
+        1012,
+        1013,
+        1014,
+        1015,
+        1017,
+        1018,
+        1019,
+        1021,
+        1022,
+        1023,
+        1025,
+        1026,
+        1027,
+        1028,
+        1029,
+        1030,
+        1031,
+        1032,
+        1034,
+        1035,
+        1036,
+        1037,
+        1038,
+        1039,
+        1040,
+        1041,
+        1042,
+        1043,
+        1044,
+        1046,
+        1047,
+        1048,
+        1049,
+        1050,
+        1051,
+        1052,
+        1053,
+        1054,
+        1055
       ],
       "attendeesList": [
         {
@@ -398,6 +1173,281 @@
           "id": 1002,
           "name": "Ana Clara",
           "avatar": "https://randomuser.me/api/portraits/women/28.jpg"
+        },
+        {
+          "id": 1007,
+          "name": "Fernanda Costa",
+          "avatar": "https://randomuser.me/api/portraits/women/33.jpg"
+        },
+        {
+          "id": 1011,
+          "name": "Camila Rodrigues",
+          "avatar": "https://randomuser.me/api/portraits/women/68.jpg"
+        },
+        {
+          "id": 1016,
+          "name": "Gabriel Costa",
+          "avatar": "https://randomuser.me/api/portraits/men/25.jpg"
+        },
+        {
+          "id": 1020,
+          "name": "Larissa Oliveira",
+          "avatar": "https://randomuser.me/api/portraits/women/41.jpg"
+        },
+        {
+          "id": 1024,
+          "name": "Isabela Martins",
+          "avatar": "https://randomuser.me/api/portraits/women/56.jpg"
+        },
+        {
+          "id": 1033,
+          "name": "Felipe Cardoso",
+          "avatar": "https://randomuser.me/api/portraits/men/44.jpg"
+        },
+        {
+          "id": 1045,
+          "name": "Thiago Barbosa",
+          "avatar": "https://randomuser.me/api/portraits/men/78.jpg"
+        },
+        {
+          "id": 1003,
+          "name": "João do Cavaco",
+          "avatar": "https://randomuser.me/api/portraits/men/55.jpg"
+        },
+        {
+          "id": 1004,
+          "name": "Mariana Artes",
+          "avatar": "https://randomuser.me/api/portraits/women/90.jpg"
+        },
+        {
+          "id": 1005,
+          "name": "Pedro Piadas",
+          "avatar": "https://randomuser.me/api/portraits/men/15.jpg"
+        },
+        {
+          "id": 1006,
+          "name": "Lucas Oliveira",
+          "avatar": "https://randomuser.me/api/portraits/men/45.jpg"
+        },
+        {
+          "id": 1008,
+          "name": "Rafael Santos",
+          "avatar": "https://randomuser.me/api/portraits/men/62.jpg"
+        },
+        {
+          "id": 1009,
+          "name": "Juliana Lima",
+          "avatar": "https://randomuser.me/api/portraits/women/12.jpg"
+        },
+        {
+          "id": 1010,
+          "name": "Bruno Alves",
+          "avatar": "https://randomuser.me/api/portraits/men/88.jpg"
+        },
+        {
+          "id": "2bcbdcca-2496-4148-903c-b8d5059b827f",
+          "name": "Rebeca Souza",
+          "avatar": "https://randomuser.me/api/portraits/women/65.jpg"
+        },
+        {
+          "id": 1769118164352,
+          "name": "Ingrid Moreira",
+          "avatar": "https://randomuser.me/api/portraits/women/44.jpg"
+        },
+        {
+          "id": 1012,
+          "name": "Thiago Mendes",
+          "avatar": "https://randomuser.me/api/portraits/men/71.jpg"
+        },
+        {
+          "id": 1013,
+          "name": "Patrícia Lopes",
+          "avatar": "https://randomuser.me/api/portraits/women/22.jpg"
+        },
+        {
+          "id": 1014,
+          "name": "Ricardo Nunes",
+          "avatar": "https://randomuser.me/api/portraits/men/39.jpg"
+        },
+        {
+          "id": 1015,
+          "name": "Sofia Martins",
+          "avatar": "https://randomuser.me/api/portraits/women/50.jpg"
+        },
+        {
+          "id": 1017,
+          "name": "Beatriz Santos",
+          "avatar": "https://randomuser.me/api/portraits/women/35.jpg"
+        },
+        {
+          "id": 1018,
+          "name": "Amanda Silva",
+          "avatar": "https://randomuser.me/api/portraits/women/77.jpg"
+        },
+        {
+          "id": 1019,
+          "name": "Carlos Ferreira",
+          "avatar": "https://randomuser.me/api/portraits/men/52.jpg"
+        },
+        {
+          "id": 1021,
+          "name": "Diego Almeida",
+          "avatar": "https://randomuser.me/api/portraits/men/67.jpg"
+        },
+        {
+          "id": 1022,
+          "name": "Júlia Campos",
+          "avatar": "https://randomuser.me/api/portraits/women/29.jpg"
+        },
+        {
+          "id": 1023,
+          "name": "Rodrigo Barbosa",
+          "avatar": "https://randomuser.me/api/portraits/men/48.jpg"
+        },
+        {
+          "id": 1025,
+          "name": "Vinícius Lima",
+          "avatar": "https://randomuser.me/api/portraits/men/73.jpg"
+        },
+        {
+          "id": 1026,
+          "name": "Carolina Souza",
+          "avatar": "https://randomuser.me/api/portraits/women/63.jpg"
+        },
+        {
+          "id": 1027,
+          "name": "Henrique Costa",
+          "avatar": "https://randomuser.me/api/portraits/men/41.jpg"
+        },
+        {
+          "id": 1028,
+          "name": "Letícia Rocha",
+          "avatar": "https://randomuser.me/api/portraits/women/47.jpg"
+        },
+        {
+          "id": 1029,
+          "name": "Gustavo Pereira",
+          "avatar": "https://randomuser.me/api/portraits/men/58.jpg"
+        },
+        {
+          "id": 1030,
+          "name": "Bianca Oliveira",
+          "avatar": "https://randomuser.me/api/portraits/women/38.jpg"
+        },
+        {
+          "id": 1031,
+          "name": "Matheus Silva",
+          "avatar": "https://randomuser.me/api/portraits/men/36.jpg"
+        },
+        {
+          "id": 1032,
+          "name": "Aline Santos",
+          "avatar": "https://randomuser.me/api/portraits/women/54.jpg"
+        },
+        {
+          "id": 1034,
+          "name": "Natália Ferreira",
+          "avatar": "https://randomuser.me/api/portraits/women/61.jpg"
+        },
+        {
+          "id": 1035,
+          "name": "André Ribeiro",
+          "avatar": "https://randomuser.me/api/portraits/men/51.jpg"
+        },
+        {
+          "id": 1036,
+          "name": "Priscila Mendes",
+          "avatar": "https://randomuser.me/api/portraits/women/43.jpg"
+        },
+        {
+          "id": 1037,
+          "name": "Leonardo Dias",
+          "avatar": "https://randomuser.me/api/portraits/men/59.jpg"
+        },
+        {
+          "id": 1038,
+          "name": "Vanessa Lima",
+          "avatar": "https://randomuser.me/api/portraits/women/52.jpg"
+        },
+        {
+          "id": 1039,
+          "name": "Caio Martins",
+          "avatar": "https://randomuser.me/api/portraits/men/64.jpg"
+        },
+        {
+          "id": 1040,
+          "name": "Tatiana Alves",
+          "avatar": "https://randomuser.me/api/portraits/women/59.jpg"
+        },
+        {
+          "id": 1041,
+          "name": "Renato Souza",
+          "avatar": "https://randomuser.me/api/portraits/men/69.jpg"
+        },
+        {
+          "id": 1042,
+          "name": "Daniela Costa",
+          "avatar": "https://randomuser.me/api/portraits/women/66.jpg"
+        },
+        {
+          "id": 1043,
+          "name": "Marcelo Ferreira",
+          "avatar": "https://randomuser.me/api/portraits/men/76.jpg"
+        },
+        {
+          "id": 1044,
+          "name": "Camila Rocha",
+          "avatar": "https://randomuser.me/api/portraits/women/71.jpg"
+        },
+        {
+          "id": 1046,
+          "name": "Jéssica Oliveira",
+          "avatar": "https://randomuser.me/api/portraits/women/74.jpg"
+        },
+        {
+          "id": 1047,
+          "name": "Lucas Mendes",
+          "avatar": "https://randomuser.me/api/portraits/men/81.jpg"
+        },
+        {
+          "id": 1048,
+          "name": "Mariana Dias",
+          "avatar": "https://randomuser.me/api/portraits/women/79.jpg"
+        },
+        {
+          "id": 1049,
+          "name": "Paulo Henrique",
+          "avatar": "https://randomuser.me/api/portraits/men/83.jpg"
+        },
+        {
+          "id": 1050,
+          "name": "Raquel Santos",
+          "avatar": "https://randomuser.me/api/portraits/women/82.jpg"
+        },
+        {
+          "id": 1051,
+          "name": "Sérgio Almeida",
+          "avatar": "https://randomuser.me/api/portraits/men/86.jpg"
+        },
+        {
+          "id": 1052,
+          "name": "Fernanda Ribeiro",
+          "avatar": "https://randomuser.me/api/portraits/women/85.jpg"
+        },
+        {
+          "id": 1053,
+          "name": "Roberto Lima",
+          "avatar": "https://randomuser.me/api/portraits/men/89.jpg"
+        },
+        {
+          "id": 1054,
+          "name": "Adriana Costa",
+          "avatar": "https://randomuser.me/api/portraits/women/88.jpg"
+        },
+        {
+          "id": 1055,
+          "name": "Eduardo Martins",
+          "avatar": "https://randomuser.me/api/portraits/men/91.jpg"
         }
       ],
       "createdAt": "2026-02-01T09:00:00.000Z",
@@ -415,7 +1465,7 @@
         -23.554378,
         -46.702781
       ],
-      "attendees": 3,
+      "attendees": 21,
       "date": "Sábado, 14 de fev.",
       "time": "17:30–18:30",
       "startsAt": "2026-02-14T17:30:00.000Z",
@@ -438,7 +1488,25 @@
       "attendeeIds": [
         1002,
         "2bcbdcca-2496-4148-903c-b8d5059b827f",
-        1769118164352
+        1769118164352,
+        1028,
+        1050,
+        1007,
+        1038,
+        1054,
+        1004,
+        1009,
+        1011,
+        1015,
+        1019,
+        1020,
+        1022,
+        1024,
+        1026,
+        1032,
+        1036,
+        1044,
+        1048
       ],
       "attendeesList": [
         {
@@ -455,6 +1523,96 @@
           "id": 1769118164352,
           "name": "Ingrid Moreira",
           "avatar": "https://randomuser.me/api/portraits/women/44.jpg"
+        },
+        {
+          "id": 1028,
+          "name": "Letícia Rocha",
+          "avatar": "https://randomuser.me/api/portraits/women/47.jpg"
+        },
+        {
+          "id": 1050,
+          "name": "Raquel Santos",
+          "avatar": "https://randomuser.me/api/portraits/women/82.jpg"
+        },
+        {
+          "id": 1007,
+          "name": "Fernanda Costa",
+          "avatar": "https://randomuser.me/api/portraits/women/33.jpg"
+        },
+        {
+          "id": 1038,
+          "name": "Vanessa Lima",
+          "avatar": "https://randomuser.me/api/portraits/women/52.jpg"
+        },
+        {
+          "id": 1054,
+          "name": "Adriana Costa",
+          "avatar": "https://randomuser.me/api/portraits/women/88.jpg"
+        },
+        {
+          "id": 1004,
+          "name": "Mariana Artes",
+          "avatar": "https://randomuser.me/api/portraits/women/90.jpg"
+        },
+        {
+          "id": 1009,
+          "name": "Juliana Lima",
+          "avatar": "https://randomuser.me/api/portraits/women/12.jpg"
+        },
+        {
+          "id": 1011,
+          "name": "Camila Rodrigues",
+          "avatar": "https://randomuser.me/api/portraits/women/68.jpg"
+        },
+        {
+          "id": 1015,
+          "name": "Sofia Martins",
+          "avatar": "https://randomuser.me/api/portraits/women/50.jpg"
+        },
+        {
+          "id": 1019,
+          "name": "Carlos Ferreira",
+          "avatar": "https://randomuser.me/api/portraits/men/52.jpg"
+        },
+        {
+          "id": 1020,
+          "name": "Larissa Oliveira",
+          "avatar": "https://randomuser.me/api/portraits/women/41.jpg"
+        },
+        {
+          "id": 1022,
+          "name": "Júlia Campos",
+          "avatar": "https://randomuser.me/api/portraits/women/29.jpg"
+        },
+        {
+          "id": 1024,
+          "name": "Isabela Martins",
+          "avatar": "https://randomuser.me/api/portraits/women/56.jpg"
+        },
+        {
+          "id": 1026,
+          "name": "Carolina Souza",
+          "avatar": "https://randomuser.me/api/portraits/women/63.jpg"
+        },
+        {
+          "id": 1032,
+          "name": "Aline Santos",
+          "avatar": "https://randomuser.me/api/portraits/women/54.jpg"
+        },
+        {
+          "id": 1036,
+          "name": "Priscila Mendes",
+          "avatar": "https://randomuser.me/api/portraits/women/43.jpg"
+        },
+        {
+          "id": 1044,
+          "name": "Camila Rocha",
+          "avatar": "https://randomuser.me/api/portraits/women/71.jpg"
+        },
+        {
+          "id": 1048,
+          "name": "Mariana Dias",
+          "avatar": "https://randomuser.me/api/portraits/women/79.jpg"
         }
       ],
       "createdAt": "2026-02-02T10:00:00.000Z",
@@ -470,7 +1628,7 @@
         -23.548773,
         -46.645719
       ],
-      "attendees": 4,
+      "attendees": 33,
       "date": "Hoje, 3 de fev.",
       "time": "19:00–22:00",
       "startsAt": "2026-02-03T19:00:00.000Z",
@@ -494,7 +1652,36 @@
         1001,
         1,
         1006,
-        1010
+        1010,
+        1012,
+        1017,
+        1008,
+        1769112730380,
+        1025,
+        1035,
+        1047,
+        1003,
+        1005,
+        1007,
+        1009,
+        1011,
+        1013,
+        1014,
+        1015,
+        1016,
+        1018,
+        1019,
+        1020,
+        1021,
+        1022,
+        1023,
+        1024,
+        1026,
+        1027,
+        1028,
+        1029,
+        1030,
+        1031
       ],
       "attendeesList": [
         {
@@ -516,6 +1703,151 @@
           "id": 1010,
           "name": "Bruno Alves",
           "avatar": "https://randomuser.me/api/portraits/men/88.jpg"
+        },
+        {
+          "id": 1012,
+          "name": "Thiago Mendes",
+          "avatar": "https://randomuser.me/api/portraits/men/71.jpg"
+        },
+        {
+          "id": 1017,
+          "name": "Beatriz Santos",
+          "avatar": "https://randomuser.me/api/portraits/women/35.jpg"
+        },
+        {
+          "id": 1008,
+          "name": "Rafael Santos",
+          "avatar": "https://randomuser.me/api/portraits/men/62.jpg"
+        },
+        {
+          "id": 1769112730380,
+          "name": "Fabiano França",
+          "avatar": "https://pond-climbing-advisory-jerusalem.trycloudflare.com/uploads/avatars/avatar-1769112730380-1769526100098.jpg"
+        },
+        {
+          "id": 1025,
+          "name": "Vinícius Lima",
+          "avatar": "https://randomuser.me/api/portraits/men/73.jpg"
+        },
+        {
+          "id": 1035,
+          "name": "André Ribeiro",
+          "avatar": "https://randomuser.me/api/portraits/men/51.jpg"
+        },
+        {
+          "id": 1047,
+          "name": "Lucas Mendes",
+          "avatar": "https://randomuser.me/api/portraits/men/81.jpg"
+        },
+        {
+          "id": 1003,
+          "name": "João do Cavaco",
+          "avatar": "https://randomuser.me/api/portraits/men/55.jpg"
+        },
+        {
+          "id": 1005,
+          "name": "Pedro Piadas",
+          "avatar": "https://randomuser.me/api/portraits/men/15.jpg"
+        },
+        {
+          "id": 1007,
+          "name": "Fernanda Costa",
+          "avatar": "https://randomuser.me/api/portraits/women/33.jpg"
+        },
+        {
+          "id": 1009,
+          "name": "Juliana Lima",
+          "avatar": "https://randomuser.me/api/portraits/women/12.jpg"
+        },
+        {
+          "id": 1011,
+          "name": "Camila Rodrigues",
+          "avatar": "https://randomuser.me/api/portraits/women/68.jpg"
+        },
+        {
+          "id": 1013,
+          "name": "Patrícia Lopes",
+          "avatar": "https://randomuser.me/api/portraits/women/22.jpg"
+        },
+        {
+          "id": 1014,
+          "name": "Ricardo Nunes",
+          "avatar": "https://randomuser.me/api/portraits/men/39.jpg"
+        },
+        {
+          "id": 1015,
+          "name": "Sofia Martins",
+          "avatar": "https://randomuser.me/api/portraits/women/50.jpg"
+        },
+        {
+          "id": 1016,
+          "name": "Gabriel Costa",
+          "avatar": "https://randomuser.me/api/portraits/men/25.jpg"
+        },
+        {
+          "id": 1018,
+          "name": "Amanda Silva",
+          "avatar": "https://randomuser.me/api/portraits/women/77.jpg"
+        },
+        {
+          "id": 1019,
+          "name": "Carlos Ferreira",
+          "avatar": "https://randomuser.me/api/portraits/men/52.jpg"
+        },
+        {
+          "id": 1020,
+          "name": "Larissa Oliveira",
+          "avatar": "https://randomuser.me/api/portraits/women/41.jpg"
+        },
+        {
+          "id": 1021,
+          "name": "Diego Almeida",
+          "avatar": "https://randomuser.me/api/portraits/men/67.jpg"
+        },
+        {
+          "id": 1022,
+          "name": "Júlia Campos",
+          "avatar": "https://randomuser.me/api/portraits/women/29.jpg"
+        },
+        {
+          "id": 1023,
+          "name": "Rodrigo Barbosa",
+          "avatar": "https://randomuser.me/api/portraits/men/48.jpg"
+        },
+        {
+          "id": 1024,
+          "name": "Isabela Martins",
+          "avatar": "https://randomuser.me/api/portraits/women/56.jpg"
+        },
+        {
+          "id": 1026,
+          "name": "Carolina Souza",
+          "avatar": "https://randomuser.me/api/portraits/women/63.jpg"
+        },
+        {
+          "id": 1027,
+          "name": "Henrique Costa",
+          "avatar": "https://randomuser.me/api/portraits/men/41.jpg"
+        },
+        {
+          "id": 1028,
+          "name": "Letícia Rocha",
+          "avatar": "https://randomuser.me/api/portraits/women/47.jpg"
+        },
+        {
+          "id": 1029,
+          "name": "Gustavo Pereira",
+          "avatar": "https://randomuser.me/api/portraits/men/58.jpg"
+        },
+        {
+          "id": 1030,
+          "name": "Bianca Oliveira",
+          "avatar": "https://randomuser.me/api/portraits/women/38.jpg"
+        },
+        {
+          "id": 1031,
+          "name": "Matheus Silva",
+          "avatar": "https://randomuser.me/api/portraits/men/36.jpg"
         }
       ],
       "createdAt": "2026-02-03T10:00:00.000Z",
@@ -533,7 +1865,7 @@
         -23.595982,
         -46.687258
       ],
-      "attendees": 5,
+      "attendees": 58,
       "date": "Quinta, 12 de fev.",
       "time": "19:00–21:30",
       "startsAt": "2026-02-12T19:00:00.000Z",
@@ -558,7 +1890,60 @@
         1,
         1008,
         1009,
-        1007
+        1007,
+        1023,
+        1034,
+        1046,
+        1002,
+        1003,
+        1004,
+        1005,
+        1006,
+        1010,
+        1011,
+        1012,
+        1013,
+        1014,
+        1015,
+        1016,
+        1017,
+        1018,
+        1019,
+        1020,
+        1021,
+        1022,
+        1024,
+        1025,
+        1026,
+        1027,
+        1028,
+        1029,
+        1030,
+        1031,
+        1032,
+        1033,
+        1035,
+        1036,
+        1037,
+        1038,
+        1039,
+        1040,
+        1041,
+        1042,
+        1043,
+        1044,
+        1045,
+        1047,
+        1048,
+        1049,
+        1050,
+        1051,
+        1052,
+        1053,
+        1054,
+        1055,
+        "2bcbdcca-2496-4148-903c-b8d5059b827f",
+        1769118164352
       ],
       "attendeesList": [
         {
@@ -585,6 +1970,271 @@
           "id": 1007,
           "name": "Fernanda Costa",
           "avatar": "https://randomuser.me/api/portraits/women/33.jpg"
+        },
+        {
+          "id": 1023,
+          "name": "Rodrigo Barbosa",
+          "avatar": "https://randomuser.me/api/portraits/men/48.jpg"
+        },
+        {
+          "id": 1034,
+          "name": "Natália Ferreira",
+          "avatar": "https://randomuser.me/api/portraits/women/61.jpg"
+        },
+        {
+          "id": 1046,
+          "name": "Jéssica Oliveira",
+          "avatar": "https://randomuser.me/api/portraits/women/74.jpg"
+        },
+        {
+          "id": 1002,
+          "name": "Ana Clara",
+          "avatar": "https://randomuser.me/api/portraits/women/28.jpg"
+        },
+        {
+          "id": 1003,
+          "name": "João do Cavaco",
+          "avatar": "https://randomuser.me/api/portraits/men/55.jpg"
+        },
+        {
+          "id": 1004,
+          "name": "Mariana Artes",
+          "avatar": "https://randomuser.me/api/portraits/women/90.jpg"
+        },
+        {
+          "id": 1005,
+          "name": "Pedro Piadas",
+          "avatar": "https://randomuser.me/api/portraits/men/15.jpg"
+        },
+        {
+          "id": 1006,
+          "name": "Lucas Oliveira",
+          "avatar": "https://randomuser.me/api/portraits/men/45.jpg"
+        },
+        {
+          "id": 1010,
+          "name": "Bruno Alves",
+          "avatar": "https://randomuser.me/api/portraits/men/88.jpg"
+        },
+        {
+          "id": 1011,
+          "name": "Camila Rodrigues",
+          "avatar": "https://randomuser.me/api/portraits/women/68.jpg"
+        },
+        {
+          "id": 1012,
+          "name": "Thiago Mendes",
+          "avatar": "https://randomuser.me/api/portraits/men/71.jpg"
+        },
+        {
+          "id": 1013,
+          "name": "Patrícia Lopes",
+          "avatar": "https://randomuser.me/api/portraits/women/22.jpg"
+        },
+        {
+          "id": 1014,
+          "name": "Ricardo Nunes",
+          "avatar": "https://randomuser.me/api/portraits/men/39.jpg"
+        },
+        {
+          "id": 1015,
+          "name": "Sofia Martins",
+          "avatar": "https://randomuser.me/api/portraits/women/50.jpg"
+        },
+        {
+          "id": 1016,
+          "name": "Gabriel Costa",
+          "avatar": "https://randomuser.me/api/portraits/men/25.jpg"
+        },
+        {
+          "id": 1017,
+          "name": "Beatriz Santos",
+          "avatar": "https://randomuser.me/api/portraits/women/35.jpg"
+        },
+        {
+          "id": 1018,
+          "name": "Amanda Silva",
+          "avatar": "https://randomuser.me/api/portraits/women/77.jpg"
+        },
+        {
+          "id": 1019,
+          "name": "Carlos Ferreira",
+          "avatar": "https://randomuser.me/api/portraits/men/52.jpg"
+        },
+        {
+          "id": 1020,
+          "name": "Larissa Oliveira",
+          "avatar": "https://randomuser.me/api/portraits/women/41.jpg"
+        },
+        {
+          "id": 1021,
+          "name": "Diego Almeida",
+          "avatar": "https://randomuser.me/api/portraits/men/67.jpg"
+        },
+        {
+          "id": 1022,
+          "name": "Júlia Campos",
+          "avatar": "https://randomuser.me/api/portraits/women/29.jpg"
+        },
+        {
+          "id": 1024,
+          "name": "Isabela Martins",
+          "avatar": "https://randomuser.me/api/portraits/women/56.jpg"
+        },
+        {
+          "id": 1025,
+          "name": "Vinícius Lima",
+          "avatar": "https://randomuser.me/api/portraits/men/73.jpg"
+        },
+        {
+          "id": 1026,
+          "name": "Carolina Souza",
+          "avatar": "https://randomuser.me/api/portraits/women/63.jpg"
+        },
+        {
+          "id": 1027,
+          "name": "Henrique Costa",
+          "avatar": "https://randomuser.me/api/portraits/men/41.jpg"
+        },
+        {
+          "id": 1028,
+          "name": "Letícia Rocha",
+          "avatar": "https://randomuser.me/api/portraits/women/47.jpg"
+        },
+        {
+          "id": 1029,
+          "name": "Gustavo Pereira",
+          "avatar": "https://randomuser.me/api/portraits/men/58.jpg"
+        },
+        {
+          "id": 1030,
+          "name": "Bianca Oliveira",
+          "avatar": "https://randomuser.me/api/portraits/women/38.jpg"
+        },
+        {
+          "id": 1031,
+          "name": "Matheus Silva",
+          "avatar": "https://randomuser.me/api/portraits/men/36.jpg"
+        },
+        {
+          "id": 1032,
+          "name": "Aline Santos",
+          "avatar": "https://randomuser.me/api/portraits/women/54.jpg"
+        },
+        {
+          "id": 1033,
+          "name": "Felipe Cardoso",
+          "avatar": "https://randomuser.me/api/portraits/men/44.jpg"
+        },
+        {
+          "id": 1035,
+          "name": "André Ribeiro",
+          "avatar": "https://randomuser.me/api/portraits/men/51.jpg"
+        },
+        {
+          "id": 1036,
+          "name": "Priscila Mendes",
+          "avatar": "https://randomuser.me/api/portraits/women/43.jpg"
+        },
+        {
+          "id": 1037,
+          "name": "Leonardo Dias",
+          "avatar": "https://randomuser.me/api/portraits/men/59.jpg"
+        },
+        {
+          "id": 1038,
+          "name": "Vanessa Lima",
+          "avatar": "https://randomuser.me/api/portraits/women/52.jpg"
+        },
+        {
+          "id": 1039,
+          "name": "Caio Martins",
+          "avatar": "https://randomuser.me/api/portraits/men/64.jpg"
+        },
+        {
+          "id": 1040,
+          "name": "Tatiana Alves",
+          "avatar": "https://randomuser.me/api/portraits/women/59.jpg"
+        },
+        {
+          "id": 1041,
+          "name": "Renato Souza",
+          "avatar": "https://randomuser.me/api/portraits/men/69.jpg"
+        },
+        {
+          "id": 1042,
+          "name": "Daniela Costa",
+          "avatar": "https://randomuser.me/api/portraits/women/66.jpg"
+        },
+        {
+          "id": 1043,
+          "name": "Marcelo Ferreira",
+          "avatar": "https://randomuser.me/api/portraits/men/76.jpg"
+        },
+        {
+          "id": 1044,
+          "name": "Camila Rocha",
+          "avatar": "https://randomuser.me/api/portraits/women/71.jpg"
+        },
+        {
+          "id": 1045,
+          "name": "Thiago Barbosa",
+          "avatar": "https://randomuser.me/api/portraits/men/78.jpg"
+        },
+        {
+          "id": 1047,
+          "name": "Lucas Mendes",
+          "avatar": "https://randomuser.me/api/portraits/men/81.jpg"
+        },
+        {
+          "id": 1048,
+          "name": "Mariana Dias",
+          "avatar": "https://randomuser.me/api/portraits/women/79.jpg"
+        },
+        {
+          "id": 1049,
+          "name": "Paulo Henrique",
+          "avatar": "https://randomuser.me/api/portraits/men/83.jpg"
+        },
+        {
+          "id": 1050,
+          "name": "Raquel Santos",
+          "avatar": "https://randomuser.me/api/portraits/women/82.jpg"
+        },
+        {
+          "id": 1051,
+          "name": "Sérgio Almeida",
+          "avatar": "https://randomuser.me/api/portraits/men/86.jpg"
+        },
+        {
+          "id": 1052,
+          "name": "Fernanda Ribeiro",
+          "avatar": "https://randomuser.me/api/portraits/women/85.jpg"
+        },
+        {
+          "id": 1053,
+          "name": "Roberto Lima",
+          "avatar": "https://randomuser.me/api/portraits/men/89.jpg"
+        },
+        {
+          "id": 1054,
+          "name": "Adriana Costa",
+          "avatar": "https://randomuser.me/api/portraits/women/88.jpg"
+        },
+        {
+          "id": 1055,
+          "name": "Eduardo Martins",
+          "avatar": "https://randomuser.me/api/portraits/men/91.jpg"
+        },
+        {
+          "id": "2bcbdcca-2496-4148-903c-b8d5059b827f",
+          "name": "Rebeca Souza",
+          "avatar": "https://randomuser.me/api/portraits/women/65.jpg"
+        },
+        {
+          "id": 1769118164352,
+          "name": "Ingrid Moreira",
+          "avatar": "https://randomuser.me/api/portraits/women/44.jpg"
         }
       ],
       "createdAt": "2026-02-01T14:00:00.000Z",
@@ -602,7 +2252,7 @@
         -23.557672,
         -46.660683
       ],
-      "attendees": 2,
+      "attendees": 7,
       "date": "Sábado, 21 de fev.",
       "time": "15:00–17:00",
       "startsAt": "2026-02-21T15:00:00.000Z",
@@ -624,7 +2274,12 @@
       "creatorId": "2bcbdcca-2496-4148-903c-b8d5059b827f",
       "attendeeIds": [
         "2bcbdcca-2496-4148-903c-b8d5059b827f",
-        1769118164352
+        1769118164352,
+        1013,
+        1015,
+        1019,
+        1009,
+        1004
       ],
       "attendeesList": [
         {
@@ -636,6 +2291,31 @@
           "id": 1769118164352,
           "name": "Ingrid Moreira",
           "avatar": "https://randomuser.me/api/portraits/women/44.jpg"
+        },
+        {
+          "id": 1013,
+          "name": "Patrícia Lopes",
+          "avatar": "https://randomuser.me/api/portraits/women/22.jpg"
+        },
+        {
+          "id": 1015,
+          "name": "Sofia Martins",
+          "avatar": "https://randomuser.me/api/portraits/women/50.jpg"
+        },
+        {
+          "id": 1019,
+          "name": "Carlos Ferreira",
+          "avatar": "https://randomuser.me/api/portraits/men/52.jpg"
+        },
+        {
+          "id": 1009,
+          "name": "Juliana Lima",
+          "avatar": "https://randomuser.me/api/portraits/women/12.jpg"
+        },
+        {
+          "id": 1004,
+          "name": "Mariana Artes",
+          "avatar": "https://randomuser.me/api/portraits/women/90.jpg"
         }
       ],
       "createdAt": "2026-02-02T11:00:00.000Z",
@@ -651,7 +2331,7 @@
         -23.55673,
         -46.687358
       ],
-      "attendees": 4,
+      "attendees": 58,
       "date": "Sexta, 7 de fev.",
       "time": "20:00–02:00",
       "startsAt": "2026-02-07T20:00:00.000Z",
@@ -675,7 +2355,61 @@
         1003,
         1,
         1769112730380,
-        "2bcbdcca-2496-4148-903c-b8d5059b827f"
+        "2bcbdcca-2496-4148-903c-b8d5059b827f",
+        1010,
+        1029,
+        1051,
+        1002,
+        1004,
+        1005,
+        1006,
+        1007,
+        1008,
+        1009,
+        1011,
+        1012,
+        1013,
+        1014,
+        1015,
+        1016,
+        1017,
+        1018,
+        1019,
+        1020,
+        1021,
+        1022,
+        1023,
+        1024,
+        1025,
+        1026,
+        1027,
+        1028,
+        1030,
+        1031,
+        1032,
+        1033,
+        1034,
+        1035,
+        1036,
+        1037,
+        1038,
+        1039,
+        1040,
+        1041,
+        1042,
+        1043,
+        1044,
+        1045,
+        1046,
+        1047,
+        1048,
+        1049,
+        1050,
+        1052,
+        1053,
+        1054,
+        1055,
+        1769118164352
       ],
       "attendeesList": [
         {
@@ -697,6 +2431,276 @@
           "id": "2bcbdcca-2496-4148-903c-b8d5059b827f",
           "name": "Rebeca Souza",
           "avatar": "https://randomuser.me/api/portraits/women/65.jpg"
+        },
+        {
+          "id": 1010,
+          "name": "Bruno Alves",
+          "avatar": "https://randomuser.me/api/portraits/men/88.jpg"
+        },
+        {
+          "id": 1029,
+          "name": "Gustavo Pereira",
+          "avatar": "https://randomuser.me/api/portraits/men/58.jpg"
+        },
+        {
+          "id": 1051,
+          "name": "Sérgio Almeida",
+          "avatar": "https://randomuser.me/api/portraits/men/86.jpg"
+        },
+        {
+          "id": 1002,
+          "name": "Ana Clara",
+          "avatar": "https://randomuser.me/api/portraits/women/28.jpg"
+        },
+        {
+          "id": 1004,
+          "name": "Mariana Artes",
+          "avatar": "https://randomuser.me/api/portraits/women/90.jpg"
+        },
+        {
+          "id": 1005,
+          "name": "Pedro Piadas",
+          "avatar": "https://randomuser.me/api/portraits/men/15.jpg"
+        },
+        {
+          "id": 1006,
+          "name": "Lucas Oliveira",
+          "avatar": "https://randomuser.me/api/portraits/men/45.jpg"
+        },
+        {
+          "id": 1007,
+          "name": "Fernanda Costa",
+          "avatar": "https://randomuser.me/api/portraits/women/33.jpg"
+        },
+        {
+          "id": 1008,
+          "name": "Rafael Santos",
+          "avatar": "https://randomuser.me/api/portraits/men/62.jpg"
+        },
+        {
+          "id": 1009,
+          "name": "Juliana Lima",
+          "avatar": "https://randomuser.me/api/portraits/women/12.jpg"
+        },
+        {
+          "id": 1011,
+          "name": "Camila Rodrigues",
+          "avatar": "https://randomuser.me/api/portraits/women/68.jpg"
+        },
+        {
+          "id": 1012,
+          "name": "Thiago Mendes",
+          "avatar": "https://randomuser.me/api/portraits/men/71.jpg"
+        },
+        {
+          "id": 1013,
+          "name": "Patrícia Lopes",
+          "avatar": "https://randomuser.me/api/portraits/women/22.jpg"
+        },
+        {
+          "id": 1014,
+          "name": "Ricardo Nunes",
+          "avatar": "https://randomuser.me/api/portraits/men/39.jpg"
+        },
+        {
+          "id": 1015,
+          "name": "Sofia Martins",
+          "avatar": "https://randomuser.me/api/portraits/women/50.jpg"
+        },
+        {
+          "id": 1016,
+          "name": "Gabriel Costa",
+          "avatar": "https://randomuser.me/api/portraits/men/25.jpg"
+        },
+        {
+          "id": 1017,
+          "name": "Beatriz Santos",
+          "avatar": "https://randomuser.me/api/portraits/women/35.jpg"
+        },
+        {
+          "id": 1018,
+          "name": "Amanda Silva",
+          "avatar": "https://randomuser.me/api/portraits/women/77.jpg"
+        },
+        {
+          "id": 1019,
+          "name": "Carlos Ferreira",
+          "avatar": "https://randomuser.me/api/portraits/men/52.jpg"
+        },
+        {
+          "id": 1020,
+          "name": "Larissa Oliveira",
+          "avatar": "https://randomuser.me/api/portraits/women/41.jpg"
+        },
+        {
+          "id": 1021,
+          "name": "Diego Almeida",
+          "avatar": "https://randomuser.me/api/portraits/men/67.jpg"
+        },
+        {
+          "id": 1022,
+          "name": "Júlia Campos",
+          "avatar": "https://randomuser.me/api/portraits/women/29.jpg"
+        },
+        {
+          "id": 1023,
+          "name": "Rodrigo Barbosa",
+          "avatar": "https://randomuser.me/api/portraits/men/48.jpg"
+        },
+        {
+          "id": 1024,
+          "name": "Isabela Martins",
+          "avatar": "https://randomuser.me/api/portraits/women/56.jpg"
+        },
+        {
+          "id": 1025,
+          "name": "Vinícius Lima",
+          "avatar": "https://randomuser.me/api/portraits/men/73.jpg"
+        },
+        {
+          "id": 1026,
+          "name": "Carolina Souza",
+          "avatar": "https://randomuser.me/api/portraits/women/63.jpg"
+        },
+        {
+          "id": 1027,
+          "name": "Henrique Costa",
+          "avatar": "https://randomuser.me/api/portraits/men/41.jpg"
+        },
+        {
+          "id": 1028,
+          "name": "Letícia Rocha",
+          "avatar": "https://randomuser.me/api/portraits/women/47.jpg"
+        },
+        {
+          "id": 1030,
+          "name": "Bianca Oliveira",
+          "avatar": "https://randomuser.me/api/portraits/women/38.jpg"
+        },
+        {
+          "id": 1031,
+          "name": "Matheus Silva",
+          "avatar": "https://randomuser.me/api/portraits/men/36.jpg"
+        },
+        {
+          "id": 1032,
+          "name": "Aline Santos",
+          "avatar": "https://randomuser.me/api/portraits/women/54.jpg"
+        },
+        {
+          "id": 1033,
+          "name": "Felipe Cardoso",
+          "avatar": "https://randomuser.me/api/portraits/men/44.jpg"
+        },
+        {
+          "id": 1034,
+          "name": "Natália Ferreira",
+          "avatar": "https://randomuser.me/api/portraits/women/61.jpg"
+        },
+        {
+          "id": 1035,
+          "name": "André Ribeiro",
+          "avatar": "https://randomuser.me/api/portraits/men/51.jpg"
+        },
+        {
+          "id": 1036,
+          "name": "Priscila Mendes",
+          "avatar": "https://randomuser.me/api/portraits/women/43.jpg"
+        },
+        {
+          "id": 1037,
+          "name": "Leonardo Dias",
+          "avatar": "https://randomuser.me/api/portraits/men/59.jpg"
+        },
+        {
+          "id": 1038,
+          "name": "Vanessa Lima",
+          "avatar": "https://randomuser.me/api/portraits/women/52.jpg"
+        },
+        {
+          "id": 1039,
+          "name": "Caio Martins",
+          "avatar": "https://randomuser.me/api/portraits/men/64.jpg"
+        },
+        {
+          "id": 1040,
+          "name": "Tatiana Alves",
+          "avatar": "https://randomuser.me/api/portraits/women/59.jpg"
+        },
+        {
+          "id": 1041,
+          "name": "Renato Souza",
+          "avatar": "https://randomuser.me/api/portraits/men/69.jpg"
+        },
+        {
+          "id": 1042,
+          "name": "Daniela Costa",
+          "avatar": "https://randomuser.me/api/portraits/women/66.jpg"
+        },
+        {
+          "id": 1043,
+          "name": "Marcelo Ferreira",
+          "avatar": "https://randomuser.me/api/portraits/men/76.jpg"
+        },
+        {
+          "id": 1044,
+          "name": "Camila Rocha",
+          "avatar": "https://randomuser.me/api/portraits/women/71.jpg"
+        },
+        {
+          "id": 1045,
+          "name": "Thiago Barbosa",
+          "avatar": "https://randomuser.me/api/portraits/men/78.jpg"
+        },
+        {
+          "id": 1046,
+          "name": "Jéssica Oliveira",
+          "avatar": "https://randomuser.me/api/portraits/women/74.jpg"
+        },
+        {
+          "id": 1047,
+          "name": "Lucas Mendes",
+          "avatar": "https://randomuser.me/api/portraits/men/81.jpg"
+        },
+        {
+          "id": 1048,
+          "name": "Mariana Dias",
+          "avatar": "https://randomuser.me/api/portraits/women/79.jpg"
+        },
+        {
+          "id": 1049,
+          "name": "Paulo Henrique",
+          "avatar": "https://randomuser.me/api/portraits/men/83.jpg"
+        },
+        {
+          "id": 1050,
+          "name": "Raquel Santos",
+          "avatar": "https://randomuser.me/api/portraits/women/82.jpg"
+        },
+        {
+          "id": 1052,
+          "name": "Fernanda Ribeiro",
+          "avatar": "https://randomuser.me/api/portraits/women/85.jpg"
+        },
+        {
+          "id": 1053,
+          "name": "Roberto Lima",
+          "avatar": "https://randomuser.me/api/portraits/men/89.jpg"
+        },
+        {
+          "id": 1054,
+          "name": "Adriana Costa",
+          "avatar": "https://randomuser.me/api/portraits/women/88.jpg"
+        },
+        {
+          "id": 1055,
+          "name": "Eduardo Martins",
+          "avatar": "https://randomuser.me/api/portraits/men/91.jpg"
+        },
+        {
+          "id": 1769118164352,
+          "name": "Ingrid Moreira",
+          "avatar": "https://randomuser.me/api/portraits/women/44.jpg"
         }
       ],
       "createdAt": "2026-02-03T09:00:00.000Z",
@@ -714,7 +2718,7 @@
         -23.559981,
         -46.64562
       ],
-      "attendees": 5,
+      "attendees": 59,
       "date": "Domingo, 15 de fev.",
       "time": "10:00–18:00",
       "startsAt": "2026-02-15T10:00:00.000Z",
@@ -739,7 +2743,61 @@
         1004,
         1010,
         1006,
-        1008
+        1008,
+        1030,
+        1052,
+        1001,
+        1002,
+        1003,
+        1005,
+        1007,
+        1009,
+        1011,
+        1012,
+        1013,
+        1014,
+        1015,
+        1016,
+        1017,
+        1018,
+        1019,
+        1020,
+        1021,
+        1022,
+        1023,
+        1024,
+        1025,
+        1026,
+        1027,
+        1028,
+        1029,
+        1031,
+        1032,
+        1033,
+        1034,
+        1035,
+        1036,
+        1037,
+        1038,
+        1039,
+        1040,
+        1041,
+        1042,
+        1043,
+        1044,
+        1045,
+        1046,
+        1047,
+        1048,
+        1049,
+        1050,
+        1051,
+        1053,
+        1054,
+        1055,
+        1,
+        1769112730380,
+        "2bcbdcca-2496-4148-903c-b8d5059b827f"
       ],
       "attendeesList": [
         {
@@ -766,6 +2824,276 @@
           "id": 1008,
           "name": "Rafael Santos",
           "avatar": "https://randomuser.me/api/portraits/men/62.jpg"
+        },
+        {
+          "id": 1030,
+          "name": "Bianca Oliveira",
+          "avatar": "https://randomuser.me/api/portraits/women/38.jpg"
+        },
+        {
+          "id": 1052,
+          "name": "Fernanda Ribeiro",
+          "avatar": "https://randomuser.me/api/portraits/women/85.jpg"
+        },
+        {
+          "id": 1001,
+          "name": "Marcos Silva",
+          "avatar": "https://randomuser.me/api/portraits/men/32.jpg"
+        },
+        {
+          "id": 1002,
+          "name": "Ana Clara",
+          "avatar": "https://randomuser.me/api/portraits/women/28.jpg"
+        },
+        {
+          "id": 1003,
+          "name": "João do Cavaco",
+          "avatar": "https://randomuser.me/api/portraits/men/55.jpg"
+        },
+        {
+          "id": 1005,
+          "name": "Pedro Piadas",
+          "avatar": "https://randomuser.me/api/portraits/men/15.jpg"
+        },
+        {
+          "id": 1007,
+          "name": "Fernanda Costa",
+          "avatar": "https://randomuser.me/api/portraits/women/33.jpg"
+        },
+        {
+          "id": 1009,
+          "name": "Juliana Lima",
+          "avatar": "https://randomuser.me/api/portraits/women/12.jpg"
+        },
+        {
+          "id": 1011,
+          "name": "Camila Rodrigues",
+          "avatar": "https://randomuser.me/api/portraits/women/68.jpg"
+        },
+        {
+          "id": 1012,
+          "name": "Thiago Mendes",
+          "avatar": "https://randomuser.me/api/portraits/men/71.jpg"
+        },
+        {
+          "id": 1013,
+          "name": "Patrícia Lopes",
+          "avatar": "https://randomuser.me/api/portraits/women/22.jpg"
+        },
+        {
+          "id": 1014,
+          "name": "Ricardo Nunes",
+          "avatar": "https://randomuser.me/api/portraits/men/39.jpg"
+        },
+        {
+          "id": 1015,
+          "name": "Sofia Martins",
+          "avatar": "https://randomuser.me/api/portraits/women/50.jpg"
+        },
+        {
+          "id": 1016,
+          "name": "Gabriel Costa",
+          "avatar": "https://randomuser.me/api/portraits/men/25.jpg"
+        },
+        {
+          "id": 1017,
+          "name": "Beatriz Santos",
+          "avatar": "https://randomuser.me/api/portraits/women/35.jpg"
+        },
+        {
+          "id": 1018,
+          "name": "Amanda Silva",
+          "avatar": "https://randomuser.me/api/portraits/women/77.jpg"
+        },
+        {
+          "id": 1019,
+          "name": "Carlos Ferreira",
+          "avatar": "https://randomuser.me/api/portraits/men/52.jpg"
+        },
+        {
+          "id": 1020,
+          "name": "Larissa Oliveira",
+          "avatar": "https://randomuser.me/api/portraits/women/41.jpg"
+        },
+        {
+          "id": 1021,
+          "name": "Diego Almeida",
+          "avatar": "https://randomuser.me/api/portraits/men/67.jpg"
+        },
+        {
+          "id": 1022,
+          "name": "Júlia Campos",
+          "avatar": "https://randomuser.me/api/portraits/women/29.jpg"
+        },
+        {
+          "id": 1023,
+          "name": "Rodrigo Barbosa",
+          "avatar": "https://randomuser.me/api/portraits/men/48.jpg"
+        },
+        {
+          "id": 1024,
+          "name": "Isabela Martins",
+          "avatar": "https://randomuser.me/api/portraits/women/56.jpg"
+        },
+        {
+          "id": 1025,
+          "name": "Vinícius Lima",
+          "avatar": "https://randomuser.me/api/portraits/men/73.jpg"
+        },
+        {
+          "id": 1026,
+          "name": "Carolina Souza",
+          "avatar": "https://randomuser.me/api/portraits/women/63.jpg"
+        },
+        {
+          "id": 1027,
+          "name": "Henrique Costa",
+          "avatar": "https://randomuser.me/api/portraits/men/41.jpg"
+        },
+        {
+          "id": 1028,
+          "name": "Letícia Rocha",
+          "avatar": "https://randomuser.me/api/portraits/women/47.jpg"
+        },
+        {
+          "id": 1029,
+          "name": "Gustavo Pereira",
+          "avatar": "https://randomuser.me/api/portraits/men/58.jpg"
+        },
+        {
+          "id": 1031,
+          "name": "Matheus Silva",
+          "avatar": "https://randomuser.me/api/portraits/men/36.jpg"
+        },
+        {
+          "id": 1032,
+          "name": "Aline Santos",
+          "avatar": "https://randomuser.me/api/portraits/women/54.jpg"
+        },
+        {
+          "id": 1033,
+          "name": "Felipe Cardoso",
+          "avatar": "https://randomuser.me/api/portraits/men/44.jpg"
+        },
+        {
+          "id": 1034,
+          "name": "Natália Ferreira",
+          "avatar": "https://randomuser.me/api/portraits/women/61.jpg"
+        },
+        {
+          "id": 1035,
+          "name": "André Ribeiro",
+          "avatar": "https://randomuser.me/api/portraits/men/51.jpg"
+        },
+        {
+          "id": 1036,
+          "name": "Priscila Mendes",
+          "avatar": "https://randomuser.me/api/portraits/women/43.jpg"
+        },
+        {
+          "id": 1037,
+          "name": "Leonardo Dias",
+          "avatar": "https://randomuser.me/api/portraits/men/59.jpg"
+        },
+        {
+          "id": 1038,
+          "name": "Vanessa Lima",
+          "avatar": "https://randomuser.me/api/portraits/women/52.jpg"
+        },
+        {
+          "id": 1039,
+          "name": "Caio Martins",
+          "avatar": "https://randomuser.me/api/portraits/men/64.jpg"
+        },
+        {
+          "id": 1040,
+          "name": "Tatiana Alves",
+          "avatar": "https://randomuser.me/api/portraits/women/59.jpg"
+        },
+        {
+          "id": 1041,
+          "name": "Renato Souza",
+          "avatar": "https://randomuser.me/api/portraits/men/69.jpg"
+        },
+        {
+          "id": 1042,
+          "name": "Daniela Costa",
+          "avatar": "https://randomuser.me/api/portraits/women/66.jpg"
+        },
+        {
+          "id": 1043,
+          "name": "Marcelo Ferreira",
+          "avatar": "https://randomuser.me/api/portraits/men/76.jpg"
+        },
+        {
+          "id": 1044,
+          "name": "Camila Rocha",
+          "avatar": "https://randomuser.me/api/portraits/women/71.jpg"
+        },
+        {
+          "id": 1045,
+          "name": "Thiago Barbosa",
+          "avatar": "https://randomuser.me/api/portraits/men/78.jpg"
+        },
+        {
+          "id": 1046,
+          "name": "Jéssica Oliveira",
+          "avatar": "https://randomuser.me/api/portraits/women/74.jpg"
+        },
+        {
+          "id": 1047,
+          "name": "Lucas Mendes",
+          "avatar": "https://randomuser.me/api/portraits/men/81.jpg"
+        },
+        {
+          "id": 1048,
+          "name": "Mariana Dias",
+          "avatar": "https://randomuser.me/api/portraits/women/79.jpg"
+        },
+        {
+          "id": 1049,
+          "name": "Paulo Henrique",
+          "avatar": "https://randomuser.me/api/portraits/men/83.jpg"
+        },
+        {
+          "id": 1050,
+          "name": "Raquel Santos",
+          "avatar": "https://randomuser.me/api/portraits/women/82.jpg"
+        },
+        {
+          "id": 1051,
+          "name": "Sérgio Almeida",
+          "avatar": "https://randomuser.me/api/portraits/men/86.jpg"
+        },
+        {
+          "id": 1053,
+          "name": "Roberto Lima",
+          "avatar": "https://randomuser.me/api/portraits/men/89.jpg"
+        },
+        {
+          "id": 1054,
+          "name": "Adriana Costa",
+          "avatar": "https://randomuser.me/api/portraits/women/88.jpg"
+        },
+        {
+          "id": 1055,
+          "name": "Eduardo Martins",
+          "avatar": "https://randomuser.me/api/portraits/men/91.jpg"
+        },
+        {
+          "id": 1,
+          "name": "Konekt",
+          "avatar": "https://i.pravatar.cc/150?img=50"
+        },
+        {
+          "id": 1769112730380,
+          "name": "Fabiano França",
+          "avatar": "https://pond-climbing-advisory-jerusalem.trycloudflare.com/uploads/avatars/avatar-1769112730380-1769526100098.jpg"
+        },
+        {
+          "id": "2bcbdcca-2496-4148-903c-b8d5059b827f",
+          "name": "Rebeca Souza",
+          "avatar": "https://randomuser.me/api/portraits/women/65.jpg"
         }
       ],
       "createdAt": "2026-02-03T11:00:00.000Z",
@@ -838,7 +3166,7 @@
         -23.585507,
         -46.689139
       ],
-      "attendees": 14,
+      "attendees": 15,
       "date": "Segunda-feira, 9 de fev.",
       "time": "07:00–08:00",
       "startsAt": "2026-02-09T07:00:00.000Z",
@@ -872,7 +3200,8 @@
         1008,
         1009,
         1010,
-        1
+        1,
+        1038
       ],
       "attendeesList": [
         {
@@ -944,6 +3273,11 @@
           "id": 1,
           "name": "Konekt",
           "avatar": "https://i.pravatar.cc/150?img=50"
+        },
+        {
+          "id": 1038,
+          "name": "Vanessa Lima",
+          "avatar": "https://randomuser.me/api/portraits/women/52.jpg"
         }
       ],
       "createdAt": "2026-02-03T13:00:00.000Z",
@@ -1166,7 +3500,7 @@
         -23.5393,
         -46.6536
       ],
-      "attendees": 2,
+      "attendees": 7,
       "date": "Terça, 10 de fev.",
       "time": "19:00–21:00",
       "startsAt": "2026-02-10T19:00:00.000Z",
@@ -1188,7 +3522,12 @@
       "creatorId": 1004,
       "attendeeIds": [
         1004,
-        1769118164352
+        1769118164352,
+        1014,
+        1018,
+        1005,
+        "2bcbdcca-2496-4148-903c-b8d5059b827f",
+        1003
       ],
       "attendeesList": [
         {
@@ -1200,6 +3539,31 @@
           "id": 1769118164352,
           "name": "Ingrid Moreira",
           "avatar": "https://randomuser.me/api/portraits/women/44.jpg"
+        },
+        {
+          "id": 1014,
+          "name": "Ricardo Nunes",
+          "avatar": "https://randomuser.me/api/portraits/men/39.jpg"
+        },
+        {
+          "id": 1018,
+          "name": "Amanda Silva",
+          "avatar": "https://randomuser.me/api/portraits/women/77.jpg"
+        },
+        {
+          "id": 1005,
+          "name": "Pedro Piadas",
+          "avatar": "https://randomuser.me/api/portraits/men/15.jpg"
+        },
+        {
+          "id": "2bcbdcca-2496-4148-903c-b8d5059b827f",
+          "name": "Rebeca Souza",
+          "avatar": "https://randomuser.me/api/portraits/women/65.jpg"
+        },
+        {
+          "id": 1003,
+          "name": "João do Cavaco",
+          "avatar": "https://randomuser.me/api/portraits/men/55.jpg"
         }
       ],
       "createdAt": "2026-02-03T17:00:00.000Z",
@@ -1606,7 +3970,7 @@
       "token": "c93e0681ef928d68da07a857d52008e30cdbf691a4863b4e",
       "userId": 1,
       "createdAt": "2026-02-04T00:58:59.871Z",
-      "lastActivity": "2026-02-04T17:52:53.748Z"
+      "lastActivity": "2026-02-04T18:38:44.607Z"
     }
   ],
   "notifications": [],
