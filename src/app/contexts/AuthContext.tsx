@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, ReactNode, useEffect } from "react";
 import { User } from "../types";
 import { API_URL, getAuthHeaders } from "../services/api/client";
 import { changePasswordRequest } from "../services/api/users";
@@ -45,6 +45,36 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
     return null;
   });
+
+  const logout = () => {
+    setUser(null);
+    localStorage.removeItem("konekt_user");
+    localStorage.removeItem("konekt_token");
+  };
+
+  useEffect(() => {
+    // Escuta evento de logout global disparado pelo client.ts (401)
+    const handleLogout = () => logout();
+    window.addEventListener("konekt:auth:logout", handleLogout);
+    return () => window.removeEventListener("konekt:auth:logout", handleLogout);
+  }, []);
+
+  useEffect(() => {
+    if (!user) return;
+
+    // Mantém a sessão viva atualizando o lastActivity no backend a cada 5m
+    const interval = setInterval(
+      () => {
+        refreshUser().catch(() => {
+          // Erros de refresh são silenciosos
+          // Se for 401, o interceptor do client.ts vai disparar o logout
+        });
+      },
+      5 * 60 * 1000,
+    );
+
+    return () => clearInterval(interval);
+  }, [user]);
 
   const applyUserOverrides = (baseUser: User) => {
     try {
@@ -187,11 +217,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const logout = () => {
-    setUser(null);
-    localStorage.removeItem("konekt_user");
-    localStorage.removeItem("konekt_token");
-  };
+
 
   const logoutAll = async (): Promise<AuthResult> => {
     try {
@@ -239,7 +265,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const refreshUser = async () => {
     try {
       const res = await fetch(`${API_URL}/users/me`, {
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          ...getAuthHeaders(),
+        },
       });
       if (!res.ok) return;
       const data = await res.json();

@@ -30,6 +30,11 @@ export async function apiFetch<T>(
     });
 
     if (!res.ok) {
+      if (res.status === 401) {
+        // Dispara evento de logout global
+        window.dispatchEvent(new Event("konekt:auth:logout"));
+        throw new Error("Sessão expirada");
+      }
       const message = await res.text();
       throw new Error(message || `Erro ${res.status}`);
     }

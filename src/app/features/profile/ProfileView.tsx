@@ -625,10 +625,10 @@ export function ProfileView({
 
     allPosts.forEach((post) => {
       // Verifica se o post é de um evento que o usuário participou
-      if (participatedEventNames.has(post.event.name)) {
+      if (post.event && participatedEventNames.has(post.event.name)) {
         // Encontra o ID do evento correspondente
         const event = allParticipatedEvents.find(
-          (e) => e.name === post.event.name,
+          (e) => e.name === post.event!.name,
         );
         if (event) {
           // Verifica se o post é do próprio usuário (usando author ou fallback para "Você")
